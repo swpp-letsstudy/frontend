@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux'
+import { handleActions } from 'redux-actions'
+import { pender } from 'redux-pender'
 
 import * as ACTION_TYPES from "./actionTypes"
 
@@ -34,37 +36,16 @@ const userReducer = (state = initialUserState, action) => {
   }
 }
 
-const initialGroupState = [
-  {
-    id: 0,
-    name: 'a',
-  },
-  {
-    id: 1,
-    name: 'b',
-  },
-  {
-    id: 2,
-    name: 'c',
-  },
-]
+const initialGroupState = []
 
-const groupReducer = (state = initialGroupState, action) => {
-  switch(action.type) {
-    case ACTION_TYPES.LOAD_GROUPS:
-      return state
-    case ACTION_TYPES.CREATE_GROUPS:
-      return state
-    case ACTION_TYPES.READ_GROUPS:
-      return state
-    case ACTION_TYPES.UPDATE_GROUPS:
-      return state
-    case ACTION_TYPES.DELETE_GROUPS:
-      return state
-    default:
-      return state
-  }
-}
+const groupReducer = handleActions({
+  ...pender({
+    type: ACTION_TYPES.LOAD_GROUPS,
+    onSuccess: (state, action) => (
+      action.data
+    ),
+  }),
+}, initialGroupState)
 
 export default combineReducers({
   userReducer,
