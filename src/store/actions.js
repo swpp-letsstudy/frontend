@@ -23,3 +23,14 @@ export const loadGroups = () => ({
   )
 })
 
+export const login = (username, password) => ({
+  type: ACTION_TYPES.LOGIN,
+  data: axios({
+    url: 'http://localhost:8000/login/',
+    method: 'post',
+    data: {
+      username,
+      password,
+    }
+  })
+})

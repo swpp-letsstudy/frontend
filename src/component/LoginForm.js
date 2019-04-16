@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import {connect} from "react-redux"
+import {connect} from 'react-redux'
+import { Formik, Form, Field } from 'formik';
 
-// import * as actions from '../store/actions'
+import * as actions from '../store/actions'
 
 class LoginForm extends Component {
   constructor(props) {
@@ -12,36 +13,33 @@ class LoginForm extends Component {
     }
   }
 
-  // handleSubmit = event => {
-  //   event.preventDefault()
-  //   const { username, password } = this.state
-  //   this.props.fetchLogin(username, password)
-  // }
-
-  // handleInputChange = event => {
-  //   const { name, value } = event.target
-  //   this.setState({
-  //     [name]: value
-  //   })
-  // }
-
   render() {
     return (
-      <div>로그인
-        {/* <form onSubmit={this.handleSubmit}>
-          <input type='text' name='username' onChange={this.handleInputChange} />
-          <input type='text' name='password' onChange={this.handleInputChange} />
-          <button>로그인</button>
-        </form> */}
-      </div>
+      <Formik
+        initialValues = {{
+          username: '',
+          password: '',
+        }}
+        onSubmit={(values, formActions) => {
+          const { username, password } = values
+          this.props.login(username, password)
+        }}
+        render={props => (
+          <Form>
+            <Field name='username'/>
+            <Field type='password' name='password'/>
+            <button type='submit'>로그인</button>
+          </Form>
+        )}
+      />
     )
   }
 }
 
-const mapStateToProps = state => ({
-  isLoggedIn: state.userReducer.isLoggedIn,
-})
+const mapStateToProps = state => ({ })
 
-const mapDispatchToProps = dispatch => ({ })
+const mapDispatchToProps = dispatch => ({
+  login: (username, password) => dispatch(actions.login(username, password))
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)

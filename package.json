@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "cross-env": "^5.2.0",
+    "formik": "^1.5.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.2",
@@ -12,6 +13,7 @@
     "react-scripts": "2.1.8",
     "redux": "^4.0.1",
     "redux-actions": "^2.6.5",
+    "redux-devtools-extension": "^2.13.8",
     "redux-pender": "^2.0.12"
   },
   "scripts": {
