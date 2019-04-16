@@ -19,18 +19,10 @@ const initialUserState = {
 const userReducer = handleActions({
   ...pender({
     type: ACTION_TYPES.LOGIN,
-    onPending: (state, action) => {
-      return Object.assign({}, state, {
-        isLoggedIn: true,
-        user: {
-          token: 'asdfasfasdfa',
-        }
-      })
-    },
     onSuccess: (state, action) => {
-      console.log("Aa")
+      console.log(action)
       return state
-    }
+    },
   }),
 }, initialUserState)
 
