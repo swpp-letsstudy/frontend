@@ -24,14 +24,17 @@ const userReducer = handleActions({
   }),
 }, initialUserState)
 
-const initialGroupState = []
+const initialGroupState = {
+  groups: [],
+}
 
 const groupReducer = handleActions({
   ...pender({
     type: ACTION_TYPES.LOAD_GROUPS,
     onSuccess: (state, action) => {
-      console.log('groups', action.payload)
-      return Object.assign({}, state, action.payload.data)
+      return Object.assign({}, state, {
+        groups: action.payload.data
+      })
     },
   }),
 }, initialGroupState)

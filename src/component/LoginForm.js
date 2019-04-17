@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import { Formik, Form, Field } from 'formik'
 
 import * as actions from '../store/actions'
@@ -7,10 +8,6 @@ import * as actions from '../store/actions'
 class LoginForm extends Component {
   constructor(props) {
     super(props)
-    const { history, isLoggedIn } = this.props
-    if (isLoggedIn) {
-      history.push('')
-    }
     this.state = {
       username: '',
       password: '',
@@ -18,6 +15,10 @@ class LoginForm extends Component {
   }
 
   render() {
+    const { isLoggedIn } = this.props
+    if (isLoggedIn) {
+      return <Redirect to='/' />
+    }
     return (
       <Formik
         initialValues = {{

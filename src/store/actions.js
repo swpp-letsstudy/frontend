@@ -3,7 +3,7 @@ import { createAction } from 'redux-actions'
 import * as ACTION_TYPES from './actionTypes'
 
 const _loadGroups = () => axios({
-  url: 'http://localhost:8000/studygroups/',
+  url: 'http://localhost:8000/study_groups/',
   method: 'get',
 })
 
