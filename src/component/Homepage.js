@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import GroupList from './GroupList'
 
-import * as actions from '../store/actions'
+import * as actions from 'store/actions'
 
 class Homepage extends Component {
   constructor(props) {

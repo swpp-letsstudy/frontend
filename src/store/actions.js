@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { createAction } from 'redux-actions'
-import * as ACTION_TYPES from './actionTypes'
+import * as ACTION_TYPES from 'store/actionTypes'
 
 const _loadGroups = () => axios({
   url: 'http://localhost:8000/study_groups/',

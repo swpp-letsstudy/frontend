@@ -1,5 +1,5 @@
 import React from 'react'
-import GroupItem from './GroupItem'
+import GroupItem from 'component/GroupItem'
 
 const GroupList = props => {
   console.log('aa', props.groups)

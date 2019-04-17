@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { Formik, Form, Field } from 'formik'
 
-import * as actions from '../store/actions'
+import * as actions from 'store/actions'
 
 class LoginForm extends Component {
   constructor(props) {

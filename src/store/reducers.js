@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 import { handleActions } from 'redux-actions'
 import { pender, penderReducer } from 'redux-pender'
 
-import * as ACTION_TYPES from "./actionTypes"
+import * as ACTION_TYPES from "store/actionTypes"
 
 const initialUserState = {
   isLoggedIn: localStorage.hasOwnProperty('user') ? true : false,
