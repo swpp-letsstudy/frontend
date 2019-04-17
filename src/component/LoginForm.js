@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field } from 'formik'
 
 import * as actions from '../store/actions'
 
 class LoginForm extends Component {
   constructor(props) {
     super(props)
+    const { history, isLoggedIn } = this.props
+    if (isLoggedIn) {
+      history.push('')
+    }
     this.state = {
       username: '',
       password: '',
@@ -36,7 +40,9 @@ class LoginForm extends Component {
   }
 }
 
-const mapStateToProps = state => ({ })
+const mapStateToProps = state => ({
+  isLoggedIn: state.userReducer.isLoggedIn,
+})
 
 const mapDispatchToProps = dispatch => ({
   login: (username, password) => dispatch(actions.login(username, password))
