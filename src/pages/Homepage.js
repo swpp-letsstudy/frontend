@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import GroupList from 'component/GroupList'
+import { Formik, Form } from 'formik'
 
 import * as actions from 'store/actions'
 
@@ -18,7 +19,24 @@ class Homepage extends Component {
     if (!isLoggedIn) {
       return <Redirect to='login/' />
     }
-    return <GroupList groups={this.props.groups} />
+    return (
+      <>
+        <Formik
+          initialValues = {{
+            username: '',
+            password: '',
+          }}
+          onSubmit={(values, formActions) => {
+            this.props.logout()
+          }}
+          render={()=>
+            <Form>
+                <button type='submit'>로그아웃</button>    
+            </Form>}
+        />
+        <GroupList groups={this.props.groups} />
+      </>
+    )
   }
 }
 
@@ -27,7 +45,8 @@ const mapStateToProps = state => ({
   groups: state.groupReducer.groups,
 })
 const mapDispatchToProps = dispatch => ({
-  loadGroups: () => dispatch(actions.loadGroups())
+  loadGroups: () => dispatch(actions.loadGroups()),
+  logout: () => dispatch(actions.logout()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage)

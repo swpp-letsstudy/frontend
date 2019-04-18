@@ -21,5 +21,11 @@ const _login = (username, password) => axios({
   }
 })
 
+const _logout = () => axios({
+  url: 'http://localhost:8000/logout/',
+  method: 'post',
+})
+
 export const loadGroups = createAction(ACTION_TYPES.LOAD_GROUPS, _loadGroups)
 export const login = createAction(ACTION_TYPES.LOGIN, _login)
+export const logout = createAction(ACTION_TYPES.LOGOUT, _logout)

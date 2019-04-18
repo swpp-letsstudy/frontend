@@ -6,7 +6,7 @@ const GroupList = props => {
   return (
     <>
       {props.groups && props.groups.map((group, index) => (
-        <GroupItem key={index} group={group} />
+        <GroupItem key={index} group={group.name} />
       ))}
     </>
   )
