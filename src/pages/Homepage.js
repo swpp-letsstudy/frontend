@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import GroupList from './GroupList'
+import GroupList from 'component/GroupList'
 
 import * as actions from 'store/actions'
 

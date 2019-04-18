@@ -6,14 +6,9 @@ const _loadGroups = () => {
   if (localStorage.hasOwnProperty('user') ? false : true) {
     return null
   }
-  const user = JSON.parse(localStorage.getItem('user'))
-  console.log(user)
   return axios({
-    url: `http://localhost:8000/study_groups/${user.id}/`,
+    url: `http://localhost:8000/study_groups/`,
     method: 'get',
-    headers: {
-      'Authorization' : `Token ${user.token}`,
-    },
   })
 }
 

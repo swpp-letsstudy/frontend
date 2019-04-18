@@ -1,7 +1,6 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
-import Homepage from 'component/Homepage'
-
+import Homepage from 'pages/Homepage'
 import LoginPage from 'pages/LoginPage'
 
 const App = props => (
