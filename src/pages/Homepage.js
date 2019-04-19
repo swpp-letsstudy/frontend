@@ -57,7 +57,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   loadGroups: () => dispatch(actions.loadGroups()),
   logout: () => dispatch(actions.logout()),
-  createGroup: () => dispatch(actions.createGroup()),
+  createGroup: (name, info) => dispatch(actions.createGroup({name, info})),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage)
