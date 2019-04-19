@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 import GroupList from 'component/GroupList'
 import { Formik, Form } from 'formik'
 
 import * as actions from 'store/actions'
+import GroupForm from 'component/GroupForm'
 
 class Homepage extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class Homepage extends Component {
   }
 
   render() {
-    const { isLoggedIn } = this.props
+    const { isLoggedIn, match } = this.props
     if (!isLoggedIn) {
       return <Redirect to='login/' />
     }
@@ -31,10 +32,19 @@ class Homepage extends Component {
           }}
           render={()=>
             <Form>
-                <button type='submit'>로그아웃</button>    
+                <button type='submit'>로그아웃</button>
             </Form>}
         />
-        <GroupList groups={this.props.groups} />
+          <Route
+              exact
+              path={`${match.path}`}
+              component={() =>
+                <GroupList {...this.props} groups={this.props.groups} />}
+          />
+          <Route
+              path={`${match.path}group-form`}
+              component={() => <GroupForm {...this.props} />}
+          />
       </>
     )
   }
@@ -47,6 +57,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   loadGroups: () => dispatch(actions.loadGroups()),
   logout: () => dispatch(actions.logout()),
+  createGroup: () => dispatch(actions.createGroup()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage)
