@@ -1,9 +1,9 @@
-import React, {Component, Fragment} from 'react'
+import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import LogoutButton from "../component/LogoutButton"
 import queryString from 'query-string'
 
+import LogoutButton from 'component/LogoutButton'
 import actionCreators from 'store/actions'
 import routes from 'routes'
 

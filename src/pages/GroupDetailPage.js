@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import queryString from 'query-string/index'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+
 import apis from 'apis'
 
 class GroupDetailPage extends Component {

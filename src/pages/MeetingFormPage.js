@@ -1,6 +1,7 @@
 import React from 'react'
-import {Field, Form, Formik} from "formik/dist/index";
+import { Field, Form, Formik } from 'formik'
 import queryString from 'query-string'
+
 import apis from 'apis'
 import routes from 'routes'
 

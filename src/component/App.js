@@ -1,8 +1,9 @@
 import React from 'react'
-import {Switch, Route, Redirect} from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
+
 import * as pages from 'pages'
-import routes from 'routes'
 import PrivateRoute from 'component/PrivateRoute'
+import routes from 'routes'
 
 const App = () =>
     <Switch>

@@ -1,7 +1,8 @@
-import React from "react"
-import {connect} from "react-redux"
+import React from 'react'
+import { connect } from 'react-redux'
 import actionCreators from 'store/actions'
 import { Redirect } from 'react-router-dom'
+
 import routes from 'routes'
 
 const LogoutButton = props => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Field, Form, Formik} from "formik/dist/index"
+import { Field, Form, Formik } from 'formik/dist/index'
 import { connect } from 'react-redux'
 
 import actionCreators from 'store/actions'
