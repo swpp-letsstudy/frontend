@@ -14,7 +14,7 @@ const MeetingForm = props => {
           onSubmit={(values, formActions) => {
             const {time, info} = values
             createMeeting({ info, time, groupId })
-            history.push(`group-detail/${groupId}`)
+            history.push(`group-detail?id=${groupId}`)
           }}
           render={() =>
               <Form>

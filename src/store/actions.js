@@ -9,6 +9,17 @@ const _loadGroups = () => {
   })
 }
 
+export const _readGroup = ({ groupId }) => {
+  return axios.get(`http://localhost:8000/study_groups/${groupId}/`)
+}
+
+export const _loadMeetings = groupId => {
+  return axios({
+    url: `http://localhost:8000/study_meetings?groupId=${groupId}`,
+    method: 'get',
+  })
+}
+
 const _login = (username, password) => axios({
   url: 'http://localhost:8000/login/',
   method: 'post',
