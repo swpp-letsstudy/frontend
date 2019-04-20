@@ -5,7 +5,7 @@ import LoginPage from 'pages/LoginPage'
 
 const App = props => (
   <Switch>
-    <Route path='/' component={Homepage} />
+    <Route exact path='/' component={Homepage} />
     <Route path='/login' exact={true} component={LoginPage} />
     <Route path='/auth/:kind' exact={true} />
     <Route />
