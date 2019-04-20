@@ -54,7 +54,6 @@ const groupReducer = handleActions({
   ...pender({
     type: ACTION_TYPES.LOAD_GROUPS,
     onSuccess: (state, action) => {
-      console.log(action.payload.data)
       return Object.assign({}, state, {
         groups: action.payload.data
       })

@@ -27,8 +27,6 @@ class GroupDetailPage extends Component {
 
   render() {
     const { group, meetings } = this.state
-    console.log(meetings)
-
     return group &&
         <>
           <div>{group.name}</div>
