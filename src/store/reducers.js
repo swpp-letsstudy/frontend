@@ -3,7 +3,7 @@ import { handleActions } from 'redux-actions'
 import { pender, penderReducer } from 'redux-pender'
 import axios from 'axios'
 
-import * as ACTION_TYPES from "store/actionTypes"
+import ACTION_TYPES from "store/actionTypes"
 
 const setHeaderAuthorization = token => {
   axios.defaults.headers.common['Authorization'] = `Token ${token}`
@@ -48,7 +48,6 @@ const userReducer = handleActions({
 
 const initialGroupState = {
   groups: [],
-  synced: false,
 }
 
 const groupReducer = handleActions({
@@ -61,13 +60,6 @@ const groupReducer = handleActions({
       })
     },
   }),
-  ...pender({
-    type: ACTION_TYPES.CREATE_GROUP,
-    onSuccess: (state, action) => Object.assign(
-        {}, state, {
-          synced: false,
-        })
-  })
 }, initialGroupState)
 
 export default combineReducers({

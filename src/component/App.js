@@ -1,15 +1,18 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
-import Homepage from 'pages/Homepage'
-import LoginPage from 'pages/LoginPage'
+import { Switch, Route, Redirect } from 'react-router-dom'
 
-const App = props => (
-  <Switch>
-    <Route path='/' component={Homepage} />
-    <Route path='/login' exact={true} component={LoginPage} />
-    <Route path='/auth/:kind' exact={true} />
-    <Route />
-  </Switch>
-)
+import * as pages from 'pages'
+import PrivateRoute from 'component/PrivateRoute'
+import routes from 'routes'
+
+const App = () =>
+    <Switch>
+      <Redirect exact from='/' to={routes.GROUP_LIST}/>
+      <Route path={routes.LOGIN} component={pages.LoginPage}/>
+      <PrivateRoute path={routes.GROUP_LIST} component={pages.GroupListPage}/>
+      <PrivateRoute path={routes.GROUP_FORM} component={pages.GroupFormPage}/>
+      <PrivateRoute path={routes.GROUP_DETAIL} component={pages.GroupDetailPage}/>
+      <PrivateRoute path={routes.MEETING_FORM} component={pages.MeetingFormPage}/>
+    </Switch>
 
 export default App
