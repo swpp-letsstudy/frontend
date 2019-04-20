@@ -1,15 +1,15 @@
-import React from 'react'
-import { Button } from 'semantic-ui-react'
+import React, {Fragment} from 'react'
 import { Link } from 'react-router-dom'
-
-import GroupItem from 'component/GroupItem'
 
 const GroupList = props => {
   console.log('aa', props.groups)
   return (
     <>
-      {props.groups && props.groups.map((group, index) => (
-        <GroupItem key={index} group={group.name} />
+      {props.groups.map((group, index) => (
+          <Fragment key={index}>
+            <Link to={`group-detail?id=${group.id}`}>{group.name}</Link>
+            <br />
+          </Fragment>
       ))}
       <Link to='group-form/'>그룹 생성</Link>
     </>
