@@ -27,13 +27,13 @@ class LoginForm extends Component {
         }}
         onSubmit={(values, formActions) => {
           const { username, password } = values
-          this.props.login(username, password)
+          this.props.login({ username, password })
         }}
         render={()=>
           <Form>
               <Field name='username'/>
               <Field type='password' name='password'/>
-              <button type='submit'>로그인</button>    
+              <button type='submit'>로그인</button>
           </Form>}
       />
     )
@@ -45,7 +45,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  login: (username, password) => dispatch(actions.login(username, password))
+  login: payload => dispatch(actions.login(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)

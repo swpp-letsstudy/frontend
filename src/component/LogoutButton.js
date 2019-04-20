@@ -1,28 +1,19 @@
-import {Form, Formik} from "formik"
 import React from "react"
 import {connect} from "react-redux"
 import * as actions from 'store/actions'
+import { Redirect } from 'react-router-dom'
 
 const LogoutButton = props => {
-  const { history, logout } = props
-  return (
-      <Formik
-          initialValues={{
-            username: '',
-            password: '',
-          }}
-          onSubmit={(values, formActions) => {
-            logout().then(history.push('login/'))
-          }}
-          render={() =>
-              <Form>
-                <button type='submit'>로그아웃</button>
-              </Form>}
-      />
+  const { isLoggedIn, logout } = props
+  return (isLoggedIn
+      ? <button onClick={logout}>로그아웃</button>
+      : <Redirect to='/login' />
   )
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({
+  isLoggedIn: state.userReducer.isLoggedIn,
+})
 
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch(actions.logout()),
