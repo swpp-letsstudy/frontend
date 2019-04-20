@@ -2,8 +2,10 @@ import React, {Component, Fragment} from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import LogoutButton from "../component/LogoutButton"
+import queryString from 'query-string'
 
 import actionCreators from 'store/actions'
+import routes from 'routes'
 
 class GroupListPage extends Component {
 
@@ -19,11 +21,14 @@ class GroupListPage extends Component {
           <LogoutButton/>
           {groups.map((group, index) => (
               <Fragment key={index}>
-                <Link to={`/group-detail?id=${group.id}`}>{group.name}</Link>
+                <Link
+                    to={`${routes.GROUP_DETAIL}?${queryString.stringify({id: group.id})}`}>
+                  {group.name}
+                </Link>
                 <br/>
               </Fragment>
           ))}
-          <Link to='/group-form'>그룹 생성</Link>
+          <Link to={routes.GROUP_FORM}>그룹 생성</Link>
         </>
     )
   }

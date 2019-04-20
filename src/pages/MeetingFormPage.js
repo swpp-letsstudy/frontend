@@ -1,7 +1,8 @@
 import React from 'react'
 import {Field, Form, Formik} from "formik/dist/index";
-import queryString from 'query-string/index'
+import queryString from 'query-string'
 import apis from 'apis'
+import routes from 'routes'
 
 const MeetingFormPage = props => {
   const { location, history } = props
@@ -15,7 +16,9 @@ const MeetingFormPage = props => {
           onSubmit={(values, formActions) => {
             const {time, info} = values
             apis.createMeeting({ info, time, groupId })
-            history.push(`group-detail?id=${groupId}`)
+            history.push(
+                `${routes.GROUP_DETAIL}?${queryString.stringify({id: groupId})}`
+            )
           }}
           render={() =>
               <Form>

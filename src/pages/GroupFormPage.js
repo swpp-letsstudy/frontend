@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 import actionCreators from 'store/actions'
 import apis from 'apis'
+import routes from 'routes'
 
 const GroupFormPage = props => {
   const { history, loadGroups } = props
@@ -16,7 +17,7 @@ const GroupFormPage = props => {
           onSubmit={(values, formActions) => {
             const { name, info } = values
             apis.createGroup({ name, info }).then(loadGroups)
-            history.push('/')
+            history.push(routes.GROUP_LIST)
           }}
           render={()=>
               <Form>

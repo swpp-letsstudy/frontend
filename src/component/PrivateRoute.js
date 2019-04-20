@@ -1,12 +1,13 @@
 import React from 'react'
 import {Redirect, Route} from "react-router-dom"
 import {connect} from "react-redux"
+import routes from 'routes'
 
 const PrivateRoute = props => {
   const { isLoggedIn } = props
   return (isLoggedIn
       ? <Route {...props} />
-      : <Redirect to='/login'/>
+      : <Redirect to={routes.LOGIN}/>
     )
 }
 
