@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import queryString from 'query-string/index'
 import {Link} from "react-router-dom"
-import {_loadMeetings, _readGroup} from "../apis"
+import {loadMeetings, readGroup} from "../apis"
 
 class GroupDetailPage extends Component {
   constructor(props) {
@@ -15,11 +15,11 @@ class GroupDetailPage extends Component {
   componentDidMount() {
     const { location } = this.props
     const groupId = queryString.parse(location.search).id
-    _readGroup({ groupId }).then(value => this.setState({
+    readGroup({ groupId }).then(value => this.setState({
       group: value.data
     }))
 
-    _loadMeetings({ groupId }).then(value => this.setState({
+    loadMeetings({ groupId }).then(value => this.setState({
       meetings: value.data,
     }))
   }
