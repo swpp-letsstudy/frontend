@@ -34,3 +34,12 @@ export const createGroup = createAction(
       info: payload.info,
     })
 )
+
+export const createMeeting = createAction(
+    ACTION_TYPES.CREATE_MEETING,
+    payload => axios.post('http://localhost:8000/study_meetings/', {
+      info: payload.info,
+      time: payload.time,
+      groupId: payload.groupId,
+    })
+)

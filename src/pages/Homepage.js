@@ -7,6 +7,7 @@ import { Formik, Form } from 'formik'
 import * as actions from 'store/actions'
 import GroupForm from 'component/GroupForm'
 import GroupDetail from "../component/GroupDetail";
+import MeetingForm from "../component/MeetingForm";
 
 class Homepage extends Component {
   constructor(props) {
@@ -50,6 +51,10 @@ class Homepage extends Component {
             path={`${match.path}group-detail`}
             component={() => <GroupDetail {...this.props} />}
           />
+        <Route
+            path={`${match.path}meeting-form`}
+            component={() => <MeetingForm {...this.props} />}
+        />
       </>
     )
   }
@@ -63,6 +68,7 @@ const mapDispatchToProps = dispatch => ({
   loadGroups: () => dispatch(actions.loadGroups()),
   logout: () => dispatch(actions.logout()),
   createGroup: (name, info) => dispatch(actions.createGroup({name, info})),
+  createMeeting: ({ time, info, groupId }) => dispatch(actions.createMeeting({time, info, groupId}))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage)
