@@ -37,5 +37,4 @@ const mapDispatchToProps = dispatch => ({
   loadGroups: () => dispatch(actions.loadGroups()),
 })
 
-
 export default connect(mapStateToProps, mapDispatchToProps)(GroupListPage)

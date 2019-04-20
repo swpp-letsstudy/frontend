@@ -3,9 +3,10 @@ import {Field, Form, Formik} from "formik/dist/index"
 import { connect } from 'react-redux'
 
 import * as actions from 'store/actions'
+import * as apis from 'apis'
 
 const GroupFormPage = props => {
-  const { createGroup, loadGroups, history } = props
+  const { history, loadGroups } = props
   return (
       <Formik
           initialValues = {{
@@ -14,7 +15,7 @@ const GroupFormPage = props => {
           }}
           onSubmit={(values, formActions) => {
             const { name, info } = values
-            createGroup(name, info).then(loadGroups)
+            apis.createGroup({ name, info }).then(loadGroups)
             history.push('/')
           }}
           render={()=>
@@ -33,7 +34,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadGroups: () => dispatch(actions.loadGroups()),
-  createGroup: (name, info) => dispatch(actions.createGroup({name, info})),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(GroupFormPage)

@@ -48,7 +48,6 @@ const userReducer = handleActions({
 
 const initialGroupState = {
   groups: [],
-  synced: false,
 }
 
 const groupReducer = handleActions({
@@ -61,13 +60,6 @@ const groupReducer = handleActions({
       })
     },
   }),
-  ...pender({
-    type: ACTION_TYPES.CREATE_GROUP,
-    onSuccess: (state, action) => Object.assign(
-        {}, state, {
-          synced: false,
-        })
-  })
 }, initialGroupState)
 
 export default combineReducers({

@@ -1,11 +1,10 @@
 import React from 'react'
 import {Field, Form, Formik} from "formik/dist/index";
 import queryString from 'query-string/index'
-import {connect} from "react-redux";
-import * as actions from 'store/actions'
+import * as apis from 'apis'
 
 const MeetingFormPage = props => {
-  const { location, createMeeting, history } = props
+  const { location, history } = props
   const groupId = queryString.parse(location.search).id
   return (
       <Formik
@@ -15,7 +14,7 @@ const MeetingFormPage = props => {
           }}
           onSubmit={(values, formActions) => {
             const {time, info} = values
-            createMeeting({ info, time, groupId })
+            apis.createMeeting({ info, time, groupId })
             history.push(`group-detail?id=${groupId}`)
           }}
           render={() =>
@@ -28,12 +27,4 @@ const MeetingFormPage = props => {
   )
 }
 
-const mapStateToProps = state => ({
-
-})
-
-const mapDispatchToProps = dispatch => ({
-  createMeeting: ({ time, info, groupId }) => dispatch(actions.createMeeting({time, info, groupId})),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(MeetingFormPage)
+export default MeetingFormPage
