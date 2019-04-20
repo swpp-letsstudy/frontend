@@ -1,4 +1,5 @@
-export const LOGOUT = 'LOGOUT'
-export const LOGIN = 'LOGIN'
-
-export const LOAD_GROUPS = 'LOAD_GROUPS'
+export default {
+  LOGOUT: 'LOGOUT',
+  LOGIN: 'LOGIN',
+  LOAD_GROUPS: 'LOAD_GROUPS',
+}

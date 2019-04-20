@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import LogoutButton from "../component/LogoutButton"
 
-import * as actions from 'store/actions'
+import actionCreators from 'store/actions'
 
 class GroupListPage extends Component {
 
@@ -34,7 +34,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  loadGroups: () => dispatch(actions.loadGroups()),
+  loadGroups: () => dispatch(actionCreators.loadGroups()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(GroupListPage)

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { Formik, Form, Field } from 'formik'
 
-import * as actions from 'store/actions'
+import actionCreators from 'store/actions'
 
 class LoginForm extends Component {
   constructor(props) {
@@ -45,7 +45,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  login: payload => dispatch(actions.login(payload))
+  login: payload => dispatch(actionCreators.login(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)

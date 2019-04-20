@@ -1,6 +1,6 @@
 import React from "react"
 import {connect} from "react-redux"
-import * as actions from 'store/actions'
+import actionCreators from 'store/actions'
 import { Redirect } from 'react-router-dom'
 
 const LogoutButton = props => {
@@ -16,7 +16,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  logout: () => dispatch(actions.logout()),
+  logout: () => dispatch(actionCreators.logout()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogoutButton)

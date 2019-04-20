@@ -3,7 +3,7 @@ import { handleActions } from 'redux-actions'
 import { pender, penderReducer } from 'redux-pender'
 import axios from 'axios'
 
-import * as ACTION_TYPES from "store/actionTypes"
+import ACTION_TYPES from "store/actionTypes"
 
 const setHeaderAuthorization = token => {
   axios.defaults.headers.common['Authorization'] = `Token ${token}`

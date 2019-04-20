@@ -1,8 +1,9 @@
-import { createAction, createActions } from 'redux-actions'
-import * as ACTION_TYPES from 'store/actionTypes'
-import * as apis from 'apis'
+import { createActions } from 'redux-actions'
+import ACTION_TYPES from 'store/actionTypes'
+import apis from 'apis'
 
-
-export const loadGroups = createAction(ACTION_TYPES.LOAD_GROUPS, apis.loadGroups)
-export const login = createAction(ACTION_TYPES.LOGIN, apis.login)
-export const logout = createAction(ACTION_TYPES.LOGOUT, apis.logout)
+export default createActions({
+  [ACTION_TYPES.LOAD_GROUPS]: apis.loadGroups,
+  [ACTION_TYPES.LOGIN]: apis.login,
+  [ACTION_TYPES.LOGOUT]: apis.logout,
+})

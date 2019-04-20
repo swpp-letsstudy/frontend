@@ -1,7 +1,7 @@
 import React from 'react'
 import {Field, Form, Formik} from "formik/dist/index";
 import queryString from 'query-string/index'
-import * as apis from 'apis'
+import apis from 'apis'
 
 const MeetingFormPage = props => {
   const { location, history } = props

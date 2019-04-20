@@ -1,9 +1,13 @@
 import axios from 'axios'
 
-export const loadGroups = payload => axios.get(`http://localhost:8000/study_groups/`)
-export const readGroup = paylod => axios.get(`http://localhost:8000/study_groups/${paylod.groupId}/`)
-export const loadMeetings = payload => axios.get(`http://localhost:8000/study_meetings?groupId=${payload.groupId}`)
-export const login = payload => axios.post('http://localhost:8000/login/', payload)
-export const logout = payload => axios.post('http://localhost:8000/logout/')
-export const createGroup = payload => axios.post('http://localhost:8000/study_groups/', payload)
-export const createMeeting = payload => axios.post('http://localhost:8000/study_meetings/', payload)
+import { HOST } from 'config'
+
+export default {
+  loadGroups: payload => axios.get(`${HOST}study_groups/`),
+  readGroup: paylod => axios.get(`${HOST}study_groups/${paylod.groupId}/`),
+  loadMeetings: payload => axios.get(`${HOST}study_meetings?groupId=${payload.groupId}`),
+  login: payload => axios.post(`${HOST}login/`, payload),
+  logout: payload => axios.post(`${HOST}logout/`),
+  createGroup: payload => axios.post(`${HOST}study_groups/`, payload),
+  createMeeting: payload => axios.post(`${HOST}study_meetings/`, payload),
+}
