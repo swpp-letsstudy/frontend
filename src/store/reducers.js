@@ -1,18 +1,8 @@
 import { combineReducers } from 'redux'
 import { handleActions } from 'redux-actions'
 import { pender, penderReducer } from 'redux-pender'
-import axios from 'axios'
 
-import ACTION_TYPES from "store/actionTypes"
-
-const setHeaderAuthorization = token => {
-  axios.defaults.headers.common['Authorization'] = `Token ${token}`
-}
-
-if (localStorage.hasOwnProperty('user')) {
-  const token = JSON.parse(localStorage.getItem('user')).token
-  setHeaderAuthorization(token)
-}
+import ACTION_TYPES from 'store/actionTypes'
 
 const initialUserState = {
   isLoggedIn: localStorage.hasOwnProperty('user') ? true : false,
@@ -23,21 +13,17 @@ const userReducer = handleActions({
   ...pender({
     type: ACTION_TYPES.LOGIN,
     onSuccess: (state, action) => {
-      const { token, username, id } = action.payload.data
-      const user = { token, username, id }
-      setHeaderAuthorization(token)
-      localStorage.setItem('user', JSON.stringify(user))
+      // console.log('login')
       return Object.assign({}, state, {
         isLoggedIn: true,
-        user,
+        user: action.payload.data
       })
     },
   }),
   ...pender({
     type: ACTION_TYPES.LOGOUT,
     onSuccess: (state, action) => {
-      delete axios.defaults.headers.common.Authorization
-      localStorage.removeItem('user')
+      console.log('logout')
       return Object.assign({}, state, {
         isLoggedIn: false,
         user: '',
