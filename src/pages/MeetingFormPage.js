@@ -1,8 +1,10 @@
 import React from 'react'
-import {Field, Form, Formik} from "formik";
-import queryString from 'query-string'
+import {Field, Form, Formik} from "formik/dist/index";
+import queryString from 'query-string/index'
+import {connect} from "react-redux";
+import * as actions from 'store/actions'
 
-const MeetingForm = props => {
+const MeetingFormPage = props => {
   const { location, createMeeting, history } = props
   const groupId = queryString.parse(location.search).id
   return (
@@ -26,4 +28,12 @@ const MeetingForm = props => {
   )
 }
 
-export default MeetingForm
+const mapStateToProps = state => ({
+
+})
+
+const mapDispatchToProps = dispatch => ({
+  createMeeting: ({ time, info, groupId }) => dispatch(actions.createMeeting({time, info, groupId})),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(MeetingFormPage)

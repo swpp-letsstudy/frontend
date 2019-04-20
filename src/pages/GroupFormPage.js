@@ -1,7 +1,10 @@
 import React from 'react'
-import {Field, Form, Formik} from "formik";
+import {Field, Form, Formik} from "formik/dist/index"
+import { connect } from 'react-redux'
 
-const GroupForm = props => {
+import * as actions from 'store/actions'
+
+const GroupFormPage = props => {
   const { createGroup, loadGroups, history } = props
   return (
       <Formik
@@ -24,4 +27,13 @@ const GroupForm = props => {
   )
 }
 
-export default GroupForm
+const mapStateToProps = state => ({
+
+})
+
+const mapDispatchToProps = dispatch => ({
+  loadGroups: () => dispatch(actions.loadGroups()),
+  createGroup: (name, info) => dispatch(actions.createGroup({name, info})),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(GroupFormPage)

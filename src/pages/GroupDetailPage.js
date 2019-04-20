@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import queryString from 'query-string'
-import {Link} from "react-router-dom";
-import {_loadMeetings, _readGroup} from "../store/actions"
+import queryString from 'query-string/index'
+import {Link} from "react-router-dom"
+import {_loadMeetings, _readGroup} from "../apis"
 
-class GroupDetail extends Component {
+class GroupDetailPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -37,4 +37,4 @@ class GroupDetail extends Component {
   }
 }
 
-export default GroupDetail
+export default GroupDetailPage
