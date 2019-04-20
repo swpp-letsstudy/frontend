@@ -6,6 +6,7 @@ import { Formik, Form } from 'formik'
 
 import * as actions from 'store/actions'
 import GroupForm from 'component/GroupForm'
+import GroupDetail from "../component/GroupDetail";
 
 class Homepage extends Component {
   constructor(props) {
@@ -44,6 +45,10 @@ class Homepage extends Component {
           <Route
               path={`${match.path}group-form`}
               component={() => <GroupForm {...this.props} />}
+          />
+          <Route
+            path={`${match.path}group-detail`}
+            component={() => <GroupDetail {...this.props} />}
           />
       </>
     )
