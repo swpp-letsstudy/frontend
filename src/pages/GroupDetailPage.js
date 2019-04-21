@@ -3,6 +3,7 @@ import queryString from 'query-string/index'
 import { Link } from 'react-router-dom'
 
 import apis from 'apis'
+import routes from 'routes'
 
 class GroupDetailPage extends Component {
   constructor(props) {
@@ -30,8 +31,14 @@ class GroupDetailPage extends Component {
     return group &&
         <>
           <div>{group.name}</div>
-          {meetings.map((meeting, index) => <div key={index}>meeting time: {meeting.time}</div>)}
-          {group && <Link to={`meeting-form?id=${group.id}`}>미팅 만들기</Link>}
+          {meetings.map((meeting, index) =>
+              <Link key={index} to={routes.MEETING_DETAIL}>
+                meeting time: {meeting.time}<br/>
+              </Link>)}
+          {group &&
+          <Link to={`${routes.MEETING_FORM}?${queryString.stringify({id: group.id})}`}>
+            미팅 만들기
+          </Link>}
         </>
   }
 }
