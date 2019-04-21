@@ -32,13 +32,15 @@ class GroupDetailPage extends Component {
         <>
           <div>{group.name}</div>
           {meetings.map((meeting, index) =>
-              <Link key={index} to={routes.MEETING_DETAIL}>
+              <Link key={index} to={`${routes.MEETING_DETAIL}?${queryString.stringify({
+                id: meeting.id,
+              })}`}>
                 meeting time: {meeting.time}<br/>
-              </Link>)}
-          {group &&
+              </Link>
+          )}
           <Link to={`${routes.MEETING_FORM}?${queryString.stringify({id: group.id})}`}>
             미팅 만들기
-          </Link>}
+          </Link>
         </>
   }
 }

@@ -20,4 +20,5 @@ export default {
   logout: payload => axios.post(`${HOST}logout/`),
   createGroup: payload => axios.post(`${HOST}study_groups/`, payload),
   createMeeting: payload => axios.post(`${HOST}study_meetings/`, payload),
+  readMeeting: payload => axios.get(`${HOST}study_meetings/${payload.meetingId}/`),
 }
