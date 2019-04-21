@@ -19,6 +19,14 @@ class MeetingDetailPage extends Component {
     }))
   }
 
+  toggleUserAttendanceHandler = user => {
+    const { meeting } = this.state
+    const meetingId = meeting.id
+    apis.toggleAttendance({ userId: user.id,  meetingId })
+        .then(() => apis.readMeeting({ meetingId }))
+        .then(value => this.setState({ meeting: value.data }))
+  }
+
   render() {
     const { meeting } = this.state
     return (meeting &&
@@ -27,7 +35,10 @@ class MeetingDetailPage extends Component {
           Attendance
           {meeting.group.users.map((user, index) =>
               <div key={index}>
-                {user.username}: {user.id in meeting.attendances ? 'O' : 'X'}
+                {user.username}:
+                <button onClick={() => this.toggleUserAttendanceHandler(user)}>
+                  {user.id in meeting.attendances ? 'O' : 'X'}
+                </button>
               </div>
           )}
         </div>
