@@ -12,8 +12,8 @@ class MeetingDetailPage extends Component {
   }
 
   componentDidMount() {
-    const { location } = this.props
-    const meetingId = queryString.parse(location.search).id
+    const { match } = this.props
+    const meetingId = match.params.id
     apis.readMeeting({meetingId}).then(value => this.setState({
       meeting: value.data,
     }))

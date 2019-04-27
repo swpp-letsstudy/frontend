@@ -1,8 +1,8 @@
 export default {
   LOGIN: '/login',
-  GROUP_LIST: '/group-list',
-  GROUP_FORM: '/group-form',
-  GROUP_DETAIL: '/group-detail',
-  MEETING_FORM: '/meeting-form',
-  MEETING_DETAIL: '/meeting-detail',
+  GROUP_LIST: '/groups',
+  GROUP_FORM: '/groups/new',
+  GROUP_DETAIL: '/groups/:id',
+  MEETING_FORM: '/meetings/new',
+  MEETING_DETAIL: '/meetings/:id',
 }

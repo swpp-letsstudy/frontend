@@ -7,7 +7,7 @@ import routes from 'routes'
 
 const MeetingFormPage = props => {
   const { location, history } = props
-  const groupId = queryString.parse(location.search).id
+  const groupId = queryString.parse(location.search).groupId
   return (
       <Formik
           initialValues={{
@@ -18,7 +18,7 @@ const MeetingFormPage = props => {
             const {time, info} = values
             apis.createMeeting({ info, time, groupId })
             history.push(
-                `${routes.GROUP_DETAIL}?${queryString.stringify({id: groupId})}`
+                `${routes.GROUP_DETAIL.replace(':id', groupId)}`
             )
           }}
           render={() =>
