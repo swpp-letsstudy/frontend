@@ -27,6 +27,11 @@ class MeetingDetailPage extends Component {
         .then(value => this.setState({ meeting: value.data }))
   }
 
+  isAttendance = user => {
+    const { meeting } = this.state
+    return meeting && meeting.attendances.includes(user.id)
+  }
+
   render() {
     const { meeting } = this.state
     return (meeting &&
@@ -37,7 +42,7 @@ class MeetingDetailPage extends Component {
               <div key={index}>
                 {user.username}:
                 <button onClick={() => this.toggleUserAttendanceHandler(user)}>
-                  {user.id in meeting.attendances ? 'O' : 'X'}
+                  {this.isAttendance(user) ? 'O' : 'X'}
                 </button>
               </div>
           )}
