@@ -3,9 +3,35 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import queryString from 'query-string'
 
+import styled from 'styled-components';
+
 import LogoutButton from 'component/LogoutButton'
 import actionCreators from 'store/actions'
 import routes from 'routes'
+
+
+const Wrapper1 = styled.section`
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 2rem;
+`;
+
+const Title = styled.h1`
+  font-size: 2rem;
+  text-align: center;
+  color: black;
+`;
+const GroupList = styled.h1`
+  margin: auto;
+  display: flex;
+  height: 2.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-color: white;
+  background: white;
+  border-radius: 8px;
+  width: 30rem;
+`;
 
 class GroupListPage extends Component {
 
@@ -15,21 +41,39 @@ class GroupListPage extends Component {
   }
 
   render() {
-    const {groups} = this.props
+    const { groups } = this.props
     return (
-        <>
-          <LogoutButton/>
+      <>
+        <Wrapper1>
+          <Title>Group Page</Title>
+
+        </Wrapper1>
+
+        <Wrapper1>
           {groups.map((group, index) => (
-              <Fragment key={index}>
-                <Link
-                    to={`${routes.GROUP_DETAIL}?${queryString.stringify({id: group.id})}`}>
+            <Fragment key={index}>
+              <Link
+                to={`${routes.GROUP_DETAIL}?${queryString.stringify({ id: group.id })}`}>
+
+                <GroupList>
                   {group.name}
-                </Link>
-                <br/>
-              </Fragment>
+
+                </GroupList>
+              </Link>
+              <br />
+            </Fragment>
           ))}
+
+        </Wrapper1>
+
+        <Wrapper1>
           <Link to={routes.GROUP_FORM}>그룹 생성</Link>
-        </>
+        </Wrapper1>
+
+        <Wrapper1>
+          <LogoutButton />
+        </Wrapper1>
+      </>
     )
   }
 }

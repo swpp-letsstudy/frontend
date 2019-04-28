@@ -3,13 +3,29 @@ import { connect } from 'react-redux'
 import actionCreators from 'store/actions'
 import { Redirect } from 'react-router-dom'
 
+
+import { Button, Icon } from 'semantic-ui-react'
+
 import routes from 'routes'
+
+
 
 const LogoutButton = props => {
   const { isLoggedIn, logout } = props
   return (isLoggedIn
-      ? <button onClick={logout}>로그아웃</button>
-      : <Redirect to={routes.LOGIN} />
+    ?
+
+      <Button animated onClick={logout} style={{ width: "30rem" }}>
+        <Button.Content visible>
+          LOGOUT
+        </Button.Content>
+        <Button.Content hidden>
+          <Icon name='x icon' />
+        </Button.Content>
+      </Button>
+      
+
+    : <Redirect to={routes.LOGIN} />
   )
 }
 
