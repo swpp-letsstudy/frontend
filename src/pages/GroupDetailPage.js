@@ -15,12 +15,11 @@ class GroupDetailPage extends Component {
   }
 
   componentDidMount() {
-    const { location } = this.props
-    const groupId = queryString.parse(location.search).id
+    const { match } = this.props
+    const groupId = match.params.id
     apis.readGroup({ groupId }).then(value => this.setState({
       group: value.data
     }))
-
     apis.loadMeetings({ groupId }).then(value => this.setState({
       meetings: value.data,
     }))
@@ -32,13 +31,11 @@ class GroupDetailPage extends Component {
         <>
           <div>{group.name}</div>
           {meetings.map((meeting, index) =>
-              <Link key={index} to={`${routes.MEETING_DETAIL}?${queryString.stringify({
-                id: meeting.id,
-              })}`}>
+              <Link key={index} to={`${routes.MEETING_DETAIL.replace(':id', meeting.id)}`}>
                 meeting time: {meeting.time}<br/>
               </Link>
           )}
-          <Link to={`${routes.MEETING_FORM}?${queryString.stringify({id: group.id})}`}>
+          <Link to={`${routes.MEETING_FORM}?${queryString.stringify({groupId: group.id})}`}>
             미팅 만들기
           </Link>
         </>
