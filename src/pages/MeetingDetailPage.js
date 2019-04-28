@@ -38,9 +38,9 @@ class MeetingDetailPage extends Component {
         <div>
           Meeting Time: {meeting.time}<br/>
           Attendance
-          {meeting.group.users.map((user, index) =>
+          {meeting.group.members.map((user, index) =>
               <div key={index}>
-                {user.username}:
+                {user.username}
                 <button onClick={() => this.toggleUserAttendanceHandler(user)}>
                   {this.isAttendance(user) ? 'O' : 'X'}
                 </button>
