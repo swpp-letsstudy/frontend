@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { Formik, Form, Field } from 'formik'
+import { Formik, Form } from 'formik'
 
 import actionCreators from 'store/actions'
+import Field from 'component/LoginField'
+import Button from 'component/LoginButton'
 
 class LoginForm extends Component {
   render() {
@@ -23,7 +25,7 @@ class LoginForm extends Component {
                 <Form>
                   <Field name='username'/>
                   <Field type='password' name='password'/>
-                  <button type='submit'>로그인</button>
+                  <Button type='submit'>로그인</Button>
                 </Form>}
         />)
   }
