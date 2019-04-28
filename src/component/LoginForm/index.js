@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { Formik, Form } from 'formik'
+import { Formik, Form } from 'formik/dist/index'
 
 import actionCreators from 'store/actions'
-import Field from 'component/LoginField'
-import Button from 'component/LoginButton'
+import Field from './LoginField'
+import Button from './LoginButton'
 
 class LoginForm extends Component {
   render() {
