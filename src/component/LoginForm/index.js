@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { Formik, Form, Field } from 'formik'
-import { Button, Icon } from 'semantic-ui-react'
+import { Formik, Form } from 'formik'
+import { Icon } from 'semantic-ui-react'
+import Field from './LoginField'
+import Button from './LoginButton'
+
 import styled from 'styled-components';
 
 import actionCreators from 'store/actions'
@@ -19,26 +22,6 @@ const Wrapper1 = styled.section`
   text-align: center;
   padding: 1rem;
 `;
-
-const InputForm = styled.section`
-  height: 2.5rem;
-  border: 1px solid $oc-gray-5;
-  border-radius: 8px;
-
-  margin: auto;
-  outline: none;
-
-  font-size: 1.5rem;
-
-
-  background: $oc-gray-5;
-
-  color: white;
-  font-weight: 600;
-`;
-
-
-
 
 
 class LoginForm extends Component {
@@ -59,15 +42,11 @@ class LoginForm extends Component {
           <Form>
             <Title>Login Page</Title>
             <Wrapper1>
-              <InputForm>
                 <Field name='username' style={{ width: "30rem" }} placeholder='username' />
-              </InputForm>
             </Wrapper1>
 
             <Wrapper1>
-              <InputForm>
                 <Field type='password' name='password' style={{ width: "30rem" }} placeholder='password' />
-              </InputForm>
             </Wrapper1>
             <Wrapper1>
               <Button animated type='submit' style={{ width: "30rem" }}>
