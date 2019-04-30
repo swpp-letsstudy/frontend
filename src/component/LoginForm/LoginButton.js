@@ -3,7 +3,6 @@ import styled from 'styled-components'
 
 const LoginButton = styled(Button)`
 	&&&{
-		text-align: center;
 		width: 25rem;
 		font-size: 2rem;
 		color: white;
@@ -14,6 +13,10 @@ const LoginButton = styled(Button)`
 			background: #297fffc7;
 			color: white;
 		}
+		&:active {
+			background: #197fffc7;
+			color: white;
+    }
 	}
 `
 
