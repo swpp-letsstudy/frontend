@@ -46,20 +46,20 @@ class LoginForm extends Component {
         render={() =>
           <Form>
             <Title>Login Page</Title>
-            <Wrapper1>
+            <div>
                 <Field name='username' placeholder='username' />
-            </Wrapper1>
+            </div>
 
-            <Wrapper1>
+            <div>
                 <Field type='password' name='password' placeholder='password' />
-            </Wrapper1>
+            </div>
 
-            <Wrapper1>
+            <div>
               <Button animated type='submit'>
                 <Button.Content visible>Login</Button.Content>
                 <Button.Content hidden><Icon name='arrow right' /></Button.Content>
               </Button>
-            </Wrapper1>
+            </div>
             <Link to={`/register`} >
               if you don't have an account...
             </Link>
