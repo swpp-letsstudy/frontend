@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
+
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
-import { Formik, Form } from 'formik/dist/index'
+import { Redirect, Link } from 'react-router-dom'
+
+import { Formik } from 'formik/dist/index'
 import { Icon } from 'semantic-ui-react'
+
 import Field from './LoginField'
 import Button from './LoginButton'
+import Form from './LoginForm'
 
 import styled from 'styled-components';
 
@@ -55,6 +59,9 @@ class LoginForm extends Component {
                 <Button.Content hidden><Icon name='arrow right' /></Button.Content>
               </Button>
             </Wrapper1>
+            <Link to={`/register`}>
+              if you don't have an account...
+            </Link>
           </Form>
         }
       />)

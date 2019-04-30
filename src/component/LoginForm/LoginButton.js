@@ -4,7 +4,7 @@ import styled from 'styled-components'
 const LoginButton = styled(Button)`
 	&&&{
 		text-align: center;
-		width:30rem;
+		width: 25rem;
 		font-size: 2rem;
 		color: white;
 		padding: 0.5rem;

@@ -1,4 +1,3 @@
-
 import { Field } from 'formik/dist/index'
 
 import styled from 'styled-components'
@@ -9,7 +8,7 @@ outline: none;
 padding: 0.5rem;
 font-size: 1.5rem;
 font-weight: 400;
-width: 30rem;
+width: 25rem;
 `
 
 export default LoginField
