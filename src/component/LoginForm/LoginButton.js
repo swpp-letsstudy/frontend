@@ -10,6 +10,10 @@ const LoginButton = styled(Button)`
 		padding: 0.5rem;
 		border-radius: 8px;
 		background: #72d2ff;
+		&:hover {
+			background: #297fffc7;
+			color: white;
+		}
 	}
 `
 
