@@ -1,6 +1,6 @@
 import React from 'react'
 
-import GroupList from 'component/GroupList'
+import GroupList from 'component/Group/GroupList'
 
 const GroupListPage = props => (
   <div>
