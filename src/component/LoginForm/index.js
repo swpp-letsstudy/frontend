@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { Formik, Form } from 'formik'
-import { Icon } from 'semantic-ui-react'
-import Field from './LoginField'
-import Button from './LoginButton'
+import { Icon, Button } from 'semantic-ui-react'
+import LoginField from './LoginField'
 
 import styled from 'styled-components';
 
@@ -42,11 +41,11 @@ class LoginForm extends Component {
           <Form>
             <Title>Login Page</Title>
             <Wrapper1>
-                <Field name='username' style={{ width: "30rem" }} placeholder='username' />
+                <LoginField name='username' style={{ width: "30rem" }} placeholder='username' />
             </Wrapper1>
 
             <Wrapper1>
-                <Field type='password' name='password' style={{ width: "30rem" }} placeholder='password' />
+                <LoginField type='password' name='password' style={{ width: "30rem" }} placeholder='password' />
             </Wrapper1>
             <Wrapper1>
               <Button animated type='submit' style={{ width: "30rem" }}>

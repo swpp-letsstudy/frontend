@@ -1,7 +1,7 @@
 import Button from 'semantic-ui-react'
 import styled from 'styled-components'
 
-const Button = styled(Button)`
+const LoginButton = styled(Button)`
 font-size: 1.50rem;
 color: white;
 padding: 0.25rem;
@@ -11,4 +11,4 @@ border-radius: 8px;
 background: #72d2ff;
 `
 
-export default Button
+export default LoginButton
