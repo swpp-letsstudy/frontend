@@ -12,8 +12,8 @@ class MeetingDetailPage extends Component {
   }
 
   componentDidMount() {
-    const { location } = this.props
-    const meetingId = queryString.parse(location.search).id
+    const { match } = this.props
+    const meetingId = match.params.id
     apis.readMeeting({meetingId}).then(value => this.setState({
       meeting: value.data,
     }))
@@ -27,17 +27,22 @@ class MeetingDetailPage extends Component {
         .then(value => this.setState({ meeting: value.data }))
   }
 
+  isAttendance = user => {
+    const { meeting } = this.state
+    return meeting && meeting.attendances.includes(user.id)
+  }
+
   render() {
     const { meeting } = this.state
     return (meeting &&
         <div>
           Meeting Time: {meeting.time}<br/>
           Attendance
-          {meeting.group.users.map((user, index) =>
+          {meeting.group.members.map((user, index) =>
               <div key={index}>
-                {user.username}:
+                {user.username}
                 <button onClick={() => this.toggleUserAttendanceHandler(user)}>
-                  {user.id in meeting.attendances ? 'O' : 'X'}
+                  {this.isAttendance(user) ? 'O' : 'X'}
                 </button>
               </div>
           )}
