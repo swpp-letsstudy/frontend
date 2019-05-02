@@ -20,7 +20,7 @@ const LogoutButton = props => {
           LOGOUT
         </Button.Content>
         <Button.Content hidden>
-          <Icon name='x icon' />
+          <Icon name='x'/>
         </Button.Content>
       </Button>
       
