@@ -1,7 +1,8 @@
 import React from 'react'
-import { Field, Form, Formik } from 'formik'
+import { Form, Formik } from 'formik/dist/index'
 import queryString from 'query-string'
 
+import Field from './MeetingField'
 import apis from 'apis'
 import routes from 'routes'
 

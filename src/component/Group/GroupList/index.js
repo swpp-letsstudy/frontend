@@ -1,18 +1,22 @@
 import React, { Component, Fragment } from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import styled from 'styled-components';
 
-import LogoutButton from 'component/LogoutButton'
+import LogoutButton from './GroupLogout'
 import actionCreators from 'store/actions'
 import routes from 'routes'
 
+import Link from './GroupLink'
 
 const Wrapper1 = styled.section`
   text-align: center;
   font-size: 1.5rem;
   padding: 2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const Title = styled.h1`
@@ -20,17 +24,7 @@ const Title = styled.h1`
   text-align: center;
   color: black;
 `;
-const GroupListStyle = styled.h1`
-  margin: auto;
-  display: flex;
-  height: 2.5rem;
-  text-align: center;
-  font-size: 1.5rem;
-  font-color: white;
-  background: white;
-  border-radius: 8px;
-  width: 30rem;
-`;
+
 
 class GroupList extends Component {
 
@@ -44,32 +38,26 @@ class GroupList extends Component {
     return (
       <>
         <Wrapper1>
-          <Title>Group Page</Title>
+          <div>
+            <Title>Group Page</Title>
 
-        </Wrapper1>
+          </div>
 
-        <Wrapper1>
-          {groups.map((group, index) => (
-            <Fragment key={index}>
-              <Link
-                to={`${routes.GROUP_DETAIL.replace(':id', group.id)}`}>
-
-                <GroupListStyle>
+          <div>
+            {groups.map((group, index) => (
+              <Fragment key={index}>
+                <Link to={`${routes.GROUP_DETAIL.replace(':id', group.id)}`}>
                   {group.name}
+                </Link>
+                <br />
+              </Fragment>
+            ))}
+          </div>
 
-                </GroupListStyle>
-              </Link>
-              <br />
-            </Fragment>
-          ))}
+          <div>
+            <Link to={routes.GROUP_FORM}>그룹 생성</Link>
+          </div>
 
-        </Wrapper1>
-
-        <Wrapper1>
-          <Link to={routes.GROUP_FORM}>그룹 생성</Link>
-        </Wrapper1>
-
-        <Wrapper1>
           <LogoutButton />
         </Wrapper1>
       </>
