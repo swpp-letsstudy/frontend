@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import queryString from 'query-string'
 
 import styled from 'styled-components';
 
@@ -21,6 +20,7 @@ const Title = styled.h1`
   text-align: center;
   color: black;
 `;
+
 const GroupListStyle = styled.h1`
   margin: auto;
   display: flex;
@@ -34,6 +34,10 @@ const GroupListStyle = styled.h1`
 `;
 
 class GroupList extends Component {
+  constructor(props) {
+    super(props)
+    console.log("Aaaa")
+  }
 
   componentDidMount() {
     const { loadGroups } = this.props
@@ -52,14 +56,11 @@ class GroupList extends Component {
         <Wrapper1>
           {groups.map((group, index) => (
             <Fragment key={index}>
-              <Link
-                to={`${routes.GROUP_DETAIL}?${queryString.stringify({ id: group.id })}`}>
-
-                <GroupListStyle>
+              <GroupListStyle>
+                <Link to={`${routes.GROUP_DETAIL.replace(':id', group.id)}`}>
                   {group.name}
-
-                </GroupListStyle>
-              </Link>
+                </Link>
+              </GroupListStyle>
               <br />
             </Fragment>
           ))}
