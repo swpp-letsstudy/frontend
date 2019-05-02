@@ -1,19 +1,16 @@
 import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-import { Formik } from 'formik/dist/index'
-import { Icon } from 'semantic-ui-react'
-
-import Field from './LoginField'
-import Button from './LoginButton'
-import Form from './LoginForm'
-import Link from './LoginLink'
+import { Formik, Field, Form } from 'formik/dist/index'
+import { Icon, Button } from 'semantic-ui-react'
 
 import styled from 'styled-components';
 
 import actionCreators from 'store/actions'
+
+import routes from 'routes'
 
 const Title = styled.h1`
   padding: 5rem;
@@ -24,23 +21,23 @@ const Title = styled.h1`
 `;
 
 
-class LoginForm extends Component {
+class RegisterForm extends Component {
   render() {
-    const { isLoggedIn, login } = this.props
-    return (isLoggedIn
-      ? <Redirect to='/' />
-      : <Formik
+    const { history, register } = this.props
+    return (
+        <Formik
         initialValues={{
           username: '',
           password: '',
         }}
         onSubmit={(values, formActions) => {
           const { username, password } = values
-          login({ username, password })
+          register({ username, password })
+          history.push(routes.LOGIN)
         }}
         render={() =>
           <Form>
-            <Title>Login Page</Title>
+            <Title>Register Page</Title>
             <div>
                 <Field name='username' placeholder='username' />
             </div>
@@ -51,26 +48,25 @@ class LoginForm extends Component {
 
             <div>
               <Button animated type='submit'>
-                <Button.Content visible>Login</Button.Content>
+                <Button.Content visible>Register</Button.Content>
                 <Button.Content hidden><Icon name='arrow right' /></Button.Content>
               </Button>
             </div>
-            <Link to={`/register`} >
-              if you don't have an account...
+            <Link to={routes.LOGIN} >
+              if you already have an account...
             </Link>
           </Form>
         }
       />)
   }
-
 }
 
 const mapStateToProps = state => ({
-  isLoggedIn: state.userReducer.isLoggedIn,
+
 })
 
 const mapDispatchToProps = dispatch => ({
-  login: payload => dispatch(actionCreators.login(payload))
+  register: payload => dispatch(actionCreators.register(payload))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm)

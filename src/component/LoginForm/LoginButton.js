@@ -1,13 +1,24 @@
+import { Button } from 'semantic-ui-react'
 import styled from 'styled-components'
 
-const Button = styled.button`
-font-size: 1.50rem;
-color: white;
-padding: 0.25rem;
-margin-block-start: 1.5rem;
-border: 1px #ffffff solid;
-border-radius: 8px;
-background: #72d2ff;
+const LoginButton = styled(Button)`
+	&&&{
+		width: 25rem;
+		font-size: 2rem;
+		color: white;
+		padding: 0.5rem;
+		border-radius: 8px;
+		background: #72d2ff;
+		&:hover {
+			background: #297fffc7;
+			color: white;
+		}
+		&:active {
+			background: #197fffc7;
+			color: white;
+    }
+	}
 `
 
-export default Button
+export default LoginButton
+

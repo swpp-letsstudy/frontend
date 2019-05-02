@@ -1,5 +1,6 @@
 export default {
   LOGOUT: 'LOGOUT',
   LOGIN: 'LOGIN',
+  REGISTER: 'REGISTER',
   LOAD_GROUPS: 'LOAD_GROUPS',
 }

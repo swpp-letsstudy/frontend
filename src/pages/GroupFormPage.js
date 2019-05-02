@@ -6,6 +6,7 @@ import actionCreators from 'store/actions'
 import apis from 'apis'
 import routes from 'routes'
 
+
 const GroupFormPage = props => {
   const { history, loadGroups } = props
   return (
