@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import queryString from 'query-string'
 
 import styled from 'styled-components';
 
@@ -53,7 +52,7 @@ class GroupList extends Component {
           {groups.map((group, index) => (
             <Fragment key={index}>
               <Link
-                to={`${routes.GROUP_DETAIL}?${queryString.stringify({ id: group.id })}`}>
+                to={`${routes.GROUP_DETAIL.replace(':id', group.id)}`}>
 
                 <GroupListStyle>
                   {group.name}
