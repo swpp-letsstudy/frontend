@@ -10,6 +10,8 @@ import styled from 'styled-components';
 
 import actionCreators from 'store/actions'
 
+import routes from 'routes'
+
 const Title = styled.h1`
   padding: 5rem;
   font-size: 2em;
@@ -21,7 +23,7 @@ const Title = styled.h1`
 
 class RegisterForm extends Component {
   render() {
-    const { register } = this.props
+    const { history, register } = this.props
     return (
         <Formik
         initialValues={{
@@ -31,6 +33,7 @@ class RegisterForm extends Component {
         onSubmit={(values, formActions) => {
           const { username, password } = values
           register({ username, password })
+          history.push(routes.LOGIN)
         }}
         render={() =>
           <Form>
@@ -49,7 +52,7 @@ class RegisterForm extends Component {
                 <Button.Content hidden><Icon name='arrow right' /></Button.Content>
               </Button>
             </div>
-            <Link to={`/login`} >
+            <Link to={routes.LOGIN} >
               if you already have an account...
             </Link>
           </Form>
@@ -59,6 +62,7 @@ class RegisterForm extends Component {
 }
 
 const mapStateToProps = state => ({
+
 })
 
 const mapDispatchToProps = dispatch => ({
