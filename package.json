@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "cross-env": "^5.2.0",
     "formik": "^1.5.2",
+    "fsevents": "^2.0.6",
     "query-string": "^6.4.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -34,5 +35,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
 }
