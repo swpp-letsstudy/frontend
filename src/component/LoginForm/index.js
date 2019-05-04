@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
@@ -24,45 +24,43 @@ const Title = styled.h1`
 `;
 
 
-class LoginForm extends Component {
-  render() {
-    const { isLoggedIn, login } = this.props
-    return (isLoggedIn
-      ? <Redirect to='/' />
-      : <Formik
-        initialValues={{
-          username: '',
-          password: '',
-        }}
-        onSubmit={(values, formActions) => {
-          const { username, password } = values
-          login({ username, password })
-        }}
-        render={() =>
-          <Form>
-            <Title>Login Page</Title>
-            <div>
-                <Field name='username' placeholder='username' />
-            </div>
+const LoginForm = props => {
+  const { isLoggedIn, login } = props
+  return (isLoggedIn
+    ? <Redirect to='/' />
+    : <Formik
+      initialValues={{
+        username: '',
+        password: '',
+      }}
+      onSubmit={(values, formActions) => {
+        const { username, password } = values
+        login({ username, password })
+      }}
+      render={() =>
+        <Form>
+          <Title>Login Page</Title>
+          <div>
+              <Field name='username' placeholder='username' />
+          </div>
 
-            <div>
-                <Field type='password' name='password' placeholder='password' />
-            </div>
+          <div>
+              <Field type='password' name='password' placeholder='password' />
+          </div>
 
-            <div>
-              <Button animated type='submit'>
-                <Button.Content visible>Login</Button.Content>
-                <Button.Content hidden><Icon name='arrow right' /></Button.Content>
-              </Button>
-            </div>
-            <Link to={`/register`} >
-              if you don't have an account...
-            </Link>
-          </Form>
-        }
-      />)
-  }
-
+          <div>
+            <Button animated type='submit'>
+              <Button.Content visible>Login</Button.Content>
+              <Button.Content hidden><Icon name='arrow right' /></Button.Content>
+            </Button>
+          </div>
+          <Link to={`/register`} >
+            if you don't have an account...
+          </Link>
+        </Form>
+      }
+    />
+  )
 }
 
 const mapStateToProps = state => ({

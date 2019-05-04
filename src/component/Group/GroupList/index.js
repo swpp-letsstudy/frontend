@@ -7,6 +7,8 @@ import styled from 'styled-components';
 import LogoutButton from 'component/LogoutButton'
 import actionCreators from 'store/actions'
 import routes from 'routes'
+import apis from 'apis'
+import { Formik, Form, Field } from 'formik'
 
 
 const Wrapper1 = styled.section`
@@ -34,11 +36,6 @@ const GroupListStyle = styled.h1`
 `;
 
 class GroupList extends Component {
-  constructor(props) {
-    super(props)
-    console.log("Aaaa")
-  }
-
   componentDidMount() {
     const { loadGroups } = this.props
     loadGroups()
@@ -52,6 +49,22 @@ class GroupList extends Component {
           <Title>Group Page</Title>
 
         </Wrapper1>
+
+        <Formik
+          initialValues={{
+            url: '',
+          }}
+          onSubmit={(values, formActions) => {
+            const { url } = values
+            apis.joinGroup({url})
+          }}
+          render={() =>
+            <Form>
+              <Field name='url'/>
+              <button type='submit'>가입</button>
+            </Form>
+          }
+        />
 
         <Wrapper1>
           {groups.map((group, index) => (
