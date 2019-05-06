@@ -28,6 +28,12 @@
     "test": "cross-env NODE_PATH=src react-scripts test --verbose=false",
     "eject": "react-scripts eject"
   },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/serviceWorker.js"
+    ]
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
