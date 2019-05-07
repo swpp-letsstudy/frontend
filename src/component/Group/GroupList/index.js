@@ -42,12 +42,12 @@ class GroupList extends Component {
   }
 
   render() {
-    const { groups } = this.props
+    const { username, groups } = this.props
     return (
       <>
         <Wrapper1>
           <Title>Group Page</Title>
-
+          <h1>{username}</h1>
         </Wrapper1>
 
         <Formik
@@ -94,6 +94,7 @@ class GroupList extends Component {
 
 const mapStateToProps = state => ({
   groups: state.groupReducer.groups,
+  username: state.userReducer.user.username,
 })
 
 const mapDispatchToProps = dispatch => ({
