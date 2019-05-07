@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "cross-env": "^5.2.0",
     "formik": "^1.5.2",
+    "fsevents": "^2.0.6",
     "query-string": "^6.4.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -15,16 +16,24 @@
     "redux": "^4.0.1",
     "redux-actions": "^2.6.5",
     "redux-devtools-extension": "^2.13.8",
+    "redux-mock-store": "^1.5.3",
     "redux-pender": "^2.0.12",
     "redux-thunk": "^2.3.0",
     "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.87.1",
     "styled-components": "^4.2.0"
   },
   "scripts": {
     "start": "cross-env NODE_PATH=src react-scripts start",
     "build": "cross-env NODE_PATH=src react-scripts build",
-    "test": "cross-env NODE_PATH=src react-scripts test",
+    "test": "cross-env NODE_PATH=src react-scripts test --verbose=false",
     "eject": "react-scripts eject"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/serviceWorker.js"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -34,5 +43,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "jest": "^23.6.0"
+  }
 }
