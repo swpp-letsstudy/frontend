@@ -42,7 +42,7 @@ class GroupList extends Component {
   }
 
   render() {
-    const { username, groups } = this.props
+    const { username, groups, joinGroup } = this.props
     return (
       <>
         <Wrapper1>
@@ -56,7 +56,7 @@ class GroupList extends Component {
           }}
           onSubmit={(values, formActions) => {
             const { url } = values
-            apis.joinGroup({url})
+            joinGroup({url})
           }}
           render={() =>
             <Form>
@@ -99,6 +99,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadGroups: () => dispatch(actionCreators.loadGroups()),
+  joinGroup: url => dispatch(actionCreators.joinGroup(url)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(GroupList)

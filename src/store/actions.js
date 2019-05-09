@@ -14,6 +14,7 @@ export default createActions({
     localStorage.setItem('user', JSON.stringify(user))
     return value
   }),
+  [ACTION_TYPES.JOIN_GROUP]: apis.joinGroup,
   [ACTION_TYPES.REGISTER]: payload => apis.register(payload),
   [ACTION_TYPES.LOGOUT]: () => apis.logout().then(value => {
     delete axios.defaults.headers.common.Authorization

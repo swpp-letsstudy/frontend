@@ -36,6 +36,15 @@ export const initialGroupState = {
 
 const groupReducer = handleActions({
   ...pender({
+    type: ACTION_TYPES.JOIN_GROUP,
+    onSuccess: (state, action) => {
+      console.log(action.payload.data)
+      return Object.assign({}, state, {
+        groups: action.payload.data
+      })
+    }
+  }),
+  ...pender({
     type: ACTION_TYPES.LOAD_GROUPS,
     onSuccess: (state, action) => {
       return Object.assign({}, state, {
