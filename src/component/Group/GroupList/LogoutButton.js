@@ -2,9 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import actionCreators from 'store/actions'
 import { Redirect } from 'react-router-dom'
+import { Icon } from 'semantic-ui-react'
 
-
-import { Button, Icon } from 'semantic-ui-react'
+import Button from './GroupLogout'
 
 import routes from 'routes'
 

@@ -1,10 +1,16 @@
 import React, { Component } from 'react'
 import queryString from 'query-string/index'
-import { Link } from 'react-router-dom'
+
+
+import Button from './MeetingCreateButton'
+import Link from './GroupLink'
 
 import apis from 'apis'
 import routes from 'routes'
 import { HOST } from 'config'
+
+import Wrapper from 'component/Styles/Wrapper'
+import Title from 'component/Styles/Title'
 
 class GroupDetail extends Component {
   constructor(props) {
@@ -28,7 +34,7 @@ class GroupDetail extends Component {
 
   exitGroup = () => {
     const { history } = this.props
-    apis.exitGroup({groupId: this.state.group.id}).then(() => {
+    apis.exitGroup({ groupId: this.state.group.id }).then(() => {
       history.push(routes.GROUP_LIST)
     })
   }
@@ -36,21 +42,24 @@ class GroupDetail extends Component {
   render() {
     const { group, meetings } = this.state
     return group &&
-        <>
-          <div>{group.name}</div>
-          <div>{`${HOST}join_study_group/${group.id}/`}</div>
-          {meetings.map((meeting, index) =>
-              <Link key={index} to={`${routes.MEETING_DETAIL.replace(':id', meeting.id)}`}>
-                meeting time: {meeting.time}<br/>
-              </Link>
-          )}
-          <Link to={`${routes.MEETING_FORM}?${queryString.stringify({groupId: group.id})}`}>
-            미팅 만들기
+      <>
+      <Wrapper>
+        <Title>{group.name}</Title>
+        <br />
+        <div>URL: {`${HOST}join_study_group/${group.id}/`}</div>
+        <br />
+        {meetings.map((meeting, index) =>
+          <Link key={index} to={`${routes.MEETING_DETAIL.replace(':id', meeting.id)}`}>
+            meeting time: {meeting.time}<br />
           </Link>
-          <button onClick={this.exitGroup}>탈퇴</button>
-        </>
+        )}
+        <Link to={`${routes.MEETING_FORM}?${queryString.stringify({ groupId: group.id })}`}>
+          미팅 만들기
+        </Link>
+        <Button onClick={this.exitGroup}>탈퇴</Button>
+      </Wrapper>
+      </>
   }
 }
 
 export default GroupDetail
-  
