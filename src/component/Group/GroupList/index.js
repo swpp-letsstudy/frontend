@@ -1,20 +1,23 @@
 import React, { Component, Fragment } from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import styled from 'styled-components';
 
-import LogoutButton from 'component/LogoutButton'
+import LogoutButton from './GroupLogout'
 import actionCreators from 'store/actions'
 import routes from 'routes'
-import apis from 'apis'
 import { Formik, Form, Field } from 'formik'
 
+import Link from './GroupLink'
 
 const Wrapper1 = styled.section`
   text-align: center;
   font-size: 1.5rem;
   padding: 2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const Title = styled.h1`
@@ -48,25 +51,23 @@ class GroupList extends Component {
         <Wrapper1>
           <Title>Group Page</Title>
           <h1>{username}</h1>
-        </Wrapper1>
 
-        <Formik
-          initialValues={{
-            url: '',
-          }}
-          onSubmit={(values, formActions) => {
-            const { url } = values
-            joinGroup({url})
-          }}
-          render={() =>
-            <Form>
-              <Field name='url'/>
-              <button type='submit'>가입</button>
-            </Form>
-          }
-        />
+          <Formik
+            initialValues={{
+              url: '',
+            }}
+            onSubmit={(values, formActions) => {
+              const { url } = values
+              joinGroup({ url })
+            }}
+            render={() =>
+              <Form>
+                <Field name='url' />
+                <button type='submit'>가입</button>
+              </Form>
+            }
+          />
 
-        <Wrapper1>
           {groups.map((group, index) => (
             <Fragment key={index}>
               <GroupListStyle>
@@ -77,14 +78,7 @@ class GroupList extends Component {
               <br />
             </Fragment>
           ))}
-
-        </Wrapper1>
-
-        <Wrapper1>
           <Link to={routes.GROUP_FORM}>그룹 생성</Link>
-        </Wrapper1>
-
-        <Wrapper1>
           <LogoutButton />
         </Wrapper1>
       </>
