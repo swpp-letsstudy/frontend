@@ -1,42 +1,19 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 
-import styled from 'styled-components';
-
-import LogoutButton from './GroupLogout'
+import LogoutButton from './LogoutButton'
 import actionCreators from 'store/actions'
 import routes from 'routes'
-import { Formik, Form, Field } from 'formik'
+import { Formik } from 'formik/dist/index'
 
+import Wrapper from 'component/Styles/Wrapper'
+import Title from 'component/Styles/Title'
+
+import Form from './GroupListForm'
+import Button from './GroupEnrollButton'
 import Link from './GroupLink'
+import Input from './GroupInput'
 
-const Wrapper1 = styled.section`
-  text-align: center;
-  font-size: 1.5rem;
-  padding: 2rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-`;
-
-const Title = styled.h1`
-  font-size: 2rem;
-  text-align: center;
-  color: black;
-`;
-
-const GroupListStyle = styled.h1`
-  margin: auto;
-  display: flex;
-  height: 2.5rem;
-  text-align: center;
-  font-size: 1.5rem;
-  font-color: white;
-  background: white;
-  border-radius: 8px;
-  width: 30rem;
-`;
 
 class GroupList extends Component {
   componentDidMount() {
@@ -49,7 +26,7 @@ class GroupList extends Component {
     console.log(groups)
     return (
       <>
-        <Wrapper1>
+        <Wrapper>
           <Title>Group Page</Title>
           <h1>{username}</h1>
 
@@ -61,27 +38,34 @@ class GroupList extends Component {
               const { url } = values
               joinGroup({ url })
             }}
-            render={() =>
+            render={({ handleChange }) =>
               <Form>
-                <Field name='url' />
-                <button type='submit'>가입</button>
+                <div className="ui action input">
+                  <Input
+                    onChange={handleChange}
+                    name='url'
+                    type="text"
+                    placeholder="Group URL..."
+                  />
+                  <Button type='submit'>
+                    가입
+                  </Button>
+                </div>
               </Form>
             }
           />
 
           {groups.map((group, index) => (
             <Fragment key={index}>
-              <GroupListStyle>
-                <Link to={`${routes.GROUP_DETAIL.replace(':id', group.id)}`}>
-                  {group.name}
-                </Link>
-              </GroupListStyle>
+              <Link to={`${routes.GROUP_DETAIL.replace(':id', group.id)}`}>
+                {group.name}
+              </Link>
               <br />
             </Fragment>
           ))}
           <Link to={routes.GROUP_FORM}>그룹 생성</Link>
           <LogoutButton />
-        </Wrapper1>
+        </Wrapper>
       </>
     )
   }
