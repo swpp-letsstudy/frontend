@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 
-import { Formik, Field, Form } from 'formik/dist/index'
-import { Icon, Button } from 'semantic-ui-react'
+import { Formik } from 'formik/dist/index'
+import { Icon } from 'semantic-ui-react'
+
+import Field from './RegisterField'
+import Button from './RegisterButton'
+import Form from './RegisterForm'
+import Link from './RegisterLink'
 
 import styled from 'styled-components';
 
