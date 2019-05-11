@@ -3,4 +3,5 @@ export default {
   LOGIN: 'LOGIN',
   REGISTER: 'REGISTER',
   LOAD_GROUPS: 'LOAD_GROUPS',
+  JOIN_GROUP: 'JOIN_GROUP',
 }

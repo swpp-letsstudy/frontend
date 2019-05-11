@@ -4,7 +4,7 @@ import { pender, penderReducer } from 'redux-pender'
 
 import ACTION_TYPES from 'store/actionTypes'
 
-const initialUserState = {
+export const initialUserState = {
   isLoggedIn: localStorage.hasOwnProperty('user') ? true : false,
   user: JSON.parse(localStorage.getItem('user')),
 }
@@ -30,11 +30,20 @@ const userReducer = handleActions({
   })
 }, initialUserState)
 
-const initialGroupState = {
+export const initialGroupState = {
   groups: [],
 }
 
 const groupReducer = handleActions({
+  ...pender({
+    type: ACTION_TYPES.JOIN_GROUP,
+    onSuccess: (state, action) => {
+      console.log(action.payload.data)
+      return Object.assign({}, state, {
+        groups: action.payload.data
+      })
+    }
+  }),
   ...pender({
     type: ACTION_TYPES.LOAD_GROUPS,
     onSuccess: (state, action) => {

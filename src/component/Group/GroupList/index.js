@@ -6,6 +6,8 @@ import styled from 'styled-components';
 import LogoutButton from './GroupLogout'
 import actionCreators from 'store/actions'
 import routes from 'routes'
+import apis from 'apis'
+import { Formik, Form, Field } from 'formik'
 
 import Link from './GroupLink'
 
@@ -25,38 +27,58 @@ const Title = styled.h1`
   color: black;
 `;
 
+const GroupListStyle = styled.h1`
+  margin: auto;
+  display: flex;
+  height: 2.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-color: white;
+  background: white;
+  border-radius: 8px;
+  width: 30rem;
+`;
 
 class GroupList extends Component {
-
   componentDidMount() {
     const { loadGroups } = this.props
     loadGroups()
   }
 
   render() {
-    const { groups } = this.props
+    const { username, groups, joinGroup } = this.props
     return (
       <>
         <Wrapper1>
-          <div>
-            <Title>Group Page</Title>
+          <Title>Group Page</Title>
+          <h1>{username}</h1>
 
-          </div>
+          <Formik
+            initialValues={{
+              url: '',
+            }}
+            onSubmit={(values, formActions) => {
+              const { url } = values
+              joinGroup({ url })
+            }}
+            render={() =>
+              <Form>
+                <Field name='url' />
+                <button type='submit'>가입</button>
+              </Form>
+            }
+          />
 
-          <div>
-            {groups.map((group, index) => (
-              <Fragment key={index}>
+          {groups.map((group, index) => (
+            <Fragment key={index}>
+              <GroupListStyle>
                 <Link to={`${routes.GROUP_DETAIL.replace(':id', group.id)}`}>
                   {group.name}
                 </Link>
-                <br />
-              </Fragment>
-            ))}
-          </div>
-
-          <div>
-            <Link to={routes.GROUP_FORM}>그룹 생성</Link>
-          </div>
+              </GroupListStyle>
+              <br />
+            </Fragment>
+          ))}
 
           <LogoutButton />
         </Wrapper1>
@@ -67,10 +89,12 @@ class GroupList extends Component {
 
 const mapStateToProps = state => ({
   groups: state.groupReducer.groups,
+  username: state.userReducer.user.username,
 })
 
 const mapDispatchToProps = dispatch => ({
   loadGroups: () => dispatch(actionCreators.loadGroups()),
+  joinGroup: url => dispatch(actionCreators.joinGroup(url)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(GroupList)
