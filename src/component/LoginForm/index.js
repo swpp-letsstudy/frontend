@@ -11,17 +11,10 @@ import Button from './LoginButton'
 import Form from './LoginForm'
 import Link from './LoginLink'
 
-import styled from 'styled-components';
 
 import actionCreators from 'store/actions'
+import Title from 'component/Styles/Title'
 
-const Title = styled.h1`
-  padding: 5rem;
-  font-size: 2em;
-  text-align: center;
-  color: black;
-  padding: 1rem;
-`;
 
 
 const LoginForm = props => {

@@ -1,7 +1,7 @@
 import { Button } from 'semantic-ui-react'
 import styled from 'styled-components'
 
-const GroupEnrollButton = styled(Button)`
+const MeetingCreateButton = styled(Button)`
 	&&&{
 		width: 5rem;
 		height: 3rem;
@@ -21,5 +21,5 @@ const GroupEnrollButton = styled(Button)`
 	}
 `
 
-export default GroupEnrollButton
+export default MeetingCreateButton
 
