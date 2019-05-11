@@ -3,17 +3,20 @@ import { connect } from 'react-redux'
 
 import styled from 'styled-components';
 
-import LogoutButton from './GroupLogout'
+import LogoutButton from './LogoutButton'
 import actionCreators from 'store/actions'
 import routes from 'routes'
-import { Formik, Form, Field } from 'formik'
+import { Formik } from 'formik/dist/index'
 
+
+import Form from './GroupListForm'
+import Button from './GroupEnrollButton'
 import Link from './GroupLink'
+import Input from './GroupInput'
 
 const Wrapper1 = styled.section`
   text-align: center;
   font-size: 1.5rem;
-  padding: 2rem;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -35,7 +38,7 @@ const GroupListStyle = styled.h1`
   font-color: white;
   background: white;
   border-radius: 8px;
-  width: 30rem;
+  width: 25rem;
 `;
 
 class GroupList extends Component {
@@ -60,10 +63,19 @@ class GroupList extends Component {
               const { url } = values
               joinGroup({ url })
             }}
-            render={() =>
+            render={({ handleChange }) =>
               <Form>
-                <Field name='url' />
-                <button type='submit'>가입</button>
+                <div className="ui action input">
+                  <Input
+                    onChange={handleChange}
+                    name='url' 
+                    type="text" 
+                    placeholder="Group URL..."
+                  />
+                  <Button type='submit'>
+                    가입
+                  </Button>
+                </div>
               </Form>
             }
           />

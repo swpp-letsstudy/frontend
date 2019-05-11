@@ -10,7 +10,7 @@ const GroupLink = styled(Link)`
     margin: auto;
     display: flex;
     height: 2.5rem;
-    width: 30rem;
+    width: 25rem;
     &:hover {
       color: #297fffc7;
     }
