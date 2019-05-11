@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import LogoutButton from './GroupLogout'
 import actionCreators from 'store/actions'
 import routes from 'routes'
-import apis from 'apis'
 import { Formik, Form, Field } from 'formik'
 
 import Link from './GroupLink'
@@ -79,7 +78,7 @@ class GroupList extends Component {
               <br />
             </Fragment>
           ))}
-
+          <Link to={routes.GROUP_FORM}>그룹 생성</Link>
           <LogoutButton />
         </Wrapper1>
       </>
