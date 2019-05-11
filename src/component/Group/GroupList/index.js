@@ -46,6 +46,7 @@ class GroupList extends Component {
 
   render() {
     const { username, groups, joinGroup } = this.props
+    console.log(groups)
     return (
       <>
         <Wrapper1>
@@ -93,7 +94,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadGroups: () => dispatch(actionCreators.loadGroups()),
-  joinGroup: url => dispatch(actionCreators.joinGroup(url)),
+  joinGroup: payload => dispatch(actionCreators.joinGroup(payload)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(GroupList)
