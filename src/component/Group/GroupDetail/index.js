@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import queryString from 'query-string/index'
 
+
 import Button from './MeetingCreateButton'
 import Link from './GroupLink'
 
@@ -44,7 +45,9 @@ class GroupDetail extends Component {
       <>
       <Wrapper>
         <Title>{group.name}</Title>
-        <div>{`${HOST}join_study_group/${group.id}/`}</div>
+        <br />
+        <div>URL: {`${HOST}join_study_group/${group.id}/`}</div>
+        <br />
         {meetings.map((meeting, index) =>
           <Link key={index} to={`${routes.MEETING_DETAIL.replace(':id', meeting.id)}`}>
             meeting time: {meeting.time}<br />
@@ -52,7 +55,7 @@ class GroupDetail extends Component {
         )}
         <Link to={`${routes.MEETING_FORM}?${queryString.stringify({ groupId: group.id })}`}>
           미팅 만들기
-          </Link>
+        </Link>
         <Button onClick={this.exitGroup}>탈퇴</Button>
       </Wrapper>
       </>

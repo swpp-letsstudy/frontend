@@ -1,11 +1,16 @@
 import React from 'react'
-import { Field, Form, Formik } from 'formik/dist/index'
+import { Form, Formik } from 'formik/dist/index'
 import { connect } from 'react-redux'
 
 import actionCreators from 'store/actions'
 import apis from 'apis'
 import routes from 'routes'
 
+import Wrapper from 'component/Styles/Wrapper'
+import Title from 'component/Styles/Title'
+
+import Field from './GroupFormField'
+import Button from './GroupFormButton'
 
 const GroupForm = props => {
   const { history, loadGroups } = props
@@ -21,11 +26,15 @@ const GroupForm = props => {
             history.push(routes.GROUP_LIST)
           }}
           render={()=>
+            <Wrapper>
+              <Title>Create Group</Title>
               <Form>
-                <Field name='name'/>
-                <Field name='info'/>
-                <button type='submit'>그룹 생성</button>
-              </Form>}
+                <Field name='name' placeholder='group name'/>
+                <Field name='info' type='text' placeholder='informations...' style={{height: "20rem"}}/>
+                <Button type='submit'>그룹 생성</Button>
+              </Form>
+            </Wrapper>
+          }
       />
   )
 }
