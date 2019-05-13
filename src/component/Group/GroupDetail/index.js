@@ -4,6 +4,7 @@ import queryString from 'query-string/index'
 
 import Button from './MeetingCreateButton'
 import Link from './GroupLink'
+import Div from './GroupDivDetail'
 
 import apis from 'apis'
 import routes from 'routes'
@@ -43,21 +44,26 @@ class GroupDetail extends Component {
     const { group, meetings } = this.state
     return group &&
       <>
-      <Wrapper>
-        <Title>{group.name}</Title>
-        <br />
-        <div>URL: {`${HOST}join_study_group/${group.id}/`}</div>
-        <br />
-        {meetings.map((meeting, index) =>
-          <Link key={index} to={`${routes.MEETING_DETAIL.replace(':id', meeting.id)}`}>
-            meeting time: {meeting.time}<br />
-          </Link>
-        )}
-        <Link to={`${routes.MEETING_FORM}?${queryString.stringify({ groupId: group.id })}`}>
-          미팅 만들기
-        </Link>
-        <Button onClick={this.exitGroup}>탈퇴</Button>
-      </Wrapper>
+        <Wrapper>
+          <Title>{group.name}</Title>
+
+          {meetings.map((meeting, index) =>
+            <Div>
+              <Link key={index} to={`${routes.MEETING_DETAIL.replace(':id', meeting.id)}`}>
+                meeting time: {meeting.time}<br />
+              </Link>
+            </Div>
+          )}
+          <br />
+          <div style={{fontSize: "1rem"}}>URL: {`${HOST}join_study_group/${group.id}/`}</div>
+          <br />
+          <Button>
+            <Link to={`${routes.MEETING_FORM}?${queryString.stringify({ groupId: group.id })}`} style={{color: "white"}}>
+              미팅 만들기
+            </Link>
+          </Button>
+          <Button onClick={this.exitGroup}>탈퇴</Button>
+        </Wrapper>
       </>
   }
 }
