@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 
-import { Icon } from 'semantic-ui-react'
-
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
+import Icon from 'component/Styles/Chevron'
 
 import Div from './MeetingDivDetail'
+import Link from './MeetingDetailLink'
 
 import apis from 'apis'
 
@@ -42,6 +42,14 @@ class MeetingDetail extends Component {
     const { meeting } = this.state
     return (meeting &&
       <Wrapper>
+        <Icon name='chevron left'>
+        {meeting &&
+          <Link to={`/groups/${meeting.group.id}`}>
+            MeetingList
+          </Link>
+        }
+          
+        </Icon>
         <Title>Attendance</Title>
         <Div>
           Meeting Time: {meeting.time}

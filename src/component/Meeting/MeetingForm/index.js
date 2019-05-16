@@ -1,5 +1,6 @@
 import React from 'react'
 import { Form, Formik } from 'formik/dist/index'
+
 import queryString from 'query-string'
 
 import Field from './MeetingField'
@@ -8,13 +9,20 @@ import routes from 'routes'
 
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
+import Icon from 'component/Styles/Chevron'
 import Button from './MeetingFormButton'
+import Link from './MeetingFormLink'
 
 const MeetingForm = props => {
   const { location, history } = props
   const groupId = queryString.parse(location.search).groupId
   return (
     <Wrapper>
+      <Icon name='chevron left'>
+        <Link to={`/groups/${groupId}`}>
+          MeetingList
+        </Link>
+      </Icon>
       <Formik
         initialValues={{
           time: '',
@@ -31,7 +39,7 @@ const MeetingForm = props => {
           <Form>
             <Title>Create Meeting</Title>
             <div>
-            <Field type='datetime-local' name='time' />
+              <Field type='datetime-local' name='time' />
             </div>
             <div>
               <Field name='info' type='text' placeholder='informations...' style={{ height: "20rem" }} />

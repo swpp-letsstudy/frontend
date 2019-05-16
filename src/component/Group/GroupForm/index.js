@@ -8,9 +8,11 @@ import routes from 'routes'
 
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
+import Icon from 'component/Styles/Chevron'
 
 import Field from './GroupFormField'
 import Button from './GroupFormButton'
+import Link from './GroupFormLink'
 
 const GroupForm = props => {
   const { history, loadGroups } = props
@@ -27,6 +29,11 @@ const GroupForm = props => {
       }}
       render={() =>
         <Wrapper>
+          <Icon name='chevron left'>
+            <Link to={`/groups`}>
+              GroupList
+            </Link>
+          </Icon>
           <Title>Create Group</Title>
           <Form>
             <div>
