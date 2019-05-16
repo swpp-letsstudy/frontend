@@ -45,14 +45,6 @@ describe('apis.js', () => {
       done()
     })
   })
-  /*
-  afterLoginTest('load meetings', USERNAMES[0], PASSWORD, done => {
-    apis.joinMeetings({ groupId: 2 })
-    .then(data => {
-      expect(data.status).toEqual(200)
-      done()
-    })
-  })*/
   
   afterLoginTest('load meetings', USERNAMES[0], PASSWORD, done => {
         apis.loadMeetings({ groupId: 2 })
