@@ -38,21 +38,22 @@ describe('apis.js', () => {
     })
   })
 
-  afterLoginTest('read meetings', USERNAMES[0], PASSWORD, done => {
+  afterLoginTest('read group', USERNAMES[0], PASSWORD, done => {
     apis.readGroup({ groupId: 2 })
     .then(data => {
       expect(data.status).toEqual(200)
       done()
     })
   })
-  /*
-  afterLoginTest('load meetings', USERNAMES[0], PASSWORD, done => {
-    apis.joinMeetings({ groupId: 2 })
+  
+  /* fixing */
+  afterLoginTest('join group', USERNAMES[0], PASSWORD, done => {
+    apis.joinGroup('http://127.0.0.1:8000/join_study_group/1/')
     .then(data => {
       expect(data.status).toEqual(200)
       done()
     })
-  })*/
+  })
   
   afterLoginTest('load meetings', USERNAMES[0], PASSWORD, done => {
         apis.loadMeetings({ groupId: 2 })
