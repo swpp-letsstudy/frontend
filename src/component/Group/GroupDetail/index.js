@@ -11,6 +11,7 @@ import { HOST } from 'config'
 
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
+import Icon from 'component/Styles/Chevron'
 
 import { withRouter } from 'react-router-dom'
 
@@ -46,6 +47,11 @@ class GroupDetail extends Component {
     return group &&
       <>
         <Wrapper>
+          <Icon name='chevron left'>
+            <Link to={`/groups`}>
+              GroupList
+            </Link>
+          </Icon>
           <Title>{group.name}</Title>
 
           {meetings.map((meeting, index) =>
@@ -56,10 +62,10 @@ class GroupDetail extends Component {
             </Div>
           )}
           <br />
-          <div style={{fontSize: "1rem"}}>URL: {`${HOST}join_study_group/${group.id}/`}</div>
+          <div style={{ fontSize: "1rem" }}>URL: {`${HOST}join_study_group/${group.id}/`}</div>
           <br />
           <Button>
-            <Link to={`${routes.MEETING_FORM}?${queryString.stringify({ groupId: group.id })}`} style={{color: "white"}}>
+            <Link to={`${routes.MEETING_FORM}?${queryString.stringify({ groupId: group.id })}`} style={{ color: "white" }}>
               미팅 만들기
             </Link>
           </Button>
