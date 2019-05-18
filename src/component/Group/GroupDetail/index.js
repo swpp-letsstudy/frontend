@@ -47,7 +47,7 @@ class GroupDetail extends Component {
       <Wrapper>
         <Title>{group.name}</Title>
         <br />
-        <div>URL: {`${HOST}join_study_group/${group.id}/`}</div>
+        <div>URL: {`${HOST}join_group?token=${group.id}`}</div>
         <br />
         {meetings.map((meeting, index) =>
           <Link key={index} to={`${routes.MEETING_DETAIL.replace(':id', meeting.id)}`}>

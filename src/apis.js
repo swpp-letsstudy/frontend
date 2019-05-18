@@ -18,18 +18,18 @@ export default {
   logout: payload => axios.post(`${HOST}logout/`),
   
   // used in GroupReducer
-  loadGroups: payload => axios.get(`${HOST}study_groups/`),
+  loadGroups: payload => axios.get(`${HOST}groups/`),
 
   // not used in reducer
   register: payload => axios.post(`${HOST}register/`, payload),
   joinGroup: payload => axios.get(payload.url),
-  exitGroup: payload => axios.delete(`${HOST}study_groups/${payload.groupId}/`),
+  exitGroup: payload => axios.delete(`${HOST}groups/${payload.groupId}/`),
 
-  createGroup: payload => axios.post(`${HOST}study_groups/`, payload),
-  readGroup: payload => axios.get(`${HOST}study_groups/${payload.groupId}/`),
+  createGroup: payload => axios.post(`${HOST}groups/`, payload),
+  readGroup: payload => axios.get(`${HOST}groups/${payload.groupId}/`),
 
-  createMeeting: payload => axios.post(`${HOST}study_meetings/`, payload),
-  readMeeting: payload => axios.get(`${HOST}study_meetings/${payload.meetingId}/`),
-  loadMeetings: payload => axios.get(`${HOST}study_meetings?groupId=${payload.groupId}`),
+  createMeeting: payload => axios.post(`${HOST}meetings/`, payload),
+  readMeeting: payload => axios.get(`${HOST}meetings/${payload.meetingId}/`),
+  loadMeetings: payload => axios.get(`${HOST}meetings?groupId=${payload.groupId}`),
   toggleAttendance: payload => axios.post(`${HOST}attendances/`, payload),
 }

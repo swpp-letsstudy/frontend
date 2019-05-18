@@ -23,7 +23,6 @@ class GroupList extends Component {
 
   render() {
     const { username, groups, joinGroup } = this.props
-    console.log(groups)
     return (
       <>
         <Wrapper>

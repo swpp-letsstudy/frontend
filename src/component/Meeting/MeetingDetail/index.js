@@ -33,11 +33,12 @@ class MeetingDetail extends Component {
 
   render() {
     const { meeting } = this.state
+    console.log(meeting)
     return (meeting &&
         <div>
           Meeting Time: {meeting.time}<br/>
           Attendance
-          {meeting.group.members.map((user, index) =>
+          {meeting.members.map((user, index) =>
               <div key={index}>
                 {user.username}
                 <button onClick={() => this.toggleUserAttendanceHandler(user)}>
