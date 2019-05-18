@@ -8,34 +8,45 @@ import routes from 'routes'
 
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
+import Icon from 'component/Styles/Chevron'
 
 import Field from './GroupFormField'
 import Button from './GroupFormButton'
+import Link from './GroupFormLink'
 
 const GroupForm = props => {
   const { history, loadGroups } = props
   return (
-      <Formik
-          initialValues = {{
-            name: '',
-            info: '',
-          }}
-          onSubmit={(values, formActions) => {
-            const { name, info } = values
-            apis.createGroup({ name, info }).then(loadGroups)
-            history.push(routes.GROUP_LIST)
-          }}
-          render={()=>
-            <Wrapper>
-              <Title>Create Group</Title>
-              <Form>
-                <Field name='name' placeholder='group name'/>
-                <Field name='info' type='text' placeholder='informations...' style={{height: "20rem"}}/>
-                <Button type='submit'>그룹 생성</Button>
-              </Form>
-            </Wrapper>
-          }
-      />
+    <Formik
+      initialValues={{
+        name: '',
+        info: '',
+      }}
+      onSubmit={(values, formActions) => {
+        const { name, info } = values
+        apis.createGroup({ name, info }).then(loadGroups)
+        history.push(routes.GROUP_LIST)
+      }}
+      render={() =>
+        <Wrapper>
+          <Icon name='chevron left'>
+            <Link to={`/groups`}>
+              GroupList
+            </Link>
+          </Icon>
+          <Title>Create Group</Title>
+          <Form>
+            <div>
+              <Field name='name' placeholder='group name' />
+            </div>
+            <div>
+              <Field name='info' type='text' placeholder='informations...' style={{ height: "20rem" }} />
+            </div>
+            <Button type='submit'>그룹 생성</Button>
+          </Form>
+        </Wrapper>
+      }
+    />
   )
 }
 

@@ -13,23 +13,16 @@ if (localStorage.hasOwnProperty('user')) {
 }
 
 export default {
-  // used in UserReducer
-  login: payload => axios.post(`${HOST}login/`, payload),
-  logout: payload => axios.post(`${HOST}logout/`),
-  
-  // used in GroupReducer
   loadGroups: payload => axios.get(`${HOST}groups/`),
-
-  // not used in reducer
-  register: payload => axios.post(`${HOST}register/`, payload),
+  readGroup: payload => axios.get(`${HOST}groups/${payload.groupId}/`),
   joinGroup: payload => axios.get(payload.url),
   exitGroup: payload => axios.delete(`${HOST}groups/${payload.groupId}/`),
-
+  loadMeetings: payload => axios.get(`${HOST}meetings/?groupId=${payload.groupId}`),
+  login: payload => axios.post(`${HOST}login/`, payload),
+  register: payload => axios.post(`${HOST}register/`, payload),
+  logout: payload => axios.post(`${HOST}logout/`),
   createGroup: payload => axios.post(`${HOST}groups/`, payload),
-  readGroup: payload => axios.get(`${HOST}groups/${payload.groupId}/`),
-
   createMeeting: payload => axios.post(`${HOST}meetings/`, payload),
   readMeeting: payload => axios.get(`${HOST}meetings/${payload.meetingId}/`),
-  loadMeetings: payload => axios.get(`${HOST}meetings?groupId=${payload.groupId}`),
   toggleAttendance: payload => axios.post(`${HOST}attendances/`, payload),
 }

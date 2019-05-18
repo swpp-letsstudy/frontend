@@ -30,6 +30,22 @@ describe('apis.js', () => {
 
   testLogin()
 
+  afterLoginTest('load groups', USERNAMES[0], PASSWORD, done => {
+    apis.loadGroups()
+    .then(data => {
+      expect(data.status).toEqual(200)
+      done()
+    })
+  })
+
+  afterLoginTest('read meetings', USERNAMES[0], PASSWORD, done => {
+    apis.readGroup({ groupId: 2 })
+    .then(data => {
+      expect(data.status).toEqual(200)
+      done()
+    })
+  })
+  
   afterLoginTest('load meetings', USERNAMES[0], PASSWORD, done => {
         apis.loadMeetings({ groupId: 2 })
         .then(data => {

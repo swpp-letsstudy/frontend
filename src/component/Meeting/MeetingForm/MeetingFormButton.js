@@ -1,13 +1,12 @@
 import { Button } from 'semantic-ui-react'
 import styled from 'styled-components'
 
-const MeetingCreateButton = styled(Button)`
+const MeetingFormButton = styled(Button)`
 	&&&{
-		width: 12.5rem;
-		height: 3rem;
-		text-align: center;
+		width: 25rem;
+		height: 4rem;
+		font-size: 1.5rem;
 		color: white;
-		font-size: 1.2rem;
 		border-radius: 8px;
 		background: #72d2ff;
 		&:hover {
@@ -21,5 +20,5 @@ const MeetingCreateButton = styled(Button)`
 	}
 `
 
-export default MeetingCreateButton
+export default MeetingFormButton
 

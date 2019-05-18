@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
 import queryString from 'query-string/index'
-import { connect } from 'react-redux'
+
 
 import Button from './MeetingCreateButton'
 import Link from './GroupLink'
+import Div from './GroupDivDetail'
 
-import actionCreators from 'store/actions'
 import apis from 'apis'
 import routes from 'routes'
 import { HOST } from 'config'
 
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
+import Icon from 'component/Styles/Chevron'
 
 class GroupDetail extends Component {
   constructor(props) {
@@ -34,8 +35,8 @@ class GroupDetail extends Component {
   }
 
   exitGroup = () => {
-    const { exitGroup, history } = this.props
-    exitGroup({groupId: this.state.group.id}).then(() => {
+    const { history } = this.props
+    apis.exitGroup({ groupId: this.state.group.id }).then(() => {
       history.push(routes.GROUP_LIST)
     })
   }
@@ -44,29 +45,33 @@ class GroupDetail extends Component {
     const { group, meetings } = this.state
     return group &&
       <>
-      <Wrapper>
-        <Title>{group.name}</Title>
-        <br />
-        <div>URL: {`${HOST}join_group?token=${group.id}`}</div>
-        <br />
-        {meetings.map((meeting, index) =>
-          <Link key={index} to={`${routes.MEETING_DETAIL.replace(':id', meeting.id)}`}>
-            meeting time: {meeting.time}<br />
-          </Link>
-        )}
-        <Link to={`${routes.MEETING_FORM}?${queryString.stringify({ groupId: group.id })}`}>
-          미팅 만들기
-        </Link>
-        <Button onClick={this.exitGroup}>탈퇴</Button>
-      </Wrapper>
+        <Wrapper>
+          <Icon name='chevron left'>
+            <Link to={`/groups`}>
+              GroupList
+            </Link>
+          </Icon>
+          <Title>{group.name}</Title>
+
+          {meetings.map((meeting, index) =>
+            <Div>
+              <Link key={index} to={`${routes.MEETING_DETAIL.replace(':id', meeting.id)}`}>
+                meeting time: {meeting.time}<br />
+              </Link>
+            </Div>
+          )}
+          <br />
+          <div style={{ fontSize: "1rem" }}>URL: {`${HOST}join_group/?token=${group.id}`}</div>
+          <br />
+          <Button>
+            <Link to={`${routes.MEETING_FORM}?${queryString.stringify({ groupId: group.id })}`} style={{ color: "white" }}>
+              미팅 만들기
+            </Link>
+          </Button>
+          <Button onClick={this.exitGroup}>탈퇴</Button>
+        </Wrapper>
       </>
   }
 }
 
-const mapStateToProps = state => ({ })
-
-const mapDispatchToProps = dispatch => ({
-  exitGroup: payload => dispatch(actionCreators.exitGroup(payload)),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(GroupDetail)
+export default GroupDetail
