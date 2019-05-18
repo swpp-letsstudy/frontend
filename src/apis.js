@@ -16,7 +16,7 @@ export default {
   loadGroups: payload => axios.get(`${HOST}study_groups/`),
   readGroup: payload => axios.get(`${HOST}study_groups/${payload.groupId}/`),
   joinGroup: payload => axios.get(payload.url),
-  exitGroup: payload => axios.delete(`${HOST}study_groups/${payload.groupId}/`),
+  exitGroup: payload => axios.delete(`${HOST}exit_study_group/${payload.groupId}/`),
   loadMeetings: payload => axios.get(`${HOST}study_meetings?groupId=${payload.groupId}`),
   login: payload => axios.post(`${HOST}login/`, payload),
   register: payload => axios.post(`${HOST}register/`, payload),

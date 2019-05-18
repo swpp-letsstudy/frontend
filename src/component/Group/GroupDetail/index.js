@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import queryString from 'query-string/index'
 
-
 import Button from './MeetingCreateButton'
 import Link from './GroupLink'
 import Div from './GroupDivDetail'
@@ -12,6 +11,8 @@ import { HOST } from 'config'
 
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
+
+import { withRouter } from 'react-router-dom'
 
 class GroupDetail extends Component {
   constructor(props) {
@@ -34,9 +35,9 @@ class GroupDetail extends Component {
   }
 
   exitGroup = () => {
-    const { history } = this.props
     apis.exitGroup({ groupId: this.state.group.id }).then(() => {
-      history.push(routes.GROUP_LIST)
+
+      this.props.history.push(routes.GROUP_LIST)
     })
   }
 
@@ -68,4 +69,4 @@ class GroupDetail extends Component {
   }
 }
 
-export default GroupDetail
+export default withRouter(GroupDetail)
