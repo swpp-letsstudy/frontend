@@ -46,9 +46,24 @@ describe('apis.js', () => {
     })
   })
   
-  /* fixing */
   afterLoginTest('join group', USERNAMES[0], PASSWORD, done => {
-    apis.joinGroup('http://127.0.0.1:8000/join_study_group/1/')
+    apis.joinGroup({url :'http://127.0.0.1:8000/join_study_group/1/'})
+    .then(data => {
+      expect(data.status).toEqual(200)
+      done()
+    })
+  })
+
+  afterLoginTest('exit group', USERNAMES[0], PASSWORD, done => {
+    apis.exitGroup({groupId : 1})
+    .then(data => {
+      expect(data.status).toEqual(200)
+      done()
+    })
+  })
+
+  afterLoginTest('join group', USERNAMES[0], PASSWORD, done => {
+    apis.joinGroup({url :'http://127.0.0.1:8000/join_study_group/2/'})
     .then(data => {
       expect(data.status).toEqual(200)
       done()
