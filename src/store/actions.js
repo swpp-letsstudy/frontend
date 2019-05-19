@@ -18,6 +18,7 @@ export default createActions({
     localStorage.removeItem('user')
     return value
   }),
+  [ACTION_TYPES.REGISTER]: apis.register,
   [ACTION_TYPES.LOAD_GROUPS]: apis.loadGroups,
   [ACTION_TYPES.JOIN_GROUP]: apis.joinGroup,
   [ACTION_TYPES.EXIT_GROUP]: apis.exitGroup,
