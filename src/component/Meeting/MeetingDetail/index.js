@@ -54,7 +54,7 @@ class MeetingDetail extends Component {
         <Div>
           Meeting Time: {meeting.time}
         </Div>
-          {meeting.group.members.map((user, index) =>
+          {meeting.members.map((user, index) =>
             <Div key={index}>
               {user.username}
               {this.isAttendance(user) ?

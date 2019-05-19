@@ -24,10 +24,10 @@ const userReducer = handleActions({
     onSuccess: (state, action) => {
       return Object.assign({}, state, {
         isLoggedIn: false,
-        user: '',
+        user: ''
       })
-    }
-  })
+    },
+  }),
 }, initialUserState)
 
 export const initialGroupState = {
@@ -36,15 +36,6 @@ export const initialGroupState = {
 
 const groupReducer = handleActions({
   ...pender({
-    type: ACTION_TYPES.JOIN_GROUP,
-    onSuccess: (state, action) => {
-      console.log(action.payload.data)
-      return Object.assign({}, state, {
-        groups: action.payload.data
-      })
-    }
-  }),
-  ...pender({
     type: ACTION_TYPES.LOAD_GROUPS,
     onSuccess: (state, action) => {
       return Object.assign({}, state, {
@@ -52,6 +43,22 @@ const groupReducer = handleActions({
       })
     },
   }),
+  ...pender({
+    type: ACTION_TYPES.JOIN_GROUP,
+    onSuccess: (state, action) => {
+      return Object.assign({}, state, {
+        groups: action.payload.data
+      })
+    }
+  }),
+  ...pender({
+    type: ACTION_TYPES.EXIT_GROUP,
+    onSuccess: (state, action) => {
+      return Object.assign({}, state, {
+        groups: action.payload.data
+      })
+    }
+  })
 }, initialGroupState)
 
 export default combineReducers({
