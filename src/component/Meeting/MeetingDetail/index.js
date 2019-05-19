@@ -55,7 +55,7 @@ class MeetingDetail extends Component {
           Meeting Time: {meeting.time}
         </Div>
           {meeting.members.map((user, index) =>
-            <Div key={index}>
+            <Div key={user.id}>
               {user.username}
               {this.isAttendance(user) ?
                 <Icon onClick={() => this.toggleUserAttendanceHandler(user)} name='check circle outline' />
