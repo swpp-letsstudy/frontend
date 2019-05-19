@@ -62,7 +62,7 @@ class GroupDetail extends Component {
             </Div>
           )}
           <br />
-          <div style={{ fontSize: "1rem" }}>URL: {`${HOST}join_study_group/${group.id}/`}</div>
+          <div style={{ fontSize: "1rem" }}>{`${HOST}join_group/?token=${group.id}`}</div>
           <br />
           <Button>
             <Link to={`${routes.MEETING_FORM}?${queryString.stringify({ groupId: group.id })}`} style={{ color: "white" }}>
