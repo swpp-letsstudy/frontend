@@ -13,6 +13,8 @@ import Icon from 'component/Styles/Chevron'
 import Button from './MeetingFormButton'
 import Link from './MeetingFormLink'
 
+import { withRouter } from 'react-router-dom'
+
 const MeetingForm = props => {
   const { location, history } = props
   const groupId = queryString.parse(location.search).groupId
@@ -34,6 +36,7 @@ const MeetingForm = props => {
           history.push(
             `${routes.GROUP_DETAIL.replace(':id', groupId)}`
           )
+          apis.loadMeetings({groupId : groupId})
         }}
         render={() =>
           <Form>
@@ -51,4 +54,4 @@ const MeetingForm = props => {
   )
 }
 
-export default MeetingForm
+export default withRouter(MeetingForm)
