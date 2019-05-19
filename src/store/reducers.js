@@ -32,6 +32,7 @@ const userReducer = handleActions({
 
 export const initialGroupState = {
   groups: [],
+  meetings: [],
 }
 
 const groupReducer = handleActions({
@@ -58,7 +59,15 @@ const groupReducer = handleActions({
         groups: action.payload.data
       })
     }
-  })
+  }),
+  ...pender({
+    type: ACTION_TYPES.LOAD_MEETINGS,
+    onSuccess: (state, action) => {
+      return Object.assign({}, state, {
+        meetings: action.payload.data
+      })
+    },
+  }),
 }, initialGroupState)
 
 export default combineReducers({

@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import queryString from 'query-string/index'
+import { connect } from 'react-redux'
 
 import Button from './MeetingCreateButton'
 import Link from './GroupLink'
 import Div from './GroupDivDetail'
 
+import actionCreators from 'store/actions'
 import apis from 'apis'
 import routes from 'routes'
 import { HOST } from 'config'
@@ -13,37 +15,34 @@ import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
 import Icon from 'component/Styles/Chevron'
 
-import { withRouter } from 'react-router-dom'
-
 class GroupDetail extends Component {
   constructor(props) {
     super(props)
     this.state = {
       group: null,
-      meetings: [],
     }
   }
 
   componentDidMount() {
-    const { match } = this.props
+    const { match, loadMeetings } = this.props
     const groupId = match.params.id
     apis.readGroup({ groupId }).then(value => this.setState({
       group: value.data
     }))
-    apis.loadMeetings({ groupId }).then(value => this.setState({
+    loadMeetings({ groupId }).then(value => this.setState({
       meetings: value.data,
     }))
   }
 
   exitGroup = () => {
     apis.exitGroup({ groupId: this.state.group.id }).then(() => {
-
       this.props.history.push(routes.GROUP_LIST)
     })
   }
 
   render() {
-    const { group, meetings } = this.state
+    const { group } = this.state
+    const { meetings } = this.props
     return group &&
       <>
         <Wrapper>
@@ -75,4 +74,13 @@ class GroupDetail extends Component {
   }
 }
 
-export default withRouter(GroupDetail)
+const mapStateToProps = state => ({
+  meetings: state.groupReducer.meetings,
+})
+
+const mapDispatchToProps = dispatch => ({
+  loadMeetings: payload => dispatch(actionCreators.loadMeetings(payload)),
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(GroupDetail)
