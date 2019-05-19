@@ -55,8 +55,8 @@ class GroupDetail extends Component {
           <Title>{group.name}</Title>
 
           {meetings.map((meeting, index) =>
-            <Div>
-              <Link key={index} to={`${routes.MEETING_DETAIL.replace(':id', meeting.id)}`}>
+            <Div key={meeting.id}>
+              <Link to={`${routes.MEETING_DETAIL.replace(':id', meeting.id)}`}>
                 meeting time: {meeting.time}<br />
               </Link>
             </Div>
