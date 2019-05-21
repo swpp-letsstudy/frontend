@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
 
+import Chatting from 'component/Chatting'
 
 class ChattingPage extends Component {
 
-  componentDidMount() {
+  render() {
     const { match } = this.props
     const groupId = match.params.groupId
-    // TODO: load chatting messages with groupId
-  }
-
-  render() {
-    return <div>Chatting Page</div>
+    return <Chatting groupId={groupId} />
   }
 }
 
