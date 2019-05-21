@@ -12,12 +12,13 @@ class Chatting extends Component {
     this.state = {
       messagesByGroups: {}, // key: groupId, value: an array of messages
     }
+    this.webSocketService = null
   }
 
   componentDidMount() {
     const { user, groupId } = this.props
-    const webSocketService = WebSocketService.getInstance(user.token)
-    webSocketService.setGroup(groupId, this.onMessageHandler)
+    this.webSocketService = WebSocketService.getInstance(user.token)
+    this.webSocketService.setGroup(groupId, this.onMessageHandler)
   }
 
   onMessageHandler = message => {
@@ -32,12 +33,17 @@ class Chatting extends Component {
     })
   }
 
+  onSendMessage = message => {
+    const { groupId, user } = this.props
+    this.webSocketService.sendMessage(groupId, user.username, message)
+  }
+
   render() {
     const { groupId } = this.props
     const { messagesByGroups } = this.state
     console.log(messagesByGroups)
     const messages = messagesByGroups[groupId] || []
-    return <ChattingWindow messages={messages}/>
+    return <ChattingWindow messages={messages} onSendMessage={this.onSendMessage}/>
   }
 }
 
