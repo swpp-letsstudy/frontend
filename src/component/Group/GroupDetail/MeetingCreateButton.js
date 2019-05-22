@@ -7,7 +7,7 @@ const MeetingCreateButton = styled(Button)`
 		height: 3rem;
 		text-align: center;
 		color: white;
-		font-size: 0.7rem;
+		font-size: 0.9rem;
 		border-radius: 8px;
 		background: #72d2ff;
 		&:hover {
