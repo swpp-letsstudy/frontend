@@ -1,5 +1,5 @@
 import React from 'react'
-import GroupNoticeDetail from 'component/GroupNoticeDetail'
+import GroupNoticeDetail from 'component/Group/GroupNotice/GroupNoticeDetail'
 
 const GroupNoticeDetailPage = props => {
   const { groupId } = props.location.state

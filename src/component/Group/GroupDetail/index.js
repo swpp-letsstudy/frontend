@@ -64,15 +64,24 @@ class GroupDetail extends Component {
           <div style={{ fontSize: "1rem" }}>{`${HOST}join_group/?token=${group.id}`}</div>
           <br />
           <Button>
+            <Link to={`/chatting/${group.id}`} style={{ color: "white" }}>
+              채팅하기
+            </Link>
+          </Button>
+          <Button>
             <Link to={`${routes.MEETING_FORM}?${queryString.stringify({ groupId: group.id })}`} style={{ color: "white" }}>
-              미팅 만들기
+              미팅만들기
             </Link>
           </Button>
           <Button onClick={this.exitGroup}>탈퇴</Button>
-          <Link to={{
-            pathname: routes.GROUP_NOTICE_LIST,
-            state: { groupId: group.id },
-          }}>그룹 공지</Link>
+          <Button>
+            <Link to={{
+              pathname: routes.GROUP_NOTICE_LIST,
+              state: { groupId: group.id },
+            }}
+            style={{ color: "white" }}>그룹 공지
+            </Link>
+          </Button>
         </Wrapper>
       </>
   }

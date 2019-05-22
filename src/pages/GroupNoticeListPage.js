@@ -1,5 +1,5 @@
 import React from 'react'
-import GroupNoticeList from 'component/GroupNoticeList'
+import GroupNoticeList from 'component/Group/GroupNotice/GroupNoticeList'
 
 const GroupNoticeListPage = props => {
   const { groupId } = props.location.state
