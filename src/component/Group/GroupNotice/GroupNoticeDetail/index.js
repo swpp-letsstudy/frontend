@@ -7,6 +7,9 @@ import apis from 'apis'
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
 
+import Div from './GroupNoticeDiv'
+import Writer from './GroupNoticeWriter'
+
 import Icon from 'component/Styles/Chevron'
 
 class GroupNoticeDetail extends Component {
@@ -43,11 +46,13 @@ class GroupNoticeDetail extends Component {
                         </Link>
                     </Icon>
 
+                    <Writer>
+                    Writer: {notice.writer && notice.writer.username}
+                    </Writer>
                     <Title>Title</Title>
-                    <p>{notice.writer.username}</p>
-                    <p>{notice.title}</p>
+                    <Div>{notice.title}</Div>
                     <Title>Contents</Title>
-                    <p>{notice.contents}</p>
+                    <Div>{notice.contents}</Div>
                 </Wrapper>
             </>
         )

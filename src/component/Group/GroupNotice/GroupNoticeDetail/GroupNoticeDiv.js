@@ -5,7 +5,7 @@ const GroupDiv = styled.div`
         outline-style: solid;
         padding: 1rem;
         font-size: 1.2rem;
-        color: #72d2ff;
+        color: black;
         display: flex;
         margin-bottom: 1rem;
         
