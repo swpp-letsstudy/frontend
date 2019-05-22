@@ -70,7 +70,7 @@ class GroupDetail extends Component {
           </Button>
           <Button>
             <Link to={`${routes.MEETING_FORM}?${queryString.stringify({ groupId: group.id })}`} style={{ color: "white" }}>
-              미팅만들기
+              미팅생성
             </Link>
           </Button>
           <Button onClick={this.exitGroup}>탈퇴</Button>
