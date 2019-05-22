@@ -13,6 +13,8 @@ const App = () =>
       <Route path={routes.REGISTER} component={pages.RegisterPage}/>
       <PrivateRoute path={routes.GROUP_FORM} component={pages.GroupFormPage}/>
       <PrivateRoute path={routes.GROUP_DETAIL} component={pages.GroupDetailPage}/>
+      <PrivateRoute exact path={routes.GROUP_NOTICE_LIST} component={pages.GroupNoticeListPage}/>
+      <PrivateRoute path={routes.GROUP_NOTICE_DETAIL} component={pages.GroupNoticeDetailPage}/>
       <PrivateRoute path={routes.MEETING_FORM} component={pages.MeetingFormPage}/>
       <PrivateRoute path={routes.MEETING_DETAIL} component={pages.MeetingDetailPage}/>
       <PrivateRoute path={routes.CHATTING} component={pages.ChattingPage}/>
