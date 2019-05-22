@@ -3,11 +3,11 @@ import styled from 'styled-components'
 
 const MeetingCreateButton = styled(Button)`
 	&&&{
-		width: 8rem;
+		width: 6rem;
 		height: 3rem;
 		text-align: center;
 		color: white;
-		font-size: 1rem;
+		font-size: 0.7rem;
 		border-radius: 8px;
 		background: #72d2ff;
 		&:hover {

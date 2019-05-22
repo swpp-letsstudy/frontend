@@ -74,6 +74,14 @@ class GroupDetail extends Component {
             </Link>
           </Button>
           <Button onClick={this.exitGroup}>탈퇴</Button>
+          <Button>
+            <Link to={{
+              pathname: routes.GROUP_NOTICE_LIST,
+              state: { groupId: group.id },
+            }}
+            style={{ color: "white" }}>그룹 공지
+            </Link>
+          </Button>
         </Wrapper>
       </>
   }
