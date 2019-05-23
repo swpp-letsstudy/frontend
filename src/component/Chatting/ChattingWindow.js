@@ -4,27 +4,35 @@ import styled from 'styled-components'
 
 import Messages from './Messages'
 
+import Button from './MessageSendButton'
+
+import Title from 'component/Styles/Title'
+
 
 const ChattingWindow = props => {
-  const {messages, onSendMessage} = props
+  const { messages, onSendMessage } = props
   return (
+    <div>
+
+      <Title>Chatting</Title>
       <Window>
         <Messages messages={messages} />
         <Formik
-            initialValues={{ message: '' }}
-            onSubmit={(values, formActions) => {
-              const { message } = values
-              onSendMessage(message)
-              formActions.setFieldValue('message', '')
-            }}
-            render={() =>
-                <Form>
-                  <Field name='message'/>
-                  <button type='submit'>보내기</button>
-                </Form>
-            }
+          initialValues={{ message: '' }}
+          onSubmit={(values, formActions) => {
+            const { message } = values
+            onSendMessage(message)
+            formActions.setFieldValue('message', '')
+          }}
+          render={() =>
+            <Form>
+              <Field name='message' />
+              <Button type='submit'>보내기</Button>
+            </Form>
+          }
         />
       </Window>
+      </div>
   )
 }
 

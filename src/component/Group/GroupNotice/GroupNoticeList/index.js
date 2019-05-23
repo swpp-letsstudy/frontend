@@ -36,7 +36,7 @@ class GroupNoticeList extends Component {
 
                 <Wrapper>
                     <Icon name='chevron left'>
-                        <Link to={routes.GROUP_DETAIL.replace(':id', groupId)}>GroupDetail</Link>
+                        <Link to={routes.GROUP_DETAIL.replace(':id', groupId)}>MeetingList</Link>
                     </Icon>
 
                     <Title>

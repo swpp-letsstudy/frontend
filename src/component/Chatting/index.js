@@ -4,6 +4,10 @@ import { connect } from 'react-redux'
 import WebSocketService from 'services/WebSocketService'
 import ChattingWindow from './ChattingWindow'
 
+import Wrapper from 'component/Styles/Wrapper'
+
+import Icon from 'component/Styles/Chevron'
+import Link from './GroupLink'
 
 class Chatting extends Component {
 
@@ -43,7 +47,16 @@ class Chatting extends Component {
     const { messagesByGroups } = this.state
     console.log(messagesByGroups)
     const messages = messagesByGroups[groupId] || []
-    return <ChattingWindow messages={messages} onSendMessage={this.onSendMessage}/>
+    return (
+      <Wrapper>
+        <Icon name='chevron left'>
+        <Link to={`/groups/${groupId}`}>
+            MeetingList
+        </Link>
+      </Icon>
+        <ChattingWindow messages={messages} onSendMessage={this.onSendMessage}/>
+      </Wrapper>
+    )
   }
 }
 
