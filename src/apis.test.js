@@ -26,6 +26,14 @@ const testLogout = () =>{
     })
   })
 }
+const testRegister = () => {
+  it('register', done => {
+    apis.register({username: 'test2', password: '1234'}).then(data =>{
+      expect(data.status).toEqual(201)
+      done()
+    })
+  })
+}
 
 const afterLoginTest = (testname, username, password, testfunc) => {
   it(testname, done => {
@@ -35,7 +43,11 @@ const afterLoginTest = (testname, username, password, testfunc) => {
 }
 
 describe('apis.js', () => {
-
+  /* 유저를 삭제할 수 있는 기능이 필요. test를 위해 만든 유저가 남아있음
+  testRegister()
+  testUserLogin('test2','1234')
+  testLogout()
+  */
   testLogin()
 
   afterLoginTest('load groups', USERNAMES[0], PASSWORD, done => {
@@ -78,5 +90,5 @@ describe('apis.js', () => {
         })
   })
 
-  testLogin()
+  testLogout()
 })
