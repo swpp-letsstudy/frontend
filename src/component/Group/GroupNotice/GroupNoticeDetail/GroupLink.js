@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 const GroupLink = styled(Link)`
 	&&&{
-    padding: 1rem;
+    padding-bottom: 1rem;
     font-size: 1.5rem;
     color: black;
     margin: auto;

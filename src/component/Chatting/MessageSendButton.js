@@ -1,12 +1,13 @@
 import { Button } from 'semantic-ui-react'
 import styled from 'styled-components'
 
-const GroupFormButton = styled(Button)`
+const MessageSendButton = styled(Button)`
 	&&&{
-		width: 25rem;
-		height: 4rem;
-		font-size: 1.5rem;
+		width: 7rem;
+		height: 2.3rem;
+		text-align: center;
 		color: white;
+		font-size: 1rem;
 		border-radius: 8px;
 		background: #72d2ff;
 		&:hover {
@@ -20,5 +21,5 @@ const GroupFormButton = styled(Button)`
 	}
 `
 
-export default GroupFormButton
+export default MessageSendButton
 

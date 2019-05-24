@@ -24,31 +24,47 @@ const userReducer = handleActions({
     onSuccess: (state, action) => {
       return Object.assign({}, state, {
         isLoggedIn: false,
-        user: '',
+        user: ''
       })
-    }
-  })
+    },
+  }),
 }, initialUserState)
 
 export const initialGroupState = {
   groups: [],
+  meetings: [],
 }
 
 const groupReducer = handleActions({
   ...pender({
+    type: ACTION_TYPES.LOAD_GROUPS,
+    onSuccess: (state, action) => {
+      return Object.assign({}, state, {
+        groups: action.payload.data
+      })
+    },
+  }),
+  ...pender({
     type: ACTION_TYPES.JOIN_GROUP,
     onSuccess: (state, action) => {
-      console.log(action.payload.data)
       return Object.assign({}, state, {
         groups: action.payload.data
       })
     }
   }),
   ...pender({
-    type: ACTION_TYPES.LOAD_GROUPS,
+    type: ACTION_TYPES.EXIT_GROUP,
     onSuccess: (state, action) => {
       return Object.assign({}, state, {
         groups: action.payload.data
+      })
+    }
+  }),
+  ...pender({
+    type: ACTION_TYPES.LOAD_MEETINGS,
+    onSuccess: (state, action) => {
+      return Object.assign({}, state, {
+        meetings: action.payload.data
       })
     },
   }),

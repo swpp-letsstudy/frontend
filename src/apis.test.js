@@ -3,7 +3,7 @@ import apis from 'apis'
 import actions from 'store/actions'
 import axios from 'axios'
 
-const USERNAMES = [...Array(3).keys()].map(i => `user${i}`)
+const USERNAMES = [...Array(3).keys()].map(i => `user${i+1}`)
 const PASSWORD = '1234'
 
 const testUserLogin = (username, password) => {
@@ -39,7 +39,7 @@ describe('apis.js', () => {
   })
 
   afterLoginTest('read group', USERNAMES[0], PASSWORD, done => {
-    apis.readGroup({ groupId: 2 })
+    apis.readGroup({ groupId: 5 })
     .then(data => {
       expect(data.status).toEqual(200)
       done()
@@ -47,7 +47,7 @@ describe('apis.js', () => {
   })
   
   afterLoginTest('join group', USERNAMES[0], PASSWORD, done => {
-    apis.joinGroup({url :'http://127.0.0.1:8000/join_study_group/1/'})
+    apis.joinGroup({url :'http://127.0.0.1:8000/join_group/?token=6'})
     .then(data => {
       expect(data.status).toEqual(200)
       done()
@@ -55,15 +55,7 @@ describe('apis.js', () => {
   })
 
   afterLoginTest('exit group', USERNAMES[0], PASSWORD, done => {
-    apis.exitGroup({groupId : 1})
-    .then(data => {
-      expect(data.status).toEqual(200)
-      done()
-    })
-  })
-
-  afterLoginTest('join group', USERNAMES[0], PASSWORD, done => {
-    apis.joinGroup({url :'http://127.0.0.1:8000/join_study_group/2/'})
+    apis.exitGroup({groupId : 6})
     .then(data => {
       expect(data.status).toEqual(200)
       done()
@@ -71,7 +63,7 @@ describe('apis.js', () => {
   })
   
   afterLoginTest('load meetings', USERNAMES[0], PASSWORD, done => {
-        apis.loadMeetings({ groupId: 2 })
+        apis.loadMeetings({ groupId: 1 })
         .then(data => {
           expect(data.status).toEqual(200)
           done()
