@@ -18,6 +18,14 @@ const testUserLogin = (username, password) => {
 const testLogin = () => {
   USERNAMES.map(username => testUserLogin(username, PASSWORD))
 }
+const testLogout = () =>{
+  it('logout', done=> {
+    apis.logout().then(data =>{
+      expect(data.status).toEqual(200)
+      done()
+    })
+  })
+}
 
 const afterLoginTest = (testname, username, password, testfunc) => {
   it(testname, done => {
@@ -47,7 +55,7 @@ describe('apis.js', () => {
   })
   
   afterLoginTest('join group', USERNAMES[0], PASSWORD, done => {
-    apis.joinGroup({url :'http://127.0.0.1:8000/join_group/?token=6'})
+    apis.joinGroup({url :'http://127.0.0.1:8000/join_group/?token=3'})
     .then(data => {
       expect(data.status).toEqual(200)
       done()
@@ -55,9 +63,9 @@ describe('apis.js', () => {
   })
 
   afterLoginTest('exit group', USERNAMES[0], PASSWORD, done => {
-    apis.exitGroup({groupId : 6})
+    apis.exitGroup({groupId : 3})
     .then(data => {
-      expect(data.status).toEqual(200)
+      expect(data.status).toEqual(204)
       done()
     })
   })
@@ -69,4 +77,6 @@ describe('apis.js', () => {
           done()
         })
   })
+
+  testLogin()
 })
