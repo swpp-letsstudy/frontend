@@ -34,7 +34,8 @@ const testUserRegister = () => {
     })
   })
 }
-const testRegister = () =>{
+// test 이후 생성된 User가 남아있음
+const testRegister = () =>{ 
   testRegister()
   testUserLogin('test3','1234')
   testLogout()
@@ -62,6 +63,14 @@ describe('apis.js', () => {
     apis.readGroup({ groupId: 5 })
     .then(data => {
       expect(data.status).toEqual(200)
+      done()
+    })
+  })
+
+  afterLoginTest('create group', USERNAMES[0], PASSWORD, done => {
+    apis.createGroup({ name: 'testgroup', info: 'test' })
+    .then(data => {
+      expect(data.status).toEqual(201)
       done()
     })
   })
