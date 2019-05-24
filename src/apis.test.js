@@ -98,6 +98,16 @@ describe('apis.js', () => {
           done()
         })
   })
+  
+  afterLoginTest('create meeting', USERNAMES[0], PASSWORD, done => {
+    apis.createMeeting({ groupId: 1, time: '2222-01-01T01:11' , info : 'test'})
+    .then(data => {
+      expect(data.status).toEqual(201)
+      done()
+    })
+  })
+
+  
 
   testLogout()
 })
