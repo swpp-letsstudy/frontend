@@ -107,6 +107,13 @@ describe('apis.js', () => {
     })
   })
 
+  afterLoginTest('read meeting', USERNAMES[0], PASSWORD, done => {
+    apis.readMeeting({ meetingId : 1})
+    .then(data => {
+      expect(data.status).toEqual(200)
+      done()
+    })
+  })
   
 
   testLogout()
