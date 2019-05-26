@@ -34,7 +34,7 @@ const testUserRegister = () => {
     })
   })
 }
-// test 이후 생성된 User가 남아있음
+
 const testRegister = () =>{ 
   testRegister()
   testUserLogin('test3','1234')
@@ -49,6 +49,9 @@ const afterLoginTest = (testname, username, password, testfunc) => {
 }
 
 describe('apis.js', () => {
+  
+  testRegister()
+
   testLogin()
   // group
   afterLoginTest('load groups', USERNAMES[0], PASSWORD, done => {
@@ -123,7 +126,6 @@ describe('apis.js', () => {
     })
   })
   // GroupNotice
-
   afterLoginTest('load group_notices', USERNAMES[0], PASSWORD, done => {
     apis.loadGroupNotices({ groupId : 1 })
     .then(data => {
@@ -164,7 +166,6 @@ describe('apis.js', () => {
     })
   })
   //attendance
-
   afterLoginTest('attendance', USERNAMES[0], PASSWORD, done => {
     apis.toggleAttendance({ userId : 2, meetingId : 1})
     .then(data => {
