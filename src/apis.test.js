@@ -116,7 +116,7 @@ describe('apis.js', () => {
   })
   
   afterLoginTest('delete meeting', USERNAMES[0], PASSWORD, done => {
-    apis.deleteMeeting({ meetingId : 1 })
+    apis.deleteMeeting({ meetingId : 2 })
     .then(data => {
       expect(data.status).toEqual(204)
       done()
@@ -165,10 +165,10 @@ describe('apis.js', () => {
   })
   //attendance
 
-  afterLoginTest('attendace', USERNAMES[0], PASSWORD, done => {
-    apis.toggleAttendance({ userId : 1, meetingId : 1})
+  afterLoginTest('attendance', USERNAMES[0], PASSWORD, done => {
+    apis.toggleAttendance({ userId : 2, meetingId : 1})
     .then(data => {
-      expect(data.status).toEqual(200)
+      expect(data.status).toEqual(201)
       done()
     })
   })
