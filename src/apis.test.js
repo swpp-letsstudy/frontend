@@ -50,7 +50,7 @@ const afterLoginTest = (testname, username, password, testfunc) => {
 
 describe('apis.js', () => {
   testLogin()
-// group
+  // group
   afterLoginTest('load groups', USERNAMES[0], PASSWORD, done => {
     apis.loadGroups()
     .then(data => {
@@ -90,7 +90,7 @@ describe('apis.js', () => {
       done()
     })
   })
- // meeting 
+  // meeting 
   afterLoginTest('load meetings', USERNAMES[0], PASSWORD, done => {
         apis.loadMeetings({ groupId: 1 })
         .then(data => {
@@ -122,7 +122,7 @@ describe('apis.js', () => {
       done()
     })
   })
-// GroupNotice
+  // GroupNotice
 
   afterLoginTest('load group_notices', USERNAMES[0], PASSWORD, done => {
     apis.loadGroupNotices({ groupId : 1 })
@@ -155,5 +155,23 @@ describe('apis.js', () => {
       done()
     })
   })
+
+  afterLoginTest('delete group_notices', USERNAMES[0], PASSWORD, done => {
+    apis.deleteGroupNotice({ groupId : 1 , noticeId : 1  })
+    .then(data => {
+      expect(data.status).toEqual(204)
+      done()
+    })
+  })
+  //attendance
+
+  afterLoginTest('attendace', USERNAMES[0], PASSWORD, done => {
+    apis.toggleAttendance({ userId : 1, meetingId : 1})
+    .then(data => {
+      expect(data.status).toEqual(200)
+      done()
+    })
+  })
+
   testLogout()
 })
