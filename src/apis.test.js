@@ -50,7 +50,7 @@ const afterLoginTest = (testname, username, password, testfunc) => {
 
 describe('apis.js', () => {
   testLogin()
-
+// group
   afterLoginTest('load groups', USERNAMES[0], PASSWORD, done => {
     apis.loadGroups()
     .then(data => {
@@ -90,7 +90,7 @@ describe('apis.js', () => {
       done()
     })
   })
-  
+ // meeting 
   afterLoginTest('load meetings', USERNAMES[0], PASSWORD, done => {
         apis.loadMeetings({ groupId: 1 })
         .then(data => {
@@ -122,6 +122,38 @@ describe('apis.js', () => {
       done()
     })
   })
+// GroupNotice
 
+  afterLoginTest('load group_notices', USERNAMES[0], PASSWORD, done => {
+    apis.loadGroupNotices({ groupId : 1 })
+    .then(data => {
+      expect(data.status).toEqual(200)
+      done()
+    })
+  })
+
+  afterLoginTest('create group_notice', USERNAMES[0], PASSWORD, done => {
+    apis.createGroupNotice({ groupId : 1 , title : 'testNotice' , contents : 'testContent'})
+    .then(data => {
+      expect(data.status).toEqual(201)
+      done()
+    })
+  })
+  
+  afterLoginTest('read group_notices', USERNAMES[0], PASSWORD, done => {
+    apis.readGroupNotice({ groupId : 1 , noticeId : 1 })
+    .then(data => {
+      expect(data.status).toEqual(200)
+      done()
+    })
+  })
+
+  afterLoginTest('update group_notices', USERNAMES[0], PASSWORD, done => {
+    apis.updateGroupNotice({ groupId : 1 , noticeId : 1 , title : 'testNoticeUpdate' , contents : 'testContentUpdate' })
+    .then(data => {
+      expect(data.status).toEqual(200)
+      done()
+    })
+  })
   testLogout()
 })
