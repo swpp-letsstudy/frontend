@@ -57,7 +57,7 @@ export default {
   deleteMeetingNotice: payload => axios.delete(`${HOST}meeting_notices/${payload.noticeId}/?meetingId=${payload.meetingId}`),
 
   // Attendance
-  toggleAttendance: payload => axios.post(`${HOST}attendance/?meetingId=${payload.meetingId}`),
+  toggleAttendance: payload => axios.post(`${HOST}attendance/`, payload),
 
   // Policy
   loadPolicies: payload => axios.get(`${HOST}policies/?groupId=${payload.groupId}`),
