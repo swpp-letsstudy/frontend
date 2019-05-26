@@ -115,6 +115,13 @@ describe('apis.js', () => {
     })
   })
   
+  afterLoginTest('delete meeting', USERNAMES[0], PASSWORD, done => {
+    apis.deleteMeeting({ meetingId : 1 })
+    .then(data => {
+      expect(data.status).toEqual(204)
+      done()
+    })
+  })
 
   testLogout()
 })
