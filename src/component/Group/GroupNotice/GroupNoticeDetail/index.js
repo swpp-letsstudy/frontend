@@ -47,7 +47,7 @@ class GroupNoticeDetail extends Component {
                     </Icon>
 
                     <Writer>
-                    Writer: {notice.writer && notice.writer.username}
+                    Writer: {notice.writer && notice.writer.nickname}
                     </Writer>
                     <Title>Title</Title>
                     <Div>{notice.title}</Div>

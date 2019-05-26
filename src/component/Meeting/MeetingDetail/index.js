@@ -56,7 +56,7 @@ class MeetingDetail extends Component {
         </Div>
           {meeting.members.map((user, index) =>
             <Div key={user.id}>
-              {user.username}
+              {user.nickname}
               {this.isAttendance(user) ?
                 <Icon onClick={() => this.toggleUserAttendanceHandler(user)} name='check circle outline' />
                 :
