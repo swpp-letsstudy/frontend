@@ -16,7 +16,7 @@ describe('store', () => {
     expect(axios.defaults.headers.common['Authorization']).toEqual(undefined)
   })
 
-  const USERNAME = 'user0'
+  const USERNAME = 'user1'
   const PASSWORD = '1234'
 
   it('after login', done => {

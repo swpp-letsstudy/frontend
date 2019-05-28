@@ -34,8 +34,8 @@ class GroupDetail extends Component {
     }))
   }
 
-  exitGroup = () => {
-    apis.exitGroup({ groupId: this.state.group.id }).then(() => {
+  deleteGroup = () => {
+    apis.deleteGroup({ groupId: this.state.group.id }).then(() => {
       this.props.history.push(routes.GROUP_LIST)
     })
   }
@@ -73,7 +73,7 @@ class GroupDetail extends Component {
               미팅생성
             </Link>
           </Button>
-          <Button onClick={this.exitGroup}>탈퇴</Button>
+          <Button onClick={this.deleteGroup}>탈퇴</Button>
           <Button>
             <Link to={{
               pathname: routes.GROUP_NOTICE_LIST,

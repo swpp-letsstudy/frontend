@@ -57,7 +57,7 @@ const groupReducer = handleActions({
     }
   }),
   ...pender({
-    type: ACTION_TYPES.EXIT_GROUP,
+    type: ACTION_TYPES.DELETE_GROUP,
     onSuccess: (state, action) => {
       return Object.assign({}, state, {
         groups: action.payload.data
