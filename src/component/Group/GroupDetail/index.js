@@ -47,7 +47,7 @@ class GroupDetail extends Component {
       <>
         <Wrapper>
           <Icon name='chevron left'>
-            <Link to={`/groups`}>
+            <Link to={routes.GROUP_LIST}>
               GroupList
             </Link>
           </Icon>
