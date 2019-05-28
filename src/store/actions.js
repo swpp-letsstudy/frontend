@@ -13,6 +13,13 @@ export default createActions({
     localStorage.setItem('user', JSON.stringify(user))
     return value
   }),
+  [ACTION_TYPES.UPDATE_USER_SETTING]: payload => apis.updateUserSetting(payload).then(value => {
+    let user = JSON.parse(localStorage.getItem('user'))
+    user.nickname = value.data.nickname
+    localStorage.setItem('user', JSON.stringify(user))
+    value.data = user
+    return value
+  }),
   [ACTION_TYPES.LOGOUT]: () => apis.logout().then(value => {
     delete axios.defaults.headers.common.Authorization
     localStorage.removeItem('user')

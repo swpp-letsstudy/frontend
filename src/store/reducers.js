@@ -24,6 +24,15 @@ const userReducer = handleActions({
     },
   }),
   ...pender({
+    type: ACTION_TYPES.UPDATE_USER_SETTING,
+    onSuccess: (state, action) => {
+      return Object.assign({}, state, {
+        isLoggedIn: true,
+        user: action.payload.data,
+      })
+    }
+  }),
+  ...pender({
     type: ACTION_TYPES.LOGOUT,
     onSuccess: (state, action) => {
       return Object.assign({}, state, {
