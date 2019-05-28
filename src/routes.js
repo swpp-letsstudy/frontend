@@ -9,4 +9,5 @@ export default {
   MEETING_FORM: '/meetings/new',
   MEETING_DETAIL: '/meetings/:id',
   CHATTING: '/chatting/:groupId',
+  USER_SETTING: '/setting',
 }
