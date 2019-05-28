@@ -35,8 +35,8 @@ class RegisterForm extends Component {
           password: '',
         }}
         onSubmit={(values, formActions) => {
-          const { username, password } = values
-          register({ username, password })
+          const { username, password, nickname } = values
+          register({ username, password, nickname })
           history.push(routes.LOGIN)
         }}
         render={() =>
@@ -48,6 +48,10 @@ class RegisterForm extends Component {
 
             <div>
                 <Field type='password' name='password' placeholder='password' />
+            </div>
+
+            <div>
+                <Field type='nickname' name='nickname' placeholder='nickname' />
             </div>
 
             <div>

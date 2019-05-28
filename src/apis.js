@@ -15,12 +15,12 @@ if (localStorage.hasOwnProperty('user')) {
 export default {
   // Auth
   login: payload => axios.post(`${HOST}login/`, payload),
-  register: payload => axios.post(`${HOST}register/`, payload),
   logout: () => axios.post(`${HOST}logout/`),
+  register: payload => axios.post(`${HOST}register/`, payload),
   signout: () => axios.post(`${HOST}signout/`),
 
   // UserSetting
-  loadUserSetting: payload => axios.get(`${HOST}user_setting/`),
+  loadUserSetting: () => axios.get(`${HOST}user_setting/`),
   updateUserSetting: payload => axios.put(`${HOST}user_setting/`, payload),
 
   // Group
@@ -29,7 +29,7 @@ export default {
 
   readGroup: payload => axios.get(`${HOST}groups/${payload.groupId}/`),
   updateGroup: payload => axios.put(`${HOST}groups/${payload.groupId}/`, payload),
-  exitGroup: payload => axios.delete(`${HOST}groups/${payload.groupId}/`),
+  deleteGroup: payload => axios.delete(`${HOST}groups/${payload.groupId}/`),
   joinGroup: payload => axios.get(payload.url),
 
   // GroupNotice
