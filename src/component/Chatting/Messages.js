@@ -18,8 +18,8 @@ class Messages extends Component {
     const {messages} = this.props
     return (
         <MessagesStyled>
-          {messages.map(({message, username}, index) =>
-              <Message key={index} username={username} message={message}/>)}
+          {messages.map(({message, nickname}, index) =>
+              <Message key={index} nickname={nickname} message={message}/>)}
           <div ref={this.bottomDivRef}></div>
         </MessagesStyled>
     )

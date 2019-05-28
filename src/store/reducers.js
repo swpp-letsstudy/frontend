@@ -3,9 +3,13 @@ import { handleActions } from 'redux-actions'
 import { pender, penderReducer } from 'redux-pender'
 
 import ACTION_TYPES from 'store/actionTypes'
+import apis from 'apis';
 
 export const initialUserState = {
-  isLoggedIn: localStorage.hasOwnProperty('user') ? true : false,
+  isLoggedIn: localStorage.hasOwnProperty('user') ? apis.loadGroups().then(() => true, () => {
+      localStorage.clear()
+      return false
+    }) : false,
   user: JSON.parse(localStorage.getItem('user')),
 }
 

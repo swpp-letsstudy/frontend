@@ -44,7 +44,7 @@ class MeetingDetail extends Component {
       <Wrapper>
         <Icon name='chevron left'>
         {meeting &&
-          <Link to={`/groups/${meeting.group.id}`}>
+          <Link to={`/groups/${meeting.group}`}>
             MeetingList
           </Link>
         }
@@ -56,7 +56,7 @@ class MeetingDetail extends Component {
         </Div>
           {meeting.members.map((user, index) =>
             <Div key={user.id}>
-              {user.username}
+              {user.nickname}
               {this.isAttendance(user) ?
                 <Icon onClick={() => this.toggleUserAttendanceHandler(user)} name='check circle outline' />
                 :

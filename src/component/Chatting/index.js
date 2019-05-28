@@ -39,7 +39,7 @@ class Chatting extends Component {
 
   onSendMessage = message => {
     const { groupId, user } = this.props
-    this.webSocketService.sendMessage(groupId, user.username, message)
+    this.webSocketService.sendMessage(groupId, user.nickname, message)
   }
 
   render() {

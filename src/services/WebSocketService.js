@@ -40,11 +40,11 @@ class WebSocketService {
     },100)
   }
 
-  sendMessage(groupId, username, message) {
+  sendMessage(groupId, nickname, message) {
     this.webSocket.send(JSON.stringify({
       token: this.token,
       command: 'message',
-      username,
+      nickname,
       groupId,
       message,
     }))
