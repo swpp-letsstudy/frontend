@@ -74,4 +74,7 @@ export default {
   readMeetingFine: payload => axios.get(`${HOST}meeting_fines/${payload.meetingFineId}/?meetingId=${payload.meetingId}`),
   updateMeetingFine: payload => axios.put(`${HOST}meeting_fines/${payload.meetingFineId}/?meetingId=${payload.meetingId}`, payload),
   deleteMeetingFine: payload => axios.delete(`${HOST}meeting_fines/${payload.meetingFineId}/?meetingId=${payload.meetingId}`),
+
+  // CloudStorage
+  loadFileTree: payload => axios.get(`${HOST}cloud_storage/?groupId=${payload.groupId}`),
 }
