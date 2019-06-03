@@ -26,7 +26,7 @@ const decorators = {
   },
   Container: props => {
     return (
-        <div onClick={this.props.onClick}>
+        <div>
           {/*Hide Toggle When Terminal Here*/}
           <this.props.decorators.Toggle/>
           <this.props.decorators.Header/>

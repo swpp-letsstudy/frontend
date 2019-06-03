@@ -61,19 +61,24 @@ class CloudStorage extends Component {
     }
   }
 
-  onToggle = (node, toggled) => {
-    const {cursor, data} = this.state;
-    if (cursor) {
-      this.setState(() => ({cursor, active: false}));
-    }
-    // node.active = true;
-    if (node.children) {
-      node.toggled = toggled;
-    }
+  toggleDirectory = (node, toggled) => {
+    const {data} = this.state
+    if (node.children)
+      node.toggled = toggled
     this.setState({
-      cursor: node,
       data: Object.assign([], data),
-    });
+    })
+  }
+
+  downloadFile = () => {
+    console.log('downloadFile')
+  }
+
+  onToggle = (node, toggled) => {
+    if (node.children)
+      this.toggleDirectory(node, toggled)
+    else
+      this.downloadFile(node)
   }
 
   render() {
