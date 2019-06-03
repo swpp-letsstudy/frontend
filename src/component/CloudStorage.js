@@ -1,36 +1,85 @@
 import React, { Component } from 'react'
 
-const tree = {
-  first: {
-    first_first: null,
-    first_second: {
-      first_second_first: null,
+import { Treebeard } from 'react-treebeard'
+
+const data = [{
+  name: 'root',
+  toggled: true,
+  children: [
+    {
+      name: 'parent',
+      children: [
+        { name: 'child1' },
+        { name: 'child2' }
+      ]
     },
-  },
-  second: {
-    second_first: null,
-    second_second: null,
-  },
-  third: {
-    third_first: null,
-    third_second: {
-      third_second_first: null,
-      third_second_second: null,
+    {
+      name: 'loading parent',
+      loading: true,
+      children: [],
+    },
+    {
+      name: 'parent',
+      children: [
+        {
+          name: 'nested parent',
+          children: [
+            { name: 'nested child 1' },
+            { name: 'nested child 2' }
+          ]
+        }
+      ]
     }
+  ]
+}]
+
+
+const assignIdArrayRecursive = (array, lastId) => {
+  const assignedArray = Object.assign([], array)
+  for (let childIndex in assignedArray) {
+    const child = assignedArray[childIndex]
+    child.id = ++lastId
+    if (child.children)
+      lastId = assignIdArrayRecursive(child.children, lastId).lastId
   }
+  return { assignedArray, lastId }
 }
+
+const assignIdArray = array => {
+  return assignIdArrayRecursive(array, 0)
+}
+
+assignIdArray(data)
 
 class CloudStorage extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      tree: tree,
+      data: data,
     }
   }
 
+  onToggle = (node, toggled) => {
+    const {cursor, data} = this.state;
+    if (cursor) {
+      this.setState(() => ({cursor, active: false}));
+    }
+    // node.active = true;
+    if (node.children) {
+      node.toggled = toggled;
+    }
+    this.setState({
+      cursor: node,
+      data: Object.assign([], data),
+    });
+  }
+
   render() {
-    return <div></div>
+    const { data } = this.state
+    return (
+        <Treebeard data={data} onToggle={this.onToggle}/>
+    )
   }
 }
 
