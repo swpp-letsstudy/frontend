@@ -77,4 +77,5 @@ export default {
 
   // CloudStorage
   loadFileTree: payload => axios.get(`${HOST}cloud_storage/?groupId=${payload.groupId}`),
+  fetchGetUrl: payload => axios.post(`${HOST}cloud_storage/get_url/get/`, payload),
 }

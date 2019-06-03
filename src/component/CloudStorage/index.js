@@ -45,8 +45,12 @@ class CloudStorage extends Component {
     })
   }
 
-  downloadFile = () => {
-    console.log('downloadFile')
+  downloadFile = node => {
+    const { groupId } = this.props
+    apis.fetchGetUrl({
+      filepath: node.filepath,
+      groupId
+    }).then(data => window.location.href = data.data)
   }
 
   onToggle = (node, toggled) => {
