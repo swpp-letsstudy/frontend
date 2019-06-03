@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-
 import { Treebeard } from 'react-treebeard'
+
+import decorators from "./decorators";
 
 const data = [{
   name: 'root',
@@ -78,7 +79,8 @@ class CloudStorage extends Component {
   render() {
     const { data } = this.state
     return (
-        <Treebeard data={data} onToggle={this.onToggle}/>
+        // Style Treebeard with decorators
+        <Treebeard data={data} onToggle={this.onToggle} decorator={decorators}/>
     )
   }
 }
