@@ -1,38 +1,8 @@
 import React, { Component } from 'react'
 import { Treebeard } from 'react-treebeard'
 
-import decorators from "./decorators";
-
-const data = [{
-  name: 'root',
-  toggled: true,
-  children: [
-    {
-      name: 'parent',
-      children: [
-        { name: 'child1' },
-        { name: 'child2' }
-      ]
-    },
-    {
-      name: 'loading parent',
-      loading: true,
-      children: [],
-    },
-    {
-      name: 'parent',
-      children: [
-        {
-          name: 'nested parent',
-          children: [
-            { name: 'nested child 1' },
-            { name: 'nested child 2' }
-          ]
-        }
-      ]
-    }
-  ]
-}]
+import decorators from './decorators'
+import apis from 'apis'
 
 
 const assignIdArrayRecursive = (array, lastId) => {
@@ -47,26 +17,31 @@ const assignIdArrayRecursive = (array, lastId) => {
 }
 
 const assignIdArray = array => {
-  return assignIdArrayRecursive(array, 0)
+  return assignIdArrayRecursive(array, 0).assignedArray
 }
-
-assignIdArray(data)
 
 class CloudStorage extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      data: data,
+      fileTree: [],
     }
   }
 
+  componentDidMount() {
+    const { groupId } = this.props
+    apis.loadFileTree({ groupId }).then(data => this.setState({
+      fileTree: data.data,
+    }))
+  }
+
   toggleDirectory = (node, toggled) => {
-    const {data} = this.state
+    const {fileTree} = this.state
     if (node.children)
       node.toggled = toggled
     this.setState({
-      data: Object.assign([], data),
+      fileTree: Object.assign([], fileTree),
     })
   }
 
@@ -82,10 +57,11 @@ class CloudStorage extends Component {
   }
 
   render() {
-    const { data } = this.state
+    const { fileTree } = this.state
+    const idAssignedFileTree = assignIdArray(fileTree)
     return (
         // Style Treebeard with decorators
-        <Treebeard data={data} onToggle={this.onToggle} decorator={decorators}/>
+        <Treebeard data={idAssignedFileTree} onToggle={this.onToggle} decorator={decorators}/>
     )
   }
 }
