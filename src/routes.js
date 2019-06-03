@@ -10,4 +10,5 @@ export default {
   MEETING_DETAIL: '/meetings/:id',
   CHATTING: '/chatting/:groupId',
   USER_SETTING: '/setting',
+  CLOUD_STORAGE: '/cloud-storage/:groupId',
 }

@@ -19,6 +19,7 @@ const App = () =>
       <PrivateRoute path={routes.MEETING_DETAIL} component={pages.MeetingDetailPage}/>
       <PrivateRoute path={routes.CHATTING} component={pages.ChattingPage}/>
       <PrivateRoute path={routes.USER_SETTING} component={pages.UserSettingPage}/>
+      <PrivateRoute path={routes.CLOUD_STORAGE} component={pages.CloudStoragePage}/>
     </Switch>
 
 export default App
