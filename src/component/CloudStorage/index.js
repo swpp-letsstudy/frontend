@@ -6,18 +6,19 @@ import apis from 'apis'
 
 
 const assignIdArrayRecursive = (array, lastId) => {
-  const assignedArray = Object.assign([], array)
-  for (let childIndex in assignedArray) {
-    const child = assignedArray[childIndex]
+  for (let childIndex in array) {
+    const child = array[childIndex]
     child.id = ++lastId
     if (child.children)
-      lastId = assignIdArrayRecursive(child.children, lastId).lastId
+      lastId = assignIdArrayRecursive(child.children, lastId)
   }
-  return { assignedArray, lastId }
+  return lastId
 }
 
 const assignIdArray = array => {
-  return assignIdArrayRecursive(array, 0).assignedArray
+  array = Object.assign([], array)
+  assignIdArrayRecursive(array, 0)
+  return array
 }
 
 class CloudStorage extends Component {
@@ -63,11 +64,18 @@ class CloudStorage extends Component {
   render() {
     const { fileTree } = this.state
     const idAssignedFileTree = assignIdArray(fileTree)
+
     return (
         // Style Treebeard with decorators
-        <Treebeard data={idAssignedFileTree} onToggle={this.onToggle} decorator={decorators}/>
+        <Treebeard
+            data={idAssignedFileTree}
+            onToggle={this.onToggle}
+            decorators={decorators}
+        />
     )
   }
 }
+
+Treebeard.defaultProps.style.tree.base.backgroundColor = 'white'
 
 export default CloudStorage
