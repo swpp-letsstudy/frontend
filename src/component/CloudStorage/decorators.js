@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Icon } from 'semantic-ui-react'
 
 
 const ToggleStyle = styled.div`
-display: inline-block;
 margin-left: 8px;
 `
 
@@ -25,10 +25,9 @@ const Toggle = props => {
 }
 
 const HeaderStyle = styled.div`
-display: inline-block;
 font-size: 20px;
-color: black;
 margin-left: 8px;
+margin-right: 8px;
 `
 
 const Header = props => <HeaderStyle>{props.node.name}</HeaderStyle>
@@ -41,6 +40,9 @@ const Container = props => {
         {isDirectory
           && <props.decorators.Toggle isToggled={isToggled}/>}
         <props.decorators.Header node={props.node}/>
+        {!isDirectory && <Icon name='download' />}
+        {!isDirectory && <Icon name='write' />}
+        {!isDirectory && <Icon name='trash alternate' />}
       </ContainerStyle>
   )
 }
@@ -49,6 +51,8 @@ const ContainerStyle = styled.div`
 background-color: white;
 padding: 6px;
 border-bottom: 1px solid lightgray;
+color: black;
+* { display: inline-block; }
 `
 
 const decorators = {
