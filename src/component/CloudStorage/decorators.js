@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { Icon } from 'semantic-ui-react'
 
+import FileUploader from './FileUploader'
+
 
 const ToggleStyle = styled.div`
 margin-left: 8px;
@@ -40,9 +42,9 @@ const Container = props => {
         {isDirectory
           && <props.decorators.Toggle isToggled={isToggled}/>}
         <props.decorators.Header node={props.node}/>
-        {isDirectory && <Icon name='add' />}
+        {isDirectory && <FileUploader/>}
         {!isDirectory && <Icon name='download' />}
-        {!isDirectory && <Icon name='write' />}
+        {/*{!isDirectory && <Icon name='write' />}*/}
         {!isDirectory && <Icon name='trash alternate' />}
       </ContainerStyle>
   )

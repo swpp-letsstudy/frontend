@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Formik } from 'formik'
 import axios from 'axios'
+import { Input, Button } from 'semantic-ui-react'
 
 import apis from 'apis'
 
@@ -28,14 +29,18 @@ class FileUploader extends Component {
               const {file} = values
               this.uploadFile(file)
             }}
-            render={({setFieldValue}) =>
-                <Form>
-                  <input type='file' name='file'
-                      onChange={event =>
-                          setFieldValue('file', event.currentTarget.files[0])}/>
-                  <button type='submit'>Submit</button>
-                </Form>
-            }
+            render={({setFieldValue}) => {
+              const inputId = 'file'
+              return (
+                  <Form>
+                    <Input id={inputId} type='file' name='file'
+                           style={{display: 'hidden'}}
+                           onChange={event =>
+                               setFieldValue('file', event.currentTarget.files[0])}/>
+                    <Button type='submit'>Submit</Button>
+                  </Form>
+              )
+            }}
         />
     )
   }

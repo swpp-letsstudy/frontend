@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Treebeard } from 'react-treebeard'
-import { Icon } from 'semantic-ui-react'
 
 import decorators from './decorators'
 import apis from 'apis'
@@ -72,7 +71,6 @@ class CloudStorage extends Component {
         // Style Treebeard with decorators
         <>
           <FileUploader groupId={groupId}/>
-          <Icon name='add'/>
           <Treebeard
               data={idAssignedFileTree}
               onToggle={this.onToggle}
