@@ -4,6 +4,7 @@ import { Icon } from 'semantic-ui-react'
 
 import decorators from './decorators'
 import apis from 'apis'
+import FileUploader from './FileUploader'
 
 
 const assignIdArrayRecursive = (array, lastId) => {
@@ -64,11 +65,13 @@ class CloudStorage extends Component {
 
   render() {
     const { fileTree } = this.state
+    const { groupId } = this.props
     const idAssignedFileTree = assignIdArray(fileTree)
 
     return (
         // Style Treebeard with decorators
         <>
+          <FileUploader groupId={groupId}/>
           <Icon name='add'/>
           <Treebeard
               data={idAssignedFileTree}
