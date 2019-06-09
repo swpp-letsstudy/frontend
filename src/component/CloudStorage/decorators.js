@@ -37,12 +37,14 @@ const Header = props => <HeaderStyle>{props.node.name}</HeaderStyle>
 const Container = props => {
   const isDirectory = !props.terminal
   const isToggled = props.node.toggled
+  const groupId = props.decorators.params.groupId
+  const dirpath = props.node.filepath
+  console.log(props.node, dirpath)
   return (
       <ContainerStyle onClick={props.onClick}>
-        {isDirectory
-          && <props.decorators.Toggle isToggled={isToggled}/>}
+        {isDirectory && <props.decorators.Toggle isToggled={isToggled}/>}
         <props.decorators.Header node={props.node}/>
-        {isDirectory && <FileUploader/>}
+        {isDirectory && <FileUploader groupId={groupId} dirpath={dirpath}/>}
         {!isDirectory && <Icon name='download' />}
         {/*{!isDirectory && <Icon name='write' />}*/}
         {!isDirectory && <Icon name='trash alternate' />}

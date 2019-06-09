@@ -70,11 +70,15 @@ class CloudStorage extends Component {
     return (
         // Style Treebeard with decorators
         <>
-          <FileUploader groupId={groupId}/>
+          <FileUploader groupId={groupId} dirpath=''/>
           <Treebeard
+              groupId={groupId}
               data={idAssignedFileTree}
               onToggle={this.onToggle}
-              decorators={decorators}
+              decorators={{
+                ...decorators,
+                params: {groupId},
+              }}
           />
         </>
     )

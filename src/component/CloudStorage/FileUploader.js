@@ -9,9 +9,9 @@ import apis from 'apis'
 class FileUploader extends Component {
 
   uploadFile = file => {
-    const {groupId} = this.props
+    const { groupId, dirpath } = this.props
     apis.fetchUploadUrl({
-      filepath: file.name,
+      filepath: `${dirpath}${file.name}`,
       groupId: groupId,
     }).then(data => {
       const uploadUrl = data.data
