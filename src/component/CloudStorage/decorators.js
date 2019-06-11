@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Icon } from 'semantic-ui-react'
 
 import FileUploader from './FileUploader'
-import DownloadButton from "./DownloadButton";
+import DownloadButton from './DownloadButton'
+import DeleteButton from './DeleteButton'
 
 
 const ToggleStyle = styled.div`
@@ -61,8 +61,8 @@ const FileContainer = props => {
       <ContainerStyle>
         <props.decorators.Header node={props.node}/>
         <DownloadButton groupId={groupId} filepath={filepath}/>
-        {/* TODO Rename filename {!isDirectory && <Icon name='write' />}*/}
-        <Icon name='trash alternate'/>
+        {/*<RenameButton/>*/}
+        <DeleteButton groupId={groupId} filepath={filepath}/>
       </ContainerStyle>
   )
 }
