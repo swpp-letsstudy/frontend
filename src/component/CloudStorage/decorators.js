@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Icon } from 'semantic-ui-react'
 
 import FileUploader from './FileUploader'
+import DownloadButton from "./DownloadButton";
 
 
 const ToggleStyle = styled.div`
@@ -36,17 +37,32 @@ const Header = props => <HeaderStyle>{props.node.name}</HeaderStyle>
 
 const Container = props => {
   const isDirectory = !props.terminal
+  return isDirectory ? <DirectoryContainer{...props} /> : <FileContainer {...props}/>
+}
+
+const DirectoryContainer = props => {
   const isToggled = props.node.toggled
   const { groupId } = props.decorators.params
   const dirpath = props.node.filepath
+  const { onClick } = props
   return (
-      <ContainerStyle onClick={props.onClick}>
-        {isDirectory && <props.decorators.Toggle isToggled={isToggled}/>}
+      <ContainerStyle>
+        <props.decorators.Toggle onClick={onClick} isToggled={isToggled}/>
         <props.decorators.Header node={props.node}/>
-        {isDirectory && <FileUploader groupId={groupId} dirpath={dirpath}/>}
-        {!isDirectory && <Icon name='download' />}
-        {/*{!isDirectory && <Icon name='write' />}*/}
-        {!isDirectory && <Icon name='trash alternate' />}
+        <FileUploader groupId={groupId} dirpath={dirpath}/>
+      </ContainerStyle>
+  )
+}
+
+const FileContainer = props => {
+  const { groupId } = props.decorators.params
+  const filepath = props.node.filepath
+  return (
+      <ContainerStyle>
+        <props.decorators.Header node={props.node}/>
+        <DownloadButton groupId={groupId} filepath={filepath}/>
+        {/* TODO Rename filename {!isDirectory && <Icon name='write' />}*/}
+        <Icon name='trash alternate'/>
       </ContainerStyle>
   )
 }
