@@ -40,28 +40,13 @@ class CloudStorage extends Component {
     }, 1000)
   }
 
-  toggleDirectory = (node, toggled) => {
+  onToggle = (node, toggled) => {
+    // fileTree contains node
     const {fileTree} = this.state
-    if (node.children)
-      node.toggled = toggled
+    node.toggled = toggled
     this.setState({
       fileTree: Object.assign([], fileTree),
     })
-  }
-
-  downloadFile = node => {
-    const { groupId } = this.props
-    apis.fetchGetUrl({
-      filepath: node.filepath,
-      groupId
-    }).then(data => window.location.href = data.data)
-  }
-
-  onToggle = (node, toggled) => {
-    if (node.children)
-      this.toggleDirectory(node, toggled)
-    else
-      this.downloadFile(node)
   }
 
   render() {
