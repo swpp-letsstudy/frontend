@@ -6,19 +6,18 @@ import apis from 'apis'
 import FileUploader from './FileUploader'
 
 
-const assignIdArrayRecursive = (array, lastId) => {
+const assignIdArrayRecursive = array => {
   for (let childIndex in array) {
     const child = array[childIndex]
-    child.id = ++lastId
+    child.id = child.filepath
     if (child.children)
-      lastId = assignIdArrayRecursive(child.children, lastId)
+      assignIdArrayRecursive(child.children)
   }
-  return lastId
 }
 
 const assignIdArray = array => {
   array = Object.assign([], array)
-  assignIdArrayRecursive(array, 0)
+  assignIdArrayRecursive(array)
   return array
 }
 
@@ -53,7 +52,6 @@ class CloudStorage extends Component {
     const { fileTree } = this.state
     const { groupId } = this.props
     const idAssignedFileTree = assignIdArray(fileTree)
-
     return (
         // Style Treebeard with decorators
         <>
