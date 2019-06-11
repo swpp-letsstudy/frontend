@@ -32,10 +32,12 @@ class CloudStorage extends Component {
   }
 
   componentDidMount() {
-    const { groupId } = this.props
-    apis.loadFileTree({ groupId }).then(data => this.setState({
-      fileTree: data.data,
-    }))
+    const {groupId} = this.props
+    setInterval(() => {
+      apis.loadFileTree({groupId}).then(data => {
+        this.setState({fileTree: data.data})
+      })
+    }, 1000)
   }
 
   toggleDirectory = (node, toggled) => {

@@ -37,9 +37,8 @@ const Header = props => <HeaderStyle>{props.node.name}</HeaderStyle>
 const Container = props => {
   const isDirectory = !props.terminal
   const isToggled = props.node.toggled
-  const groupId = props.decorators.params.groupId
+  const { groupId } = props.decorators.params
   const dirpath = props.node.filepath
-  console.log(props.node, dirpath)
   return (
       <ContainerStyle onClick={props.onClick}>
         {isDirectory && <props.decorators.Toggle isToggled={isToggled}/>}
