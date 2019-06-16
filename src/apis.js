@@ -40,6 +40,7 @@ export default {
   readMeeting: payload => axios.get(`${HOST}meetings/${payload.meetingId}/`),
   updateMeeting: payload => axios.put(`${HOST}meetings/${payload.meetingId}/`, payload),
   deleteMeeting: payload => axios.delete(`${HOST}meetings/${payload.meetingId}/`),
+  joinExitMeeting: payload => axios.get(`${HOST}joinexit_meeting/?meetingId=${payload.meetingId}`),
 
   // GroupNotice
   loadGroupNotices: payload => axios.get(`${HOST}group_notices/?groupId=${payload.groupId}`),

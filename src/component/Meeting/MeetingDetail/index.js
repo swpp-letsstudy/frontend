@@ -41,6 +41,7 @@ class MeetingDetail extends Component {
     const { meeting } = this.state
     return meeting && meeting.attendances.includes(user.id)
   }
+
   deleteMeeting = () => {
     const { meeting } = this.state
     const { loadMeetings, history } = this.props
@@ -49,8 +50,26 @@ class MeetingDetail extends Component {
     history.push(routes.GROUP_DETAIL.replace(':id', meeting.group))
   }
 
+  joinExitMeeting = () => {
+    const meetingId = this.state.meeting.id
+    apis.joinExitMeeting({ meetingId })
+    .then(() => apis.readMeeting({ meetingId }))
+    .then(value => this.setState({
+      meeting: value.data,
+    }))
+  }
+
   render() {
     const { meeting } = this.state
+    const { userId } = this.props
+    let isInMeeting = false
+    if (meeting) {
+      meeting.members.forEach((item, index, array) => {
+        if (item.id === userId) {
+          isInMeeting = true
+        }
+      })
+    }
     return (meeting &&
       <Wrapper>
         <Icon name='chevron left'>
@@ -85,13 +104,16 @@ class MeetingDetail extends Component {
         <Button onClick={this.deleteMeeting}>
           삭제
         </Button>
+        <Button onClick={this.joinExitMeeting}>
+          {isInMeeting ? '불참' : '참가'}
+        </Button>
       </Wrapper>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  
+  userId: state.userReducer.user.id,
 })
 
 const mapDispatchToProps = dispatch => ({
