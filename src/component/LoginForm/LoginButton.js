@@ -1,13 +1,9 @@
 import { Button } from 'semantic-ui-react'
 import styled from 'styled-components'
-import "utils.scss"
 
 const LoginButton = styled(Button)`
 	&&&{
 		width: 25rem;
-		@media (max-width: 768px) {
-			width: 100%;
-		}
 		font-size: 2rem;
 		color: white;
 		padding: 0.5rem;

@@ -1,6 +1,6 @@
 import { Field } from 'formik/dist/index'
-
 import styled from 'styled-components'
+import "styles/utils.scss"
 
 const LoginField = styled(Field)`
 border-radius: 8px;
