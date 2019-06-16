@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
+import { Button } from 'semantic-ui-react'
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
 import Icon from 'component/Styles/Chevron'
@@ -7,6 +9,7 @@ import Icon from 'component/Styles/Chevron'
 import Div from './MeetingDivDetail'
 import Link from './MeetingDetailLink'
 
+import actionCreators from 'store/actions'
 import apis from 'apis'
 import routes from 'routes'
 
@@ -37,6 +40,13 @@ class MeetingDetail extends Component {
   isAttendance = user => {
     const { meeting } = this.state
     return meeting && meeting.attendances.includes(user.id)
+  }
+  deleteMeeting = () => {
+    const { meeting } = this.state
+    const { loadMeetings, history } = this.props
+    apis.deleteMeeting({ meetingId: meeting.id })
+    .then(loadMeetings({ groupId: meeting.group }))
+    history.push(routes.GROUP_DETAIL.replace(':id', meeting.group))
   }
 
   render() {
@@ -72,9 +82,20 @@ class MeetingDetail extends Component {
         }}>
           공지
         </Link>
+        <Button onClick={this.deleteMeeting}>
+          삭제
+        </Button>
       </Wrapper>
     )
   }
 }
 
-export default MeetingDetail
+const mapStateToProps = state => ({
+  
+})
+
+const mapDispatchToProps = dispatch => ({
+  loadMeetings: payload => dispatch(actionCreators.loadMeetings(payload)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(MeetingDetail)
