@@ -3,9 +3,8 @@ import { connect } from 'react-redux'
 import actionCreators from 'store/actions'
 import { Redirect } from 'react-router-dom'
 import { Icon } from 'semantic-ui-react'
-import Link from './GroupLink'
-
-import Button from './GroupLogout'
+import { Link } from 'react-router-dom'
+import Button from './GroupButton'
 
 import routes from 'routes'
 
@@ -16,6 +15,27 @@ const LogoutButton = props => {
   return (isLoggedIn
     ?
     <div>
+      
+      <Button animated>
+        <Button.Content visible>
+          <Link to={routes.GROUP_FORM} style={{ color: '#FFF' }}>그룹 생성</Link>
+        </Button.Content>
+        <Button.Content hidden>
+          <Icon name='group' />
+        </Button.Content>
+      </Button >
+
+
+      <Button animated>
+        <Button.Content visible>
+          <Link to={routes.USER_SETTING} style={{ color: '#FFF' }}>설정</Link>
+        </Button.Content>
+        <Button.Content hidden>
+          <Icon name='setting' />
+        </Button.Content>
+      </Button >
+
+      
       <Button animated onClick={logout}>
         <Button.Content visible>
           LOGOUT
@@ -24,8 +44,6 @@ const LogoutButton = props => {
           <Icon name='x' />
         </Button.Content>
       </Button>
-      <Link to={routes.USER_SETTING}>설정</Link>
-      <Link to={routes.GROUP_FORM}>그룹 생성</Link>
     </div>
     : <Redirect to={routes.LOGIN} />
   )

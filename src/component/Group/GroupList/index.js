@@ -48,7 +48,7 @@ class GroupList extends Component {
                   />
                   <Button type='submit'>
                     가입
-                  </Button>
+                  </Button >
 
                 </div>
               </Form>
