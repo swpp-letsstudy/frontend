@@ -24,6 +24,21 @@ const userReducer = handleActions({
     },
   }),
   ...pender({
+    type: ACTION_TYPES.LOGOUT,
+    onSuccess: (state, action) => {
+      return Object.assign({}, state, {
+        isLoggedIn: false,
+        user: ''
+      })
+    },
+    onFailure: (state, action) => {
+      return Object.assign({}, state, {
+        isLoggedIn: false,
+        user: ''
+      })
+    },
+  }),
+  ...pender({
     type: ACTION_TYPES.UPDATE_USER_SETTING,
     onSuccess: (state, action) => {
       return Object.assign({}, state, {
@@ -33,19 +48,29 @@ const userReducer = handleActions({
     }
   }),
   ...pender({
-    type: ACTION_TYPES.LOGOUT,
+    type: ACTION_TYPES.SIGNOUT,
     onSuccess: (state, action) => {
       return Object.assign({}, state, {
         isLoggedIn: false,
         user: ''
       })
     },
-  }),
+    onFailure: (state, action) => {
+      return Object.assign({}, state, {
+        isLoggedIn: false,
+        user: ''
+      })
+    },
+  })
 }, initialUserState)
 
 export const initialGroupState = {
   groups: [],
   meetings: [],
+  groupNotices: [],
+  meetingNotices: [],
+  policies: [],
+  meetingFines: [],
 }
 
 const groupReducer = handleActions({
@@ -58,26 +83,42 @@ const groupReducer = handleActions({
     },
   }),
   ...pender({
-    type: ACTION_TYPES.JOIN_GROUP,
-    onSuccess: (state, action) => {
-      return Object.assign({}, state, {
-        groups: action.payload.data
-      })
-    }
-  }),
-  ...pender({
-    type: ACTION_TYPES.DELETE_GROUP,
-    onSuccess: (state, action) => {
-      return Object.assign({}, state, {
-        groups: action.payload.data
-      })
-    }
-  }),
-  ...pender({
     type: ACTION_TYPES.LOAD_MEETINGS,
     onSuccess: (state, action) => {
       return Object.assign({}, state, {
         meetings: action.payload.data
+      })
+    },
+  }),
+  ...pender({
+    type: ACTION_TYPES.LOAD_GROUP_NOTICES,
+    onSuccess: (state, action) => {
+      return Object.assign({}, state, {
+        groupNotices: action.payload.data
+      })
+    },
+  }),
+  ...pender({
+    type: ACTION_TYPES.LOAD_MEETING_NOTICES,
+    onSuccess: (state, action) => {
+      return Object.assign({}, state, {
+        meetingNotices: action.payload.data
+      })
+    },
+  }),
+  ...pender({
+    type: ACTION_TYPES.LOAD_POLICIES,
+    onSuccess: (state, action) => {
+      return Object.assign({}, state, {
+        policies: action.payload.data
+      })
+    },
+  }),
+  ...pender({
+    type: ACTION_TYPES.LOAD_MEETING_FINES,
+    onSuccess: (state, action) => {
+      return Object.assign({}, state, {
+        meetingFines: action.payload.data
       })
     },
   }),

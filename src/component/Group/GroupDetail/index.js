@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import queryString from 'query-string/index'
 import { connect } from 'react-redux'
 
 import Button from './MeetingCreateButton'
@@ -24,8 +23,7 @@ class GroupDetail extends Component {
   }
 
   componentDidMount() {
-    const { match, loadMeetings } = this.props
-    const groupId = match.params.id
+    const { loadMeetings, groupId } = this.props
     apis.readGroup({ groupId }).then(value => this.setState({
       group: value.data
     }))
@@ -35,14 +33,26 @@ class GroupDetail extends Component {
   }
 
   deleteGroup = () => {
-    apis.deleteGroup({ groupId: this.state.group.id }).then(() => {
+    const { loadGroups } = this.props
+    apis.deleteGroup({ groupId: this.state.group.id })
+    .then(loadGroups)
+    .then(() => {
       this.props.history.push(routes.GROUP_LIST)
     })
   }
 
+  openCloseGroup = () => {
+    const groupId = this.state.group.id
+    apis.openCloseGroup({ groupId })
+    .then(value => apis.readGroup({ groupId }))
+    .then(value => this.setState({
+      group: value.data
+    }))
+  }
+
   render() {
     const { group } = this.state
-    const { meetings } = this.props
+    const { meetings, nickname } = this.props
     return group &&
       <>
         <Wrapper>
@@ -51,6 +61,10 @@ class GroupDetail extends Component {
               GroupList
             </Link>
           </Icon>
+          {group.owner === nickname ?
+          <Button onClick={this.openCloseGroup}>
+            {group.is_open ? '끄기' : '켜기'}
+          </Button> : <></>}
           <Title>{group.name}</Title>
 
           {meetings.map((meeting, index) =>
@@ -69,7 +83,11 @@ class GroupDetail extends Component {
             </Link>
           </Button>
           <Button>
-            <Link to={`${routes.MEETING_FORM}?${queryString.stringify({ groupId: group.id })}`} style={{ color: "white" }}>
+            <Link to={{
+              pathname: routes.MEETING_FORM,
+              state: { groupId: group.id },
+            }}
+            style={{ color: "white" }}>
               미팅생성
             </Link>
           </Button>
@@ -88,10 +106,12 @@ class GroupDetail extends Component {
 }
 
 const mapStateToProps = state => ({
+  nickname: state.userReducer.user.nickname,
   meetings: state.groupReducer.meetings,
 })
 
 const mapDispatchToProps = dispatch => ({
+  loadGroups: () => dispatch(actionCreators.loadGroups()),
   loadMeetings: payload => dispatch(actionCreators.loadMeetings(payload)),
 })
 

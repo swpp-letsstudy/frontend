@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 
+import apis from 'apis'
 import LogoutButton from './LogoutButton'
 import actionCreators from 'store/actions'
 import routes from 'routes'
@@ -22,12 +23,13 @@ class GroupList extends Component {
   }
 
   render() {
-    const { nickname, groups, joinGroup } = this.props
+    const { nickname, groups, loadGroups } = this.props
     return (
       <>
         <Wrapper>
           <Title>Group Page</Title>
-          <h1 style={{ fontSize: "1.5rem" }}>{nickname}</h1>
+            <h1 style={{fontSize: "1.5rem"}}>{nickname}</h1>
+          <Link to={routes.USER_SETTING}>사용자설정</Link>
 
           <Formik
             initialValues={{
@@ -35,7 +37,7 @@ class GroupList extends Component {
             }}
             onSubmit={(values, formActions) => {
               const { url } = values
-              joinGroup({ url })
+              apis.joinGroup({ url }).then(loadGroups)
             }}
             render={({ handleChange }) =>
               <Form>
@@ -78,7 +80,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadGroups: () => dispatch(actionCreators.loadGroups()),
-  joinGroup: url => dispatch(actionCreators.joinGroup(url)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(GroupList)

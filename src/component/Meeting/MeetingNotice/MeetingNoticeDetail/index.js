@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
-import Link from './GroupLink'
 import actionCreators from 'store/actions'
-
 import routes from 'routes'
 import apis from 'apis'
 
@@ -11,12 +10,9 @@ import { Button } from 'semantic-ui-react'
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
 
-import Div from './GroupNoticeDiv'
-import Writer from './GroupNoticeWriter'
-
 import Icon from 'component/Styles/Chevron'
 
-class GroupNoticeDetail extends Component {
+class MeetingNoticeDetail extends Component {
   constructor(props) {
     super(props)
 
@@ -26,8 +22,8 @@ class GroupNoticeDetail extends Component {
   }
 
   componentDidMount() {
-    const { noticeId, groupId } = this.props
-    apis.readGroupNotice({ noticeId, groupId })
+    const { noticeId, meetingId } = this.props
+    apis.readMeetingNotice({ noticeId, meetingId })
       .then(response => {
         this.setState({
           notice: response.data,
@@ -35,38 +31,38 @@ class GroupNoticeDetail extends Component {
       })
   }
 
-  deleteGroupNotice = () => {
-    const { groupId, noticeId, loadGroupNotices, history } = this.props
-    apis.deleteGroupNotice({noticeId, groupId})
-    .then(loadGroupNotices({ groupId }))
+  deleteMeetingNotice = () => {
+    const { meetingId, noticeId, loadMeetingNotices, history } = this.props
+    apis.deleteMeetingNotice({noticeId, meetingId})
+    .then(loadMeetingNotices({ meetingId }))
     .then(history.push({
-      pathname: routes.GROUP_NOTICE_LIST,
-      state: { groupId },
+      pathname: routes.MEETING_NOTICE_LIST,
+      state: { meetingId },
     }))
   }
 
   render() {
-    const { groupId } = this.props
+    const { meetingId } = this.props
     const { notice } = this.state
     return (
       <>
         <Wrapper>
           <Icon name='chevron left'>
             <Link to={{
-              pathname: routes.GROUP_NOTICE_LIST,
-              state: { groupId },
-            }}>GroupNoticeList
+              pathname: routes.MEETING_NOTICE_LIST,
+              state: { meetingId },
+            }}>MeetingNoticeList
             </Link>
           </Icon>
 
-          <Writer>
+          <div>
           Writer: {notice.writer && notice.writer.nickname}
-          </Writer>
+          </div>
           <Title>Title</Title>
-          <Div>{notice.title}</Div>
+          <div>{notice.title}</div>
           <Title>Contents</Title>
-          <Div>{notice.contents}</Div>
-          <Button onClick={this.deleteGroupNotice}>
+          <div>{notice.contents}</div>
+          <Button onClick={this.deleteMeetingNotice}>
             삭제
           </Button>
         </Wrapper>
@@ -80,7 +76,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  loadGroupNotices: payload => dispatch(actionCreators.loadGroupNotices(payload)),
+  loadMeetingNotices: payload => dispatch(actionCreators.loadMeetingNotices(payload)),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(GroupNoticeDetail)
+export default connect(mapStateToProps, mapDispatchToProps)(MeetingNoticeDetail)

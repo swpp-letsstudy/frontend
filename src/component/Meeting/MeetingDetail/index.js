@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
+import { Button } from 'semantic-ui-react'
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
 import Icon from 'component/Styles/Chevron'
@@ -7,7 +9,9 @@ import Icon from 'component/Styles/Chevron'
 import Div from './MeetingDivDetail'
 import Link from './MeetingDetailLink'
 
+import actionCreators from 'store/actions'
 import apis from 'apis'
+import routes from 'routes'
 
 class MeetingDetail extends Component {
   constructor(props) {
@@ -38,13 +42,39 @@ class MeetingDetail extends Component {
     return meeting && meeting.attendances.includes(user.id)
   }
 
+  deleteMeeting = () => {
+    const { meeting } = this.state
+    const { loadMeetings, history } = this.props
+    apis.deleteMeeting({ meetingId: meeting.id })
+    .then(loadMeetings({ groupId: meeting.group }))
+    history.push(routes.GROUP_DETAIL.replace(':id', meeting.group))
+  }
+
+  joinExitMeeting = () => {
+    const meetingId = this.state.meeting.id
+    apis.joinExitMeeting({ meetingId })
+    .then(() => apis.readMeeting({ meetingId }))
+    .then(value => this.setState({
+      meeting: value.data,
+    }))
+  }
+
   render() {
     const { meeting } = this.state
+    const { userId } = this.props
+    let isInMeeting = false
+    if (meeting) {
+      meeting.members.forEach((item, index, array) => {
+        if (item.id === userId) {
+          isInMeeting = true
+        }
+      })
+    }
     return (meeting &&
       <Wrapper>
         <Icon name='chevron left'>
         {meeting &&
-          <Link to={`/groups/${meeting.group}`}>
+          <Link to={routes.GROUP_DETAIL.replace(':id', meeting.group)}>
             MeetingList
           </Link>
         }
@@ -65,9 +95,29 @@ class MeetingDetail extends Component {
 
             </Div>
           )}
+        <Link to={{
+          pathname: routes.MEETING_NOTICE_LIST,
+          state: { meetingId: meeting.id }
+        }}>
+          공지
+        </Link>
+        <Button onClick={this.deleteMeeting}>
+          삭제
+        </Button>
+        <Button onClick={this.joinExitMeeting}>
+          {isInMeeting ? '불참' : '참가'}
+        </Button>
       </Wrapper>
     )
   }
 }
 
-export default MeetingDetail
+const mapStateToProps = state => ({
+  userId: state.userReducer.user.id,
+})
+
+const mapDispatchToProps = dispatch => ({
+  loadMeetings: payload => dispatch(actionCreators.loadMeetings(payload)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(MeetingDetail)
