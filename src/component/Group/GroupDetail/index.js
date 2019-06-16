@@ -52,7 +52,7 @@ class GroupDetail extends Component {
 
   render() {
     const { group } = this.state
-    const { meetings } = this.props
+    const { meetings, nickname } = this.props
     return group &&
       <>
         <Wrapper>
@@ -61,9 +61,10 @@ class GroupDetail extends Component {
               GroupList
             </Link>
           </Icon>
+          {group.owner === nickname ?
           <Button onClick={this.openCloseGroup}>
             {group.is_open ? '끄기' : '켜기'}
-          </Button>
+          </Button> : <></>}
           <Title>{group.name}</Title>
 
           {meetings.map((meeting, index) =>
@@ -105,6 +106,7 @@ class GroupDetail extends Component {
 }
 
 const mapStateToProps = state => ({
+  nickname: state.userReducer.user.nickname,
   meetings: state.groupReducer.meetings,
 })
 
