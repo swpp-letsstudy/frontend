@@ -6,7 +6,7 @@ const MeetingFormPage = props => {
   const { groupId } = props.location.state
   return (
     <div>
-      <MeetingForm groupId={groupId} history = {props.history}/>
+      <MeetingForm groupId={groupId} history = {props.history} />
     </div>
   )
 }
