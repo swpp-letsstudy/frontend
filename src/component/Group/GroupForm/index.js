@@ -30,10 +30,11 @@ const GroupForm = props => {
       render={() =>
         <Wrapper>
 
-          <Link to={`/groups`}>
-            <Icon name='chevron left'/>
-            GroupList
-          </Link>
+          <Icon name='chevron left'>
+            <Link to={`/groups`}>
+              GroupList
+            </Link>
+          </Icon>
           <Title>Create Group</Title>
           <Form>
             <div>
