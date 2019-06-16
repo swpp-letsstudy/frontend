@@ -27,6 +27,7 @@ class CloudStorage extends Component {
     super(props)
     this.state = {
       fileTree: [],
+      toggleSet: new Set(), // A set of filepaths
     }
   }
 
@@ -34,24 +35,55 @@ class CloudStorage extends Component {
     const {groupId} = this.props
     setInterval(() => {
       apis.loadFileTree({groupId}).then(data => {
-        this.setState({fileTree: data.data})
+        const fileTree = data.data
+        this.setState({fileTree})
       })
-    }, 1000)
+    }, 300)
   }
 
   onToggle = (node, toggled) => {
-    // fileTree contains node
-    const {fileTree} = this.state
-    node.toggled = toggled
-    this.setState({
-      fileTree: Object.assign([], fileTree),
-    })
+    const { toggleSet } = this.state
+    const newToggleSet = new Set(toggleSet)
+    const filepath = node.filepath
+    if (toggled) newToggleSet.add(filepath)
+    else newToggleSet.delete(filepath)
+    this.setState({toggleSet: newToggleSet})
+  }
+
+  findNode = (fileTree, filepath) => {
+    let foundNode = null
+    for (let childIndex in fileTree) {
+      const child = fileTree[childIndex]
+      if (child.filepath === filepath) return child
+      else if (child.children) {
+        foundNode = this.findNode(child.children, filepath)
+        if (foundNode)
+          return foundNode
+      }
+    }
+    return foundNode
+  }
+
+  addToggleInfoToFileTree = (fileTree, toggleSet) => {
+    const toggledFileTree = Object.assign({}, fileTree)
+    this.addToggleInfoToFileTreeRecursive(fileTree, toggleSet)
+    return toggledFileTree
+  }
+
+  addToggleInfoToFileTreeRecursive = (fileTree, toggleSet) => {
+    for (let childIndex in fileTree) {
+      const child = fileTree[childIndex]
+      if (toggleSet.has(child.filepath))
+        child.toggled = true
+      if (child.children)
+        this.addToggleInfoToFileTreeRecursive(child.children, toggleSet)
+    }
   }
 
   render() {
-    const { fileTree } = this.state
+    const { fileTree, toggleSet } = this.state
     const { groupId } = this.props
-    const idAssignedFileTree = assignIdArray(fileTree)
+    const idAssignedFileTree = assignIdArray(this.addToggleInfoToFileTree(fileTree, toggleSet))
     return (
         // Style Treebeard with decorators
         <>
