@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import queryString from 'query-string/index'
 import { connect } from 'react-redux'
 
 import Button from './MeetingCreateButton'
@@ -24,8 +23,7 @@ class GroupDetail extends Component {
   }
 
   componentDidMount() {
-    const { match, loadMeetings } = this.props
-    const groupId = match.params.id
+    const { loadMeetings, groupId } = this.props
     apis.readGroup({ groupId }).then(value => this.setState({
       group: value.data
     }))
@@ -69,7 +67,11 @@ class GroupDetail extends Component {
             </Link>
           </Button>
           <Button>
-            <Link to={`${routes.MEETING_FORM}?${queryString.stringify({ groupId: group.id })}`} style={{ color: "white" }}>
+            <Link to={{
+              pathname: routes.MEETING_FORM,
+              state: { groupId: group.id },
+            }}
+            style={{ color: "white" }}>
               미팅생성
             </Link>
           </Button>

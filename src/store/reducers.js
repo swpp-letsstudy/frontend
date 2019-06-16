@@ -46,6 +46,10 @@ const userReducer = handleActions({
 export const initialGroupState = {
   groups: [],
   meetings: [],
+  groupNotices: [],
+  meetingNotices: [],
+  policies: [],
+  meetingFines: [],
 }
 
 const groupReducer = handleActions({
@@ -74,10 +78,34 @@ const groupReducer = handleActions({
     }
   }),
   ...pender({
-    type: ACTION_TYPES.LOAD_MEETINGS,
+    type: ACTION_TYPES.LOAD_GROUP_NOTICES,
     onSuccess: (state, action) => {
       return Object.assign({}, state, {
-        meetings: action.payload.data
+        groupNotices: action.payload.data
+      })
+    },
+  }),
+  ...pender({
+    type: ACTION_TYPES.LOAD_MEETING_NOTICES,
+    onSuccess: (state, action) => {
+      return Object.assign({}, state, {
+        meetingNotices: action.payload.data
+      })
+    },
+  }),
+  ...pender({
+    type: ACTION_TYPES.LOAD_POLICIES,
+    onSuccess: (state, action) => {
+      return Object.assign({}, state, {
+        policies: action.payload.data
+      })
+    },
+  }),
+  ...pender({
+    type: ACTION_TYPES.LOAD_MEETING_FINES,
+    onSuccess: (state, action) => {
+      return Object.assign({}, state, {
+        meetingFines: action.payload.data
       })
     },
   }),

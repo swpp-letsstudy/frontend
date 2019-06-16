@@ -27,8 +27,8 @@ class GroupList extends Component {
       <>
         <Wrapper>
           <Title>Group Page</Title>
-          <h1 style={{fontSize: "1.5rem"}}>{nickname}</h1>
-          <Link to={routes.USER_SETTING}>설정</Link>
+            <h1 style={{fontSize: "1.5rem"}}>{nickname}</h1>
+          <Link to={routes.USER_SETTING}>사용자설정</Link>
 
           <Formik
             initialValues={{

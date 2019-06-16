@@ -2,8 +2,6 @@ import React from 'react'
 import { Form, Formik } from 'formik/dist/index'
 import { connect } from 'react-redux'
 
-import queryString from 'query-string'
-
 import Field from './MeetingField'
 import actionCreators from 'store/actions'
 import apis from 'apis'
@@ -16,8 +14,7 @@ import Button from './MeetingFormButton'
 import Link from './MeetingFormLink'
 
 const MeetingForm = props => {
-  const { location, history, loadMeetings } = props
-  const groupId = queryString.parse(location.search).groupId
+  const { groupId, history, loadMeetings } = props
   return (
     <Wrapper>
       <Icon name='chevron left'>

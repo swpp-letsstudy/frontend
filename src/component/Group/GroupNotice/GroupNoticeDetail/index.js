@@ -25,7 +25,6 @@ class GroupNoticeDetail extends Component {
         const { noticeId, groupId } = this.props
         apis.readGroupNotice({ noticeId, groupId })
             .then(response => {
-                console.log(response)
                 this.setState({
                     notice: response.data,
                 })
@@ -58,6 +57,5 @@ class GroupNoticeDetail extends Component {
         )
     }
 }
-
 
 export default GroupNoticeDetail

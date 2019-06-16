@@ -2,10 +2,13 @@ import React from 'react'
 
 import GroupDetail from 'component/Group/GroupDetail'
 
-const GroupDetailPage = props => (
+const GroupDetailPage = props => {
+  const groupId = props.match.params.id
+  return (
   <div>
-    <GroupDetail match={props.match} history={props.history}/>
+    <GroupDetail groupId={groupId} history={props.history}/>
   </div>
-)
+  )
+}
 
 export default GroupDetailPage

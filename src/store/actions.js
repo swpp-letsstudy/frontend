@@ -29,5 +29,10 @@ export default createActions({
   [ACTION_TYPES.LOAD_GROUPS]: apis.loadGroups,
   [ACTION_TYPES.JOIN_GROUP]: apis.joinGroup,
   [ACTION_TYPES.DELETE_GROUP]: apis.deleteGroup,
+
   [ACTION_TYPES.LOAD_MEETINGS]: apis.loadMeetings,
+  [ACTION_TYPES.LOAD_GROUP_NOTICES]: apis.loadGroupNotices,
+  [ACTION_TYPES.LOAD_MEETING_NOTICES]: apis.loadMeetingNotices,
+  [ACTION_TYPES.LOAD_POLICIES]: apis.loadPolices,
+  [ACTION_TYPES.LOAD_MEETING_FINES]: apis.loadMeetingFines,
 })
