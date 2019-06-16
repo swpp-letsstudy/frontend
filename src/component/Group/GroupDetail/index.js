@@ -41,6 +41,15 @@ class GroupDetail extends Component {
     })
   }
 
+  openCloseGroup = () => {
+    const groupId = this.state.group.id
+    apis.openCloseGroup({ groupId })
+    .then(value => apis.readGroup({ groupId }))
+    .then(value => this.setState({
+      group: value.data
+    }))
+  }
+
   render() {
     const { group } = this.state
     const { meetings } = this.props
@@ -52,6 +61,9 @@ class GroupDetail extends Component {
               GroupList
             </Link>
           </Icon>
+          <Button onClick={this.openCloseGroup}>
+            {group.is_open ? '끄기' : '켜기'}
+          </Button>
           <Title>{group.name}</Title>
 
           {meetings.map((meeting, index) =>

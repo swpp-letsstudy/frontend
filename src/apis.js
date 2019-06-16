@@ -31,6 +31,7 @@ export default {
   updateGroup: payload => axios.put(`${HOST}groups/${payload.groupId}/`, payload),
   deleteGroup: payload => axios.delete(`${HOST}groups/${payload.groupId}/`),
   joinGroup: payload => axios.get(payload.url),
+  openCloseGroup: payload => axios.get(`${HOST}openclose_group/?groupId=${payload.groupId}`),
 
   // Meeting
   loadMeetings: payload => axios.get(`${HOST}meetings/?groupId=${payload.groupId}`),
