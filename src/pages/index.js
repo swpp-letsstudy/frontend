@@ -11,6 +11,7 @@ export { default as MeetingFormPage } from './MeetingFormPage'
 export { default as ChattingPage } from './ChattingPage'
 
 export { default as UserSettingPage } from './UserSettingPage'
+export { default as CloudStoragePage } from './CloudStoragePage'
 export { default as GroupSettingPage } from './GroupSettingPage'
 
 export { default as GroupNoticeListPage } from './GroupNoticeListPage'

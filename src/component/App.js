@@ -22,13 +22,16 @@ const App = () =>
       <PrivateRoute path={routes.MEETING_DETAIL} component={pages.MeetingDetailPage}/>
 
       <PrivateRoute path={routes.CHATTING} component={pages.ChattingPage}/>
-      
+
       <PrivateRoute path={routes.USER_SETTING} component={pages.UserSettingPage}/>
+
+      <PrivateRoute path={routes.CLOUD_STORAGE} component={pages.CloudStoragePage}/>
+
       <PrivateRoute path={routes.GROUP_SETTING} component={pages.GroupSettingPage}/>
 
       <PrivateRoute path={routes.GROUP_NOTICE_FORM} component={pages.GroupNoticeFormPage}/>
       <PrivateRoute path={routes.GROUP_NOTICE_DETAIL} component={pages.GroupNoticeDetailPage}/>
-      
+
       <PrivateRoute path={routes.MEETING_NOTICE_FORM} component={pages.MeetingNoticeFormPage}/>
       <PrivateRoute path={routes.MEETING_NOTICE_DETAIL} component={pages.MeetingNoticeDetailPage}/>
     </Switch>

@@ -11,6 +11,8 @@ export default {
 
   CHATTING: '/chatting/:groupId',
 
+  CLOUD_STORAGE: '/cloud-storage/:groupId',
+
   USER_SETTING: '/user_setting',
   GROUP_SETTING: '/group_setting',
 
