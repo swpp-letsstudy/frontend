@@ -22,7 +22,7 @@ class GroupList extends Component {
   }
 
   render() {
-    const { nickname, groups, joinGroup } = this.props
+    const { nickname, groups, joinGroup, loadGroups } = this.props
     return (
       <>
         <Wrapper>
@@ -36,7 +36,7 @@ class GroupList extends Component {
             }}
             onSubmit={(values, formActions) => {
               const { url } = values
-              joinGroup({ url })
+              joinGroup({ url }).then(loadGroups)
             }}
             render={({ handleChange }) =>
               <Form>

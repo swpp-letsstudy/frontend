@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
 import Link from './GroupLink'
+import actionCreators from 'store/actions'
 
 import routes from 'routes'
 import apis from 'apis'
 
+import { Button } from 'semantic-ui-react'
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
 
@@ -13,49 +17,70 @@ import Writer from './GroupNoticeWriter'
 import Icon from 'component/Styles/Chevron'
 
 class GroupNoticeDetail extends Component {
-    constructor(props) {
-        super(props)
+  constructor(props) {
+    super(props)
 
-        this.state = {
-            notice: {},
-        }
+    this.state = {
+      notice: {},
     }
+  }
 
-    componentDidMount() {
-        const { noticeId, groupId } = this.props
-        apis.readGroupNotice({ noticeId, groupId })
-            .then(response => {
-                this.setState({
-                    notice: response.data,
-                })
-            })
-    }
+  componentDidMount() {
+    const { noticeId, groupId } = this.props
+    apis.readGroupNotice({ noticeId, groupId })
+      .then(response => {
+        this.setState({
+          notice: response.data,
+        })
+      })
+  }
 
-    render() {
-        const { groupId } = this.props
-        const { notice } = this.state
-        return (
-            <>
-                <Wrapper>
-                    <Icon name='chevron left'>
-                        <Link to={{
-                            pathname: routes.GROUP_NOTICE_LIST,
-                            state: { groupId },
-                        }}>GroupNoticeList
-                        </Link>
-                    </Icon>
+  deleteGroupNotice = () => {
+    const { groupId, noticeId, loadGroupNotices, history } = this.props
+    apis.deleteGroupNotice({noticeId, groupId})
+    .then(loadGroupNotices({ groupId }))
+    .then(history.push({
+      pathname: routes.GROUP_NOTICE_LIST,
+      state: { groupId },
+    }))
+  }
 
-                    <Writer>
-                    Writer: {notice.writer && notice.writer.nickname}
-                    </Writer>
-                    <Title>Title</Title>
-                    <Div>{notice.title}</Div>
-                    <Title>Contents</Title>
-                    <Div>{notice.contents}</Div>
-                </Wrapper>
-            </>
-        )
-    }
+  render() {
+    const { groupId } = this.props
+    const { notice } = this.state
+    return (
+      <>
+        <Wrapper>
+          <Icon name='chevron left'>
+            <Link to={{
+              pathname: routes.GROUP_NOTICE_LIST,
+              state: { groupId },
+            }}>GroupNoticeList
+            </Link>
+          </Icon>
+
+          <Writer>
+          Writer: {notice.writer && notice.writer.nickname}
+          </Writer>
+          <Title>Title</Title>
+          <Div>{notice.title}</Div>
+          <Title>Contents</Title>
+          <Div>{notice.contents}</Div>
+          <Button onClick={this.deleteGroupNotice}>
+            삭제
+          </Button>
+        </Wrapper>
+      </>
+    )
+  }
 }
 
-export default GroupNoticeDetail
+const mapStateToProps = state => ({
+  
+})
+
+const mapDispatchToProps = dispatch => ({
+  loadGroupNotices: payload => dispatch(actionCreators.loadGroupNotices(payload)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(GroupNoticeDetail)

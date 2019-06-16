@@ -32,14 +32,6 @@ export default {
   deleteGroup: payload => axios.delete(`${HOST}groups/${payload.groupId}/`),
   joinGroup: payload => axios.get(payload.url),
 
-  // GroupNotice
-  loadGroupNotices: payload => axios.get(`${HOST}group_notices/?groupId=${payload.groupId}`),
-  createGroupNotice: payload => axios.post(`${HOST}group_notices/?groupId=${payload.groupId}`, payload),
-
-  readGroupNotice: payload => axios.get(`${HOST}group_notices/${payload.noticeId}/?groupId=${payload.groupId}`),
-  updateGroupNotice: payload => axios.put(`${HOST}group_notices/${payload.noticeId}/?groupId=${payload.groupId}`, payload),
-  deleteGroupNotice: payload => axios.delete(`${HOST}group_notices/${payload.noticeId}/?groupId=${payload.groupId}`),
-
   // Meeting
   loadMeetings: payload => axios.get(`${HOST}meetings/?groupId=${payload.groupId}`),
   createMeeting: payload => axios.post(`${HOST}meetings/?groupId=${payload.groupId}`, payload),
@@ -47,6 +39,14 @@ export default {
   readMeeting: payload => axios.get(`${HOST}meetings/${payload.meetingId}/`),
   updateMeeting: payload => axios.put(`${HOST}meetings/${payload.meetingId}/`, payload),
   deleteMeeting: payload => axios.delete(`${HOST}meetings/${payload.meetingId}/`),
+
+  // GroupNotice
+  loadGroupNotices: payload => axios.get(`${HOST}group_notices/?groupId=${payload.groupId}`),
+  createGroupNotice: payload => axios.post(`${HOST}group_notices/?groupId=${payload.groupId}`, payload),
+
+  readGroupNotice: payload => axios.get(`${HOST}group_notices/${payload.noticeId}/?groupId=${payload.groupId}`),
+  updateGroupNotice: payload => axios.put(`${HOST}group_notices/${payload.noticeId}/?groupId=${payload.groupId}`, payload),
+  deleteGroupNotice: payload => axios.delete(`${HOST}group_notices/${payload.noticeId}/?groupId=${payload.groupId}`),
 
   // MeetingNotice
   loadMeetingNotices: payload => axios.get(`${HOST}meeting_notices/?meetingId=${payload.meetingId}`),

@@ -24,6 +24,21 @@ const userReducer = handleActions({
     },
   }),
   ...pender({
+    type: ACTION_TYPES.LOGOUT,
+    onSuccess: (state, action) => {
+      return Object.assign({}, state, {
+        isLoggedIn: false,
+        user: ''
+      })
+    },
+    onFailure: (state, action) => {
+      return Object.assign({}, state, {
+        isLoggedIn: false,
+        user: ''
+      })
+    },
+  }),
+  ...pender({
     type: ACTION_TYPES.UPDATE_USER_SETTING,
     onSuccess: (state, action) => {
       return Object.assign({}, state, {
@@ -33,14 +48,20 @@ const userReducer = handleActions({
     }
   }),
   ...pender({
-    type: ACTION_TYPES.LOGOUT,
+    type: ACTION_TYPES.SIGNOUT,
     onSuccess: (state, action) => {
       return Object.assign({}, state, {
         isLoggedIn: false,
         user: ''
       })
     },
-  }),
+    onFailure: (state, action) => {
+      return Object.assign({}, state, {
+        isLoggedIn: false,
+        user: ''
+      })
+    },
+  })
 }, initialUserState)
 
 export const initialGroupState = {
@@ -62,20 +83,12 @@ const groupReducer = handleActions({
     },
   }),
   ...pender({
-    type: ACTION_TYPES.JOIN_GROUP,
+    type: ACTION_TYPES.LOAD_MEETINGS,
     onSuccess: (state, action) => {
       return Object.assign({}, state, {
-        groups: action.payload.data
+        meetings: action.payload.data
       })
-    }
-  }),
-  ...pender({
-    type: ACTION_TYPES.DELETE_GROUP,
-    onSuccess: (state, action) => {
-      return Object.assign({}, state, {
-        groups: action.payload.data
-      })
-    }
+    },
   }),
   ...pender({
     type: ACTION_TYPES.LOAD_GROUP_NOTICES,

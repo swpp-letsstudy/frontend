@@ -33,7 +33,10 @@ class GroupDetail extends Component {
   }
 
   deleteGroup = () => {
-    apis.deleteGroup({ groupId: this.state.group.id }).then(() => {
+    const { loadGroups } = this.props
+    apis.deleteGroup({ groupId: this.state.group.id })
+    .then(loadGroups)
+    .then(() => {
       this.props.history.push(routes.GROUP_LIST)
     })
   }
@@ -94,6 +97,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
+  loadGroups: () => dispatch(actionCreators.loadGroups()),
   loadMeetings: payload => dispatch(actionCreators.loadMeetings(payload)),
 })
 

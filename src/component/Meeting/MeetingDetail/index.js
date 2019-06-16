@@ -8,6 +8,7 @@ import Div from './MeetingDivDetail'
 import Link from './MeetingDetailLink'
 
 import apis from 'apis'
+import routes from 'routes'
 
 class MeetingDetail extends Component {
   constructor(props) {
@@ -44,7 +45,7 @@ class MeetingDetail extends Component {
       <Wrapper>
         <Icon name='chevron left'>
         {meeting &&
-          <Link to={`/groups/${meeting.group}`}>
+          <Link to={routes.GROUP_DETAIL.replace(':id', meeting.group)}>
             MeetingList
           </Link>
         }
@@ -65,6 +66,12 @@ class MeetingDetail extends Component {
 
             </Div>
           )}
+        <Link to={{
+          pathname: routes.MEETING_NOTICE_LIST,
+          state: { meetingId: meeting.id }
+        }}>
+          공지
+        </Link>
       </Wrapper>
     )
   }

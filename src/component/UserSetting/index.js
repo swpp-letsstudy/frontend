@@ -17,7 +17,7 @@ const Title = styled.h1`
 `;
 
 const UserSetting = props => {
-  const { history, updateUserSetting } = props
+  const { history, updateUserSetting, signout } = props
   return (
     <Formik
       initialValues={{
@@ -29,24 +29,29 @@ const UserSetting = props => {
         history.push(routes.GROUP_LIST)
       }}
       render={() =>
-        <Form>
-          <Icon name='chevron left'>
-          <Link to={routes.GROUP_LIST}>
-            GroupList
-          </Link>
-          </Icon>
-          <Title>UserSetting Page</Title>
-          <div>
-              <Field type='nickname' name='nickname' placeholder='nickname' />
-          </div>
+        <>
+          <Form>
+            <Icon name='chevron left'>
+            <Link to={routes.GROUP_LIST}>
+              GroupList
+            </Link>
+            </Icon>
+            <Title>UserSetting Page</Title>
+            <div>
+                <Field type='nickname' name='nickname' placeholder='nickname' />
+            </div>
 
-          <div>
-            <Button animated type='submit'>
-              <Button.Content visible>Update</Button.Content>
-              <Button.Content hidden><Icon name='arrow right' /></Button.Content>
-            </Button>
-          </div>
-        </Form>
+            <div>
+              <Button animated type='submit'>
+                <Button.Content visible>Update</Button.Content>
+                <Button.Content hidden><Icon name='arrow right' /></Button.Content>
+              </Button>
+            </div>
+          </Form>
+          <Button onClick={signout}>
+            탈퇴
+          </Button>
+        </>
       }
     />
   )
@@ -57,7 +62,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  updateUserSetting: payload => dispatch(actionCreators.updateUserSetting(payload))
+  updateUserSetting: payload => dispatch(actionCreators.updateUserSetting(payload)),
+  signout: () => dispatch(actionCreators.signout()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserSetting)
