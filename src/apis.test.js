@@ -124,6 +124,14 @@ describe('apis.js', () => {
     })
   })
   
+  afterLoginTest('update meeting', USERNAMES[0], PASSWORD, done => {
+    apis.updateMeeting({ meetingId : 1, time: '2222-01-01T01:12' , info : 'update' })
+    .then(data => {
+      expect(data.status).toEqual(200)
+      done()
+    })
+  })
+
   afterLoginTest('delete meeting', USERNAMES[0], PASSWORD, done => {
     apis.deleteMeeting({ meetingId : 2 })
     .then(data => {
