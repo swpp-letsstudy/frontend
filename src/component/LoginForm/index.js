@@ -15,8 +15,6 @@ import Link from './LoginLink'
 import actionCreators from 'store/actions'
 import Title from 'component/Styles/Title'
 
-
-
 const LoginForm = props => {
   const { isLoggedIn, login } = props
   return (isLoggedIn
@@ -34,11 +32,11 @@ const LoginForm = props => {
         <Form>
           <Title>Login Page</Title>
           <div>
-              <Field name='username' placeholder='username' />
+            <Field name='username' placeholder='username' />
           </div>
 
           <div>
-              <Field type='password' name='password' placeholder='password' />
+            <Field type='password' name='password' placeholder='password' />
           </div>
 
           <div>

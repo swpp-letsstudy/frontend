@@ -17,7 +17,7 @@ import Title from 'component/Styles/Title'
 
 
 const UserSetting = props => {
-  const { history, updateUserSetting } = props
+  const { history, updateUserSetting, signout } = props
   return (
     <Formik
       initialValues={{
@@ -52,6 +52,9 @@ const UserSetting = props => {
 
                 </div>
               </Form>
+          <Button onClick={signout}>
+            탈퇴
+          </Button>
           
         </Wrapper>
       }
@@ -64,7 +67,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  updateUserSetting: payload => dispatch(actionCreators.updateUserSetting(payload))
+  updateUserSetting: payload => dispatch(actionCreators.updateUserSetting(payload)),
+  signout: () => dispatch(actionCreators.signout()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserSetting)
