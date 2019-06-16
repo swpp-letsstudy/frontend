@@ -35,20 +35,6 @@ class CloudStorage extends Component {
     this.setState({toggleSet: newToggleSet})
   }
 
-  findNode = (fileTree, filepath) => {
-    let foundNode = null
-    for (let childIndex in fileTree) {
-      const child = fileTree[childIndex]
-      if (child.filepath === filepath) return child
-      else if (child.children) {
-        foundNode = this.findNode(child.children, filepath)
-        if (foundNode)
-          return foundNode
-      }
-    }
-    return foundNode
-  }
-
   addToggleInfoToFileTree = (fileTree, toggleSet) => {
     const toggledFileTree = Object.assign({}, fileTree)
     this.addToggleInfoToFileTreeRecursive(fileTree, toggleSet)
