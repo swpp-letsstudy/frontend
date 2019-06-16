@@ -27,8 +27,7 @@ class GroupList extends Component {
       <>
         <Wrapper>
           <Title>Group Page</Title>
-          <h1 style={{fontSize: "1.5rem"}}>{nickname}</h1>
-          <Link to={routes.USER_SETTING}>설정</Link>
+          <h1 style={{ fontSize: "1.5rem" }}>{nickname}</h1>
 
           <Formik
             initialValues={{
@@ -49,7 +48,8 @@ class GroupList extends Component {
                   />
                   <Button type='submit'>
                     가입
-                  </Button>
+                  </Button >
+
                 </div>
               </Form>
             }
@@ -63,7 +63,7 @@ class GroupList extends Component {
               <br />
             </Fragment>
           ))}
-          <Link to={routes.GROUP_FORM}>그룹 생성</Link>
+
           <LogoutButton />
         </Wrapper>
       </>
