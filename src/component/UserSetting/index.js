@@ -1,20 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Formik, Form, Field } from 'formik/dist/index'
-import { Link } from 'react-router-dom'
-import { Button, Icon } from 'semantic-ui-react'
-import styled from 'styled-components';
+import { Formik } from 'formik/dist/index'
+import Icon from 'component/Styles/Chevron'
 
 import routes from 'routes'
 import actionCreators from 'store/actions'
 
-const Title = styled.h1`
-  padding: 5rem;
-  font-size: 2em;
-  text-align: center;
-  color: black;
-  padding: 1rem;
-`;
+import Form from './SettingForm'
+import Button from './SettingButton'
+import Input from './SettingInput'
+import Link from './SettingLink'
+
+import Wrapper from 'component/Styles/Wrapper'
+import Title from 'component/Styles/Title'
+
+
 
 const UserSetting = props => {
   const { history, updateUserSetting, signout } = props
@@ -28,30 +28,35 @@ const UserSetting = props => {
         updateUserSetting({ nickname })
         history.push(routes.GROUP_LIST)
       }}
-      render={() =>
-        <>
-          <Form>
-            <Icon name='chevron left'>
-            <Link to={routes.GROUP_LIST}>
-              GroupList
-            </Link>
-            </Icon>
-            <Title>UserSetting Page</Title>
-            <div>
-                <Field type='nickname' name='nickname' placeholder='nickname' />
-            </div>
+      render={({handleChange}) =>
+        <Wrapper>
+          <Icon name='chevron left'>
+          <Link to={routes.GROUP_LIST}>
+            GroupList
+          </Link>
+          </Icon>
 
-            <div>
-              <Button animated type='submit'>
-                <Button.Content visible>Update</Button.Content>
-                <Button.Content hidden><Icon name='arrow right' /></Button.Content>
-              </Button>
-            </div>
-          </Form>
+          <Title>User Setting</Title>
+
+          <Form>
+                <div className="ui action input">
+                  <Input
+                    onChange={handleChange}
+                    name='nickname'
+                    type='nickname'
+                    placeholder='New Nickname'
+                  />
+                  <Button type='submit'>
+                    변경
+                  </Button >
+
+                </div>
+              </Form>
           <Button onClick={signout}>
             탈퇴
           </Button>
-        </>
+          
+        </Wrapper>
       }
     />
   )

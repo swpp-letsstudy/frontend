@@ -1,15 +1,13 @@
 import { Button } from 'semantic-ui-react'
-
 import styled from 'styled-components'
 
-const GroupLogout = styled(Button)`
+const SettingButton = styled(Button)`
 	&&&{
-		margin-top: 2rem;
-		width: 25rem;
+		width: 5rem;
 		height: 3rem;
-		font-size: 1.5rem;
+		text-align: center;
 		color: white;
-		padding: 0.5rem;
+		font-size: 1rem;
 		border-radius: 8px;
 		background: #72d2ff;
 		&:hover {
@@ -23,4 +21,5 @@ const GroupLogout = styled(Button)`
 	}
 `
 
-export default GroupLogout
+export default SettingButton
+

@@ -50,7 +50,8 @@ class GroupList extends Component {
                   />
                   <Button type='submit'>
                     가입
-                  </Button>
+                  </Button >
+
                 </div>
               </Form>
             }
@@ -64,7 +65,7 @@ class GroupList extends Component {
               <br />
             </Fragment>
           ))}
-          <Link to={routes.GROUP_FORM}>그룹 생성</Link>
+
           <LogoutButton />
         </Wrapper>
       </>
