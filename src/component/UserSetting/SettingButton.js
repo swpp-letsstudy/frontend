@@ -1,13 +1,13 @@
 import { Button } from 'semantic-ui-react'
-
 import styled from 'styled-components'
 
-const GroupButton = styled(Button)`
+const SettingButton = styled(Button)`
 	&&&{
-		width: 8.05rem;
+		width: 5rem;
 		height: 3rem;
-		font-size: 1rem;
+		text-align: center;
 		color: white;
+		font-size: 1rem;
 		border-radius: 8px;
 		background: #72d2ff;
 		&:hover {
@@ -21,4 +21,5 @@ const GroupButton = styled(Button)`
 	}
 `
 
-export default GroupButton
+export default SettingButton
+
