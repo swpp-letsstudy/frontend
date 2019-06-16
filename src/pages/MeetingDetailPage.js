@@ -3,9 +3,7 @@ import React from 'react'
 import MeetingDetail from 'component/Meeting/MeetingDetail'
 
 const MeetingDetailPage = props => (
-  <div>
-    <MeetingDetail match = {props.match}/>
-  </div>
+  <MeetingDetail match={props.match} history={props.history}/>
 )
 
 export default MeetingDetailPage
