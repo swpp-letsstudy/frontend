@@ -22,19 +22,19 @@ class MeetingNoticeList extends Component {
       <>
         <Wrapper>
           <Icon name='chevron left'>
-            <Link to={routes.MEETING_DETAIL.replace(':id', meetingId)}>MeetingList</Link>
+            <Link to={routes.MEETING_DETAIL.replace(':meetingId', meetingId)}>MeetingList</Link>
           </Icon>
 
           <Title>
             Meeting Notice List
           </Title>
-          {meetingNotices.map((notice, index) => (
-            <Fragment key={notice.id}>
+          {meetingNotices.map((meetingNotice, index) => (
+            <Fragment key={meetingNotice.id}>
               <Link to={{
-                pathname: routes.MEETING_NOTICE_DETAIL.replace(':id', notice.id),
+                pathname: routes.MEETING_NOTICE_DETAIL.replace(':meetingNoticeId', meetingNotice.id),
                 state: { meetingId },
               }}>
-                {notice.title}
+                {meetingNotice.title}
               </Link>
               <br />
             </Fragment>

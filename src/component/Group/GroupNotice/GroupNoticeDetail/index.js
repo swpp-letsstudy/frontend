@@ -26,8 +26,8 @@ class GroupNoticeDetail extends Component {
   }
 
   componentDidMount() {
-    const { noticeId, groupId } = this.props
-    apis.readGroupNotice({ noticeId, groupId })
+    const { groupNoticeId, groupId } = this.props
+    apis.readGroupNotice({ groupNoticeId, groupId })
       .then(response => {
         this.setState({
           notice: response.data,
@@ -36,8 +36,8 @@ class GroupNoticeDetail extends Component {
   }
 
   deleteGroupNotice = () => {
-    const { groupId, noticeId, loadGroupNotices, history } = this.props
-    apis.deleteGroupNotice({noticeId, groupId})
+    const { groupId, groupNoticeId, loadGroupNotices, history } = this.props
+    apis.deleteGroupNotice({groupNoticeId, groupId})
     .then(loadGroupNotices({ groupId }))
     .then(history.push({
       pathname: routes.GROUP_NOTICE_LIST,

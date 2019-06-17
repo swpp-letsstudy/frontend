@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { Treebeard } from 'react-treebeard'
+import { Link } from 'react-router-dom'
 
 import decorators from './decorators'
+import routes from 'routes'
 import apis from 'apis'
 import FileUploader from './FileUploader'
 
@@ -73,6 +75,7 @@ class CloudStorage extends Component {
     return (
         // Style Treebeard with decorators
         <>
+          <Link to={routes.GROUP_DETAIL.replace(':groupId', groupId)}>GROUP_DETAIL</Link>
           <FileUploader groupId={groupId} dirpath=''/>
           <Treebeard
               groupId={groupId}

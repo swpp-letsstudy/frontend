@@ -4,8 +4,8 @@ import MeetingNoticeDetail from 'component/Meeting/MeetingNotice/MeetingNoticeDe
 
 const MeetingNoticeDetailPage = props => {
   const { meetingId } = props.location.state
-  const noticeId = props.match.params.id
-  return <MeetingNoticeDetail noticeId={noticeId} meetingId={meetingId} history={props.history}/>
+  const { meetingNoticeId } = props.match.params
+  return <MeetingNoticeDetail meetingNoticeId={meetingNoticeId} meetingId={meetingId} history={props.history}/>
 }
 
 export default MeetingNoticeDetailPage

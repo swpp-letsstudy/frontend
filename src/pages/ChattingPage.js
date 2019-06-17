@@ -3,7 +3,7 @@ import React from 'react'
 import Chatting from 'component/Chatting'
 
 const ChattingPage = props => {
-  const groupId = this.props.match.params.groupId
+  const { groupId } = props.match.params
   return <Chatting groupId={groupId} />
 }
 

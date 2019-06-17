@@ -69,7 +69,7 @@ class GroupDetail extends Component {
 
           {meetings.map((meeting, index) =>
             <Div key={meeting.id}>
-              <Link to={`${routes.MEETING_DETAIL.replace(':id', meeting.id)}`}>
+              <Link to={`${routes.MEETING_DETAIL.replace(':meetingId', meeting.id)}`}>
                 meeting time: {meeting.time}<br />
               </Link>
             </Div>
@@ -78,7 +78,7 @@ class GroupDetail extends Component {
           <div style={{ fontSize: "1rem" }}>{`${HOST}join_group/?token=${group.id}`}</div>
           <br />
           <Button>
-            <Link to={`/chatting/${group.id}`} style={{ color: "white" }}>
+            <Link to={routes.CHATTING.replace(':groupId', group.id)} style={{ color: "white" }}>
               채팅하기
             </Link>
           </Button>
@@ -100,6 +100,7 @@ class GroupDetail extends Component {
             style={{ color: "white" }}>그룹 공지
             </Link>
           </Button>
+          <Link to={routes.CLOUD_STORAGE.replace(':groupId', group.id)}>파일</Link>
         </Wrapper>
       </>
   }

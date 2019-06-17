@@ -4,9 +4,10 @@ import MeetingForm from 'component/Meeting/MeetingForm'
 
 const MeetingFormPage = props => {
   const { groupId } = props.location.state
+  const { history } = props
   return (
     <div>
-      <MeetingForm groupId={groupId} history = {props.history} />
+      <MeetingForm groupId={groupId} history={history} />
     </div>
   )
 }
