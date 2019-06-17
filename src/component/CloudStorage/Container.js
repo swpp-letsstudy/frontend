@@ -20,6 +20,7 @@ const DirectoryContainer = props => {
       <ContainerStyle>
         <props.decorators.Toggle onClick={onClick} isToggled={isToggled}/>
         <props.decorators.Header node={props.node}/>
+        <br/>
         <FileUploader groupId={groupId} dirpath={dirpath}/>
       </ContainerStyle>
   )
@@ -30,7 +31,9 @@ const FileContainer = props => {
   const filepath = props.node.filepath
   return (
       <ContainerStyle>
+        <div>
         <props.decorators.Header node={props.node}/>
+        </div>
         <DownloadButton groupId={groupId} filepath={filepath}/>
         {/*<RenameButton/>*/}
         <DeleteButton groupId={groupId} filepath={filepath}/>
