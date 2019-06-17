@@ -46,35 +46,17 @@ class MeetingDetail extends Component {
     const { meeting } = this.state
     const { loadMeetings, history } = this.props
     apis.deleteMeeting({ meetingId: meeting.id })
-    .then(loadMeetings({ groupId: meeting.group }))
-    history.push(routes.GROUP_DETAIL.replace(':groupId', meeting.group))
-  }
-
-  joinExitMeeting = () => {
-    const meetingId = this.state.meeting.id
-    apis.joinExitMeeting({ meetingId })
-    .then(() => apis.readMeeting({ meetingId }))
-    .then(value => this.setState({
-      meeting: value.data,
-    }))
+    .then(loadMeetings({ groupId: meeting.group.id }))
+    history.push(routes.GROUP_DETAIL.replace(':groupId', meeting.group.id))
   }
 
   render() {
     const { meeting } = this.state
-    const { userId } = this.props
-    let isInMeeting = false
-    if (meeting) {
-      meeting.members.forEach((item, index, array) => {
-        if (item.id === userId) {
-          isInMeeting = true
-        }
-      })
-    }
     return (meeting &&
       <Wrapper>
         <Icon name='chevron left'>
         {meeting &&
-          <Link to={routes.GROUP_DETAIL.replace(':groupId', meeting.group)}>
+          <Link to={routes.GROUP_DETAIL.replace(':groupId', meeting.group.id)}>
             MeetingList
           </Link>
         }
@@ -84,7 +66,7 @@ class MeetingDetail extends Component {
         <Div>
           Meeting Time: {meeting.time}
         </Div>
-          {meeting.members.map((user, index) =>
+          {meeting.group.members.map((user, index) =>
             <Div key={user.id}>
               {user.nickname}
               {this.isAttendance(user) ?
@@ -103,9 +85,6 @@ class MeetingDetail extends Component {
         </Link>
         <Button onClick={this.deleteMeeting}>
           삭제
-        </Button>
-        <Button onClick={this.joinExitMeeting}>
-          {isInMeeting ? '불참' : '참가'}
         </Button>
       </Wrapper>
     )
