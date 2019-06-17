@@ -46,17 +46,17 @@ export default {
   loadGroupNotices: payload => axios.get(`${HOST}group_notices/?groupId=${payload.groupId}`),
   createGroupNotice: payload => axios.post(`${HOST}group_notices/?groupId=${payload.groupId}`, payload),
 
-  readGroupNotice: payload => axios.get(`${HOST}group_notices/${payload.noticeId}/?groupId=${payload.groupId}`),
-  updateGroupNotice: payload => axios.put(`${HOST}group_notices/${payload.noticeId}/?groupId=${payload.groupId}`, payload),
-  deleteGroupNotice: payload => axios.delete(`${HOST}group_notices/${payload.noticeId}/?groupId=${payload.groupId}`),
+  readGroupNotice: payload => axios.get(`${HOST}group_notices/${payload.groupNoticeId}/?groupId=${payload.groupId}`),
+  updateGroupNotice: payload => axios.put(`${HOST}group_notices/${payload.groupNoticeId}/?groupId=${payload.groupId}`, payload),
+  deleteGroupNotice: payload => axios.delete(`${HOST}group_notices/${payload.groupNoticeId}/?groupId=${payload.groupId}`),
 
   // MeetingNotice
   loadMeetingNotices: payload => axios.get(`${HOST}meeting_notices/?meetingId=${payload.meetingId}`),
   createMeetingNotice: payload => axios.post(`${HOST}meeting_notices/?meetingId=${payload.meetingId}`, payload),
 
-  readMeetingNotice: payload => axios.get(`${HOST}meeting_notices/${payload.noticeId}/?meetingId=${payload.meetingId}`),
-  updateMeetingNotice: payload => axios.put(`${HOST}meeting_notices/${payload.noticeId}/?meetingId=${payload.meetingId}`, payload),
-  deleteMeetingNotice: payload => axios.delete(`${HOST}meeting_notices/${payload.noticeId}/?meetingId=${payload.meetingId}`),
+  readMeetingNotice: payload => axios.get(`${HOST}meeting_notices/${payload.meetingNoticeId}/?meetingId=${payload.meetingId}`),
+  updateMeetingNotice: payload => axios.put(`${HOST}meeting_notices/${payload.meetingNoticeId}/?meetingId=${payload.meetingId}`, payload),
+  deleteMeetingNotice: payload => axios.delete(`${HOST}meeting_notices/${payload.meetingNoticeId}/?meetingId=${payload.meetingId}`),
 
   // Attendance
   toggleAttendance: payload => axios.post(`${HOST}attendance/`, payload),

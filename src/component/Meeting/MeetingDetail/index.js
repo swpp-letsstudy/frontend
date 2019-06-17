@@ -23,7 +23,7 @@ class MeetingDetail extends Component {
 
   componentDidMount() {
     const { match } = this.props
-    const meetingId = match.params.id
+    const { meetingId } = match.params
     apis.readMeeting({ meetingId }).then(value => this.setState({
       meeting: value.data,
     }))
@@ -47,7 +47,7 @@ class MeetingDetail extends Component {
     const { loadMeetings, history } = this.props
     apis.deleteMeeting({ meetingId: meeting.id })
     .then(loadMeetings({ groupId: meeting.group }))
-    history.push(routes.GROUP_DETAIL.replace(':id', meeting.group))
+    history.push(routes.GROUP_DETAIL.replace(':groupId', meeting.group))
   }
 
   joinExitMeeting = () => {
@@ -74,7 +74,7 @@ class MeetingDetail extends Component {
       <Wrapper>
         <Icon name='chevron left'>
         {meeting &&
-          <Link to={routes.GROUP_DETAIL.replace(':id', meeting.group)}>
+          <Link to={routes.GROUP_DETAIL.replace(':groupId', meeting.group)}>
             MeetingList
           </Link>
         }

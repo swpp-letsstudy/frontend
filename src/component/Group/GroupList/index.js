@@ -59,7 +59,7 @@ class GroupList extends Component {
 
           {groups.map((group, index) => (
             <Fragment key={group.id}>
-              <Link to={`${routes.GROUP_DETAIL.replace(':id', group.id)}`}>
+              <Link to={`${routes.GROUP_DETAIL.replace(':groupId', group.id)}`}>
                 {group.name}
               </Link>
               <br />

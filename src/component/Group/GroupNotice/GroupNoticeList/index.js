@@ -23,19 +23,19 @@ class GroupNoticeList extends Component {
       <>
         <Wrapper>
           <Icon name='chevron left'>
-            <Link to={routes.GROUP_DETAIL.replace(':id', groupId)}>MeetingList</Link>
+            <Link to={routes.GROUP_DETAIL.replace(':groupId', groupId)}>MeetingList</Link>
           </Icon>
 
           <Title>
             Group Notice List
           </Title>
-          {groupNotices.map((notice, index) => (
-            <Fragment key={notice.id}>
+          {groupNotices.map((groupNotice, index) => (
+            <Fragment key={groupNotice.id}>
               <Link to={{
-                pathname: routes.GROUP_NOTICE_DETAIL.replace(':id', notice.id),
+                pathname: routes.GROUP_NOTICE_DETAIL.replace(':groupNoticeId', groupNotice.id),
                 state: { groupId },
               }}>
-                {notice.title}
+                {groupNotice.title}
               </Link>
               <br />
             </Fragment>

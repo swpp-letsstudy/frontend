@@ -22,8 +22,9 @@ class MeetingNoticeDetail extends Component {
   }
 
   componentDidMount() {
-    const { noticeId, meetingId } = this.props
-    apis.readMeetingNotice({ noticeId, meetingId })
+    const { meetingNoticeId, meetingId } = this.props
+    console.log(meetingNoticeId)
+    apis.readMeetingNotice({ meetingNoticeId, meetingId })
       .then(response => {
         this.setState({
           notice: response.data,
@@ -32,8 +33,8 @@ class MeetingNoticeDetail extends Component {
   }
 
   deleteMeetingNotice = () => {
-    const { meetingId, noticeId, loadMeetingNotices, history } = this.props
-    apis.deleteMeetingNotice({noticeId, meetingId})
+    const { meetingId, meetingNoticeId, loadMeetingNotices, history } = this.props
+    apis.deleteMeetingNotice({meetingNoticeId, meetingId})
     .then(loadMeetingNotices({ meetingId }))
     .then(history.push({
       pathname: routes.MEETING_NOTICE_LIST,

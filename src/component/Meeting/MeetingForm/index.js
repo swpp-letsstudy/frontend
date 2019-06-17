@@ -33,7 +33,7 @@ const MeetingForm = props => {
             loadMeetings({ groupId })
           )
           history.push(
-            `${routes.GROUP_DETAIL.replace(':id', groupId)}`
+            `${routes.GROUP_DETAIL.replace(':groupId', groupId)}`
           )
         }}
         render={() =>
