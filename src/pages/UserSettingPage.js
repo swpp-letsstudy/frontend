@@ -2,7 +2,8 @@ import React from 'react'
 import UserSetting from 'component/UserSetting'
 
 const UserSettingPage = props => {
-  return <UserSetting history={props.history}/>
+  const { history } = props
+  return <UserSetting history={history}/>
 }
 
 export default UserSettingPage

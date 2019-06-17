@@ -2,10 +2,6 @@ import React from 'react'
 
 import LoginForm from 'component/LoginForm'
 
-const LoginPage = props => (
-  <div>
-    <LoginForm />
-  </div>
-)
+const LoginPage = props => <LoginForm />
 
 export default LoginPage

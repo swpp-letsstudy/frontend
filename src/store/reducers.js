@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { combineReducers } from 'redux'
 import { handleActions } from 'redux-actions'
 import { pender, penderReducer } from 'redux-pender'
@@ -19,7 +20,14 @@ const userReducer = handleActions({
     onSuccess: (state, action) => {
       return Object.assign({}, state, {
         isLoggedIn: true,
-        user: action.payload.data
+        user: action.payload.data,
+      })
+    },
+    onFailure: (state, action) => {
+      delete axios.defaults.headers.common.Authorization
+      return Object.assign({}, state, {
+        isLoggedIn: false,
+        user: '',
       })
     },
   }),
@@ -28,7 +36,7 @@ const userReducer = handleActions({
     onSuccess: (state, action) => {
       return Object.assign({}, state, {
         isLoggedIn: false,
-        user: ''
+        user: '',
       })
     },
     onFailure: (state, action) => {
