@@ -89,7 +89,7 @@ class GroupDetail extends Component {
               </Title>
           }
           
-
+          <div>{group.attendance_amount}</div>
           <Div>미팅목록</Div>
 
           {meetings.map((meeting, index) =>
@@ -170,7 +170,15 @@ class GroupDetail extends Component {
           <Link to={{
             pathname: routes.MY_POLICY_LIST,
             state: { groupId: group.id },
-          }}>벌금</Link>
+          }}>
+            벌금
+          </Link>
+          {group.owner===nickname ? <Link to={{
+            pathname: routes.GROUP_SETTING,
+            state: { groupId: group.id },
+          }}>
+            설정
+          </Link>: <></>}
         </Wrapper>
         
       </>
