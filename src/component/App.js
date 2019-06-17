@@ -35,10 +35,11 @@ const App = () =>
       <PrivateRoute path={routes.MEETING_NOTICE_FORM} component={pages.MeetingNoticeFormPage}/>
       <PrivateRoute path={routes.MEETING_NOTICE_DETAIL} component={pages.MeetingNoticeDetailPage}/>
       
-      <PrivateRoute path={routes.MY_POLICY_LIST} component={pages.MyPolicyListPage}/>
+      <PrivateRoute exact path={routes.MY_POLICY_LIST} component={pages.MyPolicyListPage}/>
       <PrivateRoute exact path={routes.POLICY_LIST} component={pages.PolicyListPage}/>
       <PrivateRoute path={routes.POLICY_FORM} component={pages.PolicyFormPage}/>
       <PrivateRoute path={routes.POLICY_DETAIL} component={pages.PolicyDetailPage}/>
+      <PrivateRoute path={routes.MY_MEETING_POLICY_LIST} component={pages.MyMeetingPolicyListPage}/>
       <PrivateRoute path={routes.POLICY_CHECK} component={pages.PolicyCheckPage}/>
     </Switch>
 
