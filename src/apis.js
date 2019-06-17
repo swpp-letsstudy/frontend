@@ -64,8 +64,13 @@ export default {
   loadPolicies: payload => axios.get(`${HOST}policies/?groupId=${payload.groupId}`),
   createPolicy: payload => axios.post(`${HOST}policies/?groupId=${payload.groupId}`, payload),
 
+  readPolicy: payload => axios.get(`${HOST}policies/${payload.policyId}/?groupId=${payload.groupId}`),
   updatePolicy: payload => axios.put(`${HOST}policies/${payload.policyId}/?groupId=${payload.groupId}`, payload),
   deletePolicy: payload => axios.delete(`${HOST}policies/${payload.policyId}/?groupId=${payload.groupId}`),
+
+  // Fines
+  readMyFines: payload => axios.get(`${HOST}my_fines/?groupId=${payload.groupId}`),
+  getFineSum: payload => axios.get(`${HOST}sum_of_fines/?groupId=${payload.groupId}`),
 
   // MeetingFine
   loadMeeteingFines: payload => axios.get(`${HOST}meeting_fines/?meetingId=${payload.meetingId}`),
@@ -74,10 +79,6 @@ export default {
   readMeetingFine: payload => axios.get(`${HOST}meeting_fines/${payload.meetingFineId}/?meetingId=${payload.meetingId}`),
   updateMeetingFine: payload => axios.put(`${HOST}meeting_fines/${payload.meetingFineId}/?meetingId=${payload.meetingId}`, payload),
   deleteMeetingFine: payload => axios.delete(`${HOST}meeting_fines/${payload.meetingFineId}/?meetingId=${payload.meetingId}`),
-
-  // Fines
-  readMyFines: payload => axios.get(`${HOST}my_fines/?groupId=${payload.groupId}`),
-  getFineSum: payload => axios.get(`${HOST}sum_of_fines/?groupId=${payload.groupId}`),
 
   // CloudStorage
   loadFileTree: payload => axios.get(`${HOST}cloud_storage/?groupId=${payload.groupId}`),

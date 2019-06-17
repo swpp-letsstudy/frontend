@@ -38,7 +38,10 @@ class PolicyList extends Component {
         <br />
         {policies.map((policy, index) => (
           <Fragment key={policy.id}>
-            <Link to={routes.POLICY_DETAIL.replace(':policyId', policy.id)}>
+            <Link to={{
+              pathname: routes.POLICY_DETAIL.replace(':policyId', policy.id),
+              state: { groupId },
+            }}>
               {policy.name}
               <br />
               {policy.info}
