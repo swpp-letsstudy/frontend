@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import { Treebeard } from 'react-treebeard'
-import { Link } from 'react-router-dom'
+
 
 import decorators from './decorators'
 import routes from 'routes'
 import apis from 'apis'
 import FileUploader from './FileUploader'
 
+import Link from './Link'
+
+import Wrapper from 'component/Styles/Wrapper'
+import Title from 'component/Styles/Title'
+import Icon from 'component/Styles/Chevron'
 
 class CloudStorage extends Component {
 
@@ -75,7 +80,11 @@ class CloudStorage extends Component {
     return (
         // Style Treebeard with decorators
         <>
-          <Link to={routes.GROUP_DETAIL.replace(':groupId', groupId)}>GROUP_DETAIL</Link>
+        <Wrapper>
+          <Icon name='chevron left'>
+            <Link to={routes.GROUP_DETAIL.replace(':groupId', groupId)}>MeetingList</Link>
+          </Icon>
+          <Title>File Storage</Title>
           <FileUploader groupId={groupId} dirpath=''/>
           <Treebeard
               groupId={groupId}
@@ -86,6 +95,7 @@ class CloudStorage extends Component {
                 params: {groupId},
               }}
           />
+        </Wrapper>
         </>
     )
   }
