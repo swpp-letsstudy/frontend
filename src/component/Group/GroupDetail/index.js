@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 
 import Button from './MeetingCreateButton'
@@ -23,36 +23,37 @@ class GroupDetail extends Component {
   }
 
   componentDidMount() {
-    const { loadMeetings, groupId } = this.props
+    const { loadMeetings, groupId, loadGroupNotices } = this.props
     apis.readGroup({ groupId }).then(value => this.setState({
       group: value.data
     }))
     loadMeetings({ groupId }).then(value => this.setState({
       meetings: value.data,
     }))
+    loadGroupNotices({ groupId })
   }
 
   deleteGroup = () => {
     const { loadGroups } = this.props
     apis.deleteGroup({ groupId: this.state.group.id })
-    .then(loadGroups)
-    .then(() => {
-      this.props.history.push(routes.GROUP_LIST)
-    })
+      .then(loadGroups)
+      .then(() => {
+        this.props.history.push(routes.GROUP_LIST)
+      })
   }
 
   openCloseGroup = () => {
     const groupId = this.state.group.id
     apis.openCloseGroup({ groupId })
-    .then(value => apis.readGroup({ groupId }))
-    .then(value => this.setState({
-      group: value.data
-    }))
+      .then(value => apis.readGroup({ groupId }))
+      .then(value => this.setState({
+        group: value.data
+      }))
   }
 
   render() {
     const { group } = this.state
-    const { meetings, nickname } = this.props
+    const { meetings, nickname, groupNotices, groupId } = this.props
     return group &&
       <>
         <Wrapper>
@@ -61,47 +62,112 @@ class GroupDetail extends Component {
               GroupList
             </Link>
           </Icon>
-          {group.owner === nickname ?
-          <Button onClick={this.openCloseGroup}>
-            {group.is_open ? '끄기' : '켜기'}
-          </Button> : <></>}
-          <Title>{group.name}</Title>
+          {group.owner === nickname 
+            ?
+              group.is_open 
+              ?
+                <div>
+                  <div style={{textAlign:"right",size:"1.2rem"}} >
+                    그룹초대: <Icon style={{textAlign:"right"}} onClick={this.openCloseGroup} name='check circle outline'/>
+                  </div>
+                  <Title style={{marginTop: "0rem"}}>
+                    {group.name}
+                  </Title>
+                </div>
+              :
+                <div>
+                  <div style={{textAlign:"right",size:"1.2rem"}} >
+                    그룹초대: <Icon style={{textAlign:"right"}} onClick={this.openCloseGroup} name='circle outline'/>
+                  </div>
+                  <Title style={{marginTop: "0rem"}}>
+                    {group.name}
+                  </Title>
+                </div>
+            :
+              <Title>
+                {group.name}
+              </Title>
+          }
+          
+
+          <Div>미팅목록</Div>
 
           {meetings.map((meeting, index) =>
-            <Div key={meeting.id}>
+            <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.5rem"}}>
               <Link to={`${routes.MEETING_DETAIL.replace(':meetingId', meeting.id)}`}>
-                meeting time: {meeting.time}<br />
+                {meeting.time}
               </Link>
-            </Div>
+            </div>
           )}
+
+          <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.5rem"}}>
+            <Link to={{
+              pathname: routes.MEETING_FORM,
+              state: { groupId: group.id },
+            }}>
+              미팅만들기
+            </Link>
+          </div>
+
           <br />
-          <div style={{ fontSize: "1rem" }}>{`${HOST}join_group/?token=${group.id}`}</div>
+
+          <Link to={{
+              pathname: routes.GROUP_NOTICE_LIST,
+              state: { groupId: group.id },
+            }}>
+            <Div>
+              공지
+            </Div>
+          </Link>
+          {groupNotices.map((groupNotice, index) => (
+            <Fragment key={groupNotice.id}>
+              <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.5rem"}}>
+              <Link to={{
+                pathname: routes.GROUP_NOTICE_DETAIL.replace(':groupNoticeId', groupNotice.id),
+                state: { groupId },
+              }}>
+                {groupNotice.title}
+              </Link>
+              </div>    
+            </Fragment>
+          ))}
+          <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.5rem"}}>
+          <Link to={{
+            pathname: routes.GROUP_NOTICE_FORM,
+            state: { groupId }
+          }}>
+            새로만들기
+            </Link>
+          </div>
+
+          <br />
+          <Div>
+            Invitation Code
+          </Div>
+          <div style={{ fontSize: "1.2rem" , textAlign: "left"}}>{`${HOST}join_group/?token=${group.id}`}</div>
+          
+
+          <br />
           <br />
           <Button>
             <Link to={routes.CHATTING.replace(':groupId', group.id)} style={{ color: "white" }}>
               채팅하기
             </Link>
           </Button>
+          
+          
+          
           <Button>
-            <Link to={{
-              pathname: routes.MEETING_FORM,
-              state: { groupId: group.id },
-            }}
-            style={{ color: "white" }}>
-              미팅생성
+            <Link to={routes.CLOUD_STORAGE.replace(':groupId', group.id)} style={{ color: "white" }}>
+              파일
             </Link>
           </Button>
-          <Button onClick={this.deleteGroup}>탈퇴</Button>
-          <Button>
-            <Link to={{
-              pathname: routes.GROUP_NOTICE_LIST,
-              state: { groupId: group.id },
-            }}
-            style={{ color: "white" }}>그룹 공지
-            </Link>
+
+          <Button onClick={this.deleteGroup}>
+            탈퇴
           </Button>
-          <Link to={routes.CLOUD_STORAGE.replace(':groupId', group.id)}>파일</Link>
         </Wrapper>
+        
       </>
   }
 }
@@ -109,11 +175,13 @@ class GroupDetail extends Component {
 const mapStateToProps = state => ({
   nickname: state.userReducer.user.nickname,
   meetings: state.groupReducer.meetings,
+  groupNotices: state.groupReducer.groupNotices,
 })
 
 const mapDispatchToProps = dispatch => ({
   loadGroups: () => dispatch(actionCreators.loadGroups()),
   loadMeetings: payload => dispatch(actionCreators.loadMeetings(payload)),
+  loadGroupNotices: payload => dispatch(actionCreators.loadGroupNotices(payload)),
 })
 
 
