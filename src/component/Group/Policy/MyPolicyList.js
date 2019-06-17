@@ -28,7 +28,7 @@ class MyPolicyForm extends Component {
   
   render() {
     const { groupId } = this.props
-    const { myFines } = this.state
+    const { myFines, sum } = this.state
     return (
       <>
         <Link to={routes.GROUP_DETAIL.replace(':groupId', groupId)}>
@@ -42,6 +42,8 @@ class MyPolicyForm extends Component {
           PolicyList
         </Link>
         <br />
+        <h1>총 벌금: {sum}</h1>
+        <br />
         {myFines.map((fine, index) => {
           const info = fine.meeting_fine
           return (
@@ -51,7 +53,6 @@ class MyPolicyForm extends Component {
             <br />
           </Fragment>
         )})}
-        <div>MyPolicyForm</div>
       </>
     )
   }
