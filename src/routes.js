@@ -23,4 +23,10 @@ export default {
   MEETING_NOTICE_LIST: '/meeting_notices',
   MEETING_NOTICE_DETAIL: '/meeting_notices/:meetingNoticeId',
   MEETING_NOTICE_FORM: '/meeting_notice/edit',
+
+  MY_POLICY_LIST: '/my_policy',
+  POLICY_LIST: '/policies',
+  POLICY_DETAIL: '/policies/:policyId',
+  POLICY_FORM: '/policies/edit',
+  POLICY_CHECK: '/policy_check',
 }
