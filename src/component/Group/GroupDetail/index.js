@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 
 import Button from './MeetingCreateButton'
@@ -23,13 +23,14 @@ class GroupDetail extends Component {
   }
 
   componentDidMount() {
-    const { loadMeetings, groupId } = this.props
+    const { loadMeetings, groupId, loadGroupNotices } = this.props
     apis.readGroup({ groupId }).then(value => this.setState({
       group: value.data
     }))
     loadMeetings({ groupId }).then(value => this.setState({
       meetings: value.data,
     }))
+    loadGroupNotices({ groupId })
   }
 
   deleteGroup = () => {
@@ -52,7 +53,7 @@ class GroupDetail extends Component {
 
   render() {
     const { group } = this.state
-    const { meetings, nickname } = this.props
+    const { meetings, nickname, groupNotices, groupId } = this.props
     return group &&
       <>
         <Wrapper>
@@ -95,7 +96,26 @@ class GroupDetail extends Component {
               공지
             </Div>
           </Link>
-          
+          {groupNotices.map((groupNotice, index) => (
+            <Fragment key={groupNotice.id}>
+              <div style={{textAlign:"left",marginTop:"1rem",fontSize:"1.2rem"}}>
+              <Link to={{
+                pathname: routes.GROUP_NOTICE_DETAIL.replace(':groupNoticeId', groupNotice.id),
+                state: { groupId },
+              }}>
+                {groupNotice.title}
+              </Link>
+              </div>    
+            </Fragment>
+          ))}
+          <div style={{textAlign:"left",marginTop:"1rem",fontSize:"1.2rem"}}>
+          <Link to={{
+            pathname: routes.GROUP_NOTICE_FORM,
+            state: { groupId }
+          }}>
+            새로만들기
+            </Link>
+          </div>
 
           <Div>
             Invitation Code
@@ -123,11 +143,13 @@ class GroupDetail extends Component {
 const mapStateToProps = state => ({
   nickname: state.userReducer.user.nickname,
   meetings: state.groupReducer.meetings,
+  groupNotices: state.groupReducer.groupNotices,
 })
 
 const mapDispatchToProps = dispatch => ({
   loadGroups: () => dispatch(actionCreators.loadGroups()),
   loadMeetings: payload => dispatch(actionCreators.loadMeetings(payload)),
+  loadGroupNotices: payload => dispatch(actionCreators.loadGroupNotices(payload)),
 })
 
 
