@@ -35,19 +35,19 @@ class GroupDetail extends Component {
   deleteGroup = () => {
     const { loadGroups } = this.props
     apis.deleteGroup({ groupId: this.state.group.id })
-    .then(loadGroups)
-    .then(() => {
-      this.props.history.push(routes.GROUP_LIST)
-    })
+      .then(loadGroups)
+      .then(() => {
+        this.props.history.push(routes.GROUP_LIST)
+      })
   }
 
   openCloseGroup = () => {
     const groupId = this.state.group.id
     apis.openCloseGroup({ groupId })
-    .then(value => apis.readGroup({ groupId }))
-    .then(value => this.setState({
-      group: value.data
-    }))
+      .then(value => apis.readGroup({ groupId }))
+      .then(value => this.setState({
+        group: value.data
+      }))
   }
 
   render() {
@@ -62,20 +62,46 @@ class GroupDetail extends Component {
             </Link>
           </Icon>
           {group.owner === nickname ?
-          <Button onClick={this.openCloseGroup}>
-            {group.is_open ? '끄기' : '켜기'}
-          </Button> : <></>}
+            <Button onClick={this.openCloseGroup}>
+              {group.is_open ? '끄기' : '켜기'}
+            </Button> : <></>}
           <Title>{group.name}</Title>
 
+          <Div>미팅목록</Div>
+
           {meetings.map((meeting, index) =>
-            <Div key={meeting.id}>
+            <div style={{textAlign:"left",marginTop:"1rem",fontSize:"1.2rem"}}>
               <Link to={`${routes.MEETING_DETAIL.replace(':meetingId', meeting.id)}`}>
-                meeting time: {meeting.time}<br />
+                {meeting.time}
               </Link>
-            </Div>
+            </div>
           )}
-          <br />
-          <div style={{ fontSize: "1rem" }}>{`${HOST}join_group/?token=${group.id}`}</div>
+
+          <div style={{textAlign:"left",marginTop:"1rem",fontSize:"1.2rem"}}>
+            <Link to={{
+              pathname: routes.MEETING_FORM,
+              state: { groupId: group.id },
+            }}>
+              미팅만들기
+            </Link>
+          </div>
+
+          
+          <Link to={{
+              pathname: routes.GROUP_NOTICE_LIST,
+              state: { groupId: group.id },
+            }}>
+            <Div>
+              공지
+            </Div>
+          </Link>
+          
+
+          <Div>
+            Invitation Code
+          </Div>
+          <div style={{ fontSize: "1.2rem" , textAlign: "left"}}>{`${HOST}join_group/?token=${group.id}`}</div>
+          
           <br />
           <Button>
             <Link to={routes.CHATTING.replace(':groupId', group.id)} style={{ color: "white" }}>
@@ -87,7 +113,7 @@ class GroupDetail extends Component {
               pathname: routes.MEETING_FORM,
               state: { groupId: group.id },
             }}
-            style={{ color: "white" }}>
+              style={{ color: "white" }}>
               미팅생성
             </Link>
           </Button>
@@ -97,10 +123,12 @@ class GroupDetail extends Component {
               pathname: routes.GROUP_NOTICE_LIST,
               state: { groupId: group.id },
             }}
-            style={{ color: "white" }}>그룹 공지
+              style={{ color: "white" }}>그룹 공지
             </Link>
           </Button>
+          <div>
           <Link to={routes.CLOUD_STORAGE.replace(':groupId', group.id)}>파일</Link>
+          </div>
         </Wrapper>
       </>
   }

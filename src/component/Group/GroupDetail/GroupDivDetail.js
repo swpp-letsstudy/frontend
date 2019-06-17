@@ -2,14 +2,13 @@ import styled from 'styled-components'
 
 const GroupDiv = styled.div`
 	&&&{
-        outline-style: solid;
-        padding: 1rem;
-        font-size: 1.2rem;
-        color: #72d2ff;
+        font-size: 2rem;
+        font-weight: bold;
         display: flex;
+        margin-top: 1.5rem;
         margin-bottom: 1rem;
-        
-        width: 25rem;
+        text-decoration: underline;
+        text-underline-position: under;
 	}
 `
 
