@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 const GroupButton = styled(Button)`
 	&&&{
-		width: 8.05rem;
+		width: 8.2rem;
 		height: 3rem;
 		font-size: 1rem;
 		color: white;
@@ -17,7 +17,7 @@ const GroupButton = styled(Button)`
 		&:active {
 			background: #197fffc7;
 			color: white;
-    }
+    	}
 	}
 `
 

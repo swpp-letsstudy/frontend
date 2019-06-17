@@ -62,11 +62,23 @@ class GroupDetail extends Component {
               GroupList
             </Link>
           </Icon>
-          {group.owner === nickname ?
-            <Button onClick={this.openCloseGroup}>
-              {group.is_open ? '끄기' : '켜기'}
-            </Button> : <></>}
-          <Title>{group.name}</Title>
+          {group.owner === nickname 
+            ?
+              group.is_open 
+              ?
+                <div style={{textAlign:"right",size:"1.2rem"}} >
+                  그룹초대: <Icon style={{textAlign:"right"}} onClick={this.openCloseGroup} name='check circle outline'/>
+                </div>
+              :
+                <div style={{textAlign:"right",size:"1.2rem"}} >
+                  그룹초대: <Icon style={{textAlign:"right"}} onClick={this.openCloseGroup} name='circle outline'/>
+                </div>
+            :
+            <></>
+          }
+          <Title>
+            {group.name}
+          </Title>
 
           <Div>미팅목록</Div>
 
@@ -129,10 +141,16 @@ class GroupDetail extends Component {
             </Link>
           </Button>
           
-          <Button onClick={this.deleteGroup}>탈퇴</Button>
+          
           
           <Button>
-          <Link to={routes.CLOUD_STORAGE.replace(':groupId', group.id)}>파일</Link>
+            <Link to={routes.CLOUD_STORAGE.replace(':groupId', group.id)} style={{ color: "white" }}>
+              파일
+            </Link>
+          </Button>
+
+          <Button onClick={this.deleteGroup}>
+            탈퇴
           </Button>
         </Wrapper>
         
