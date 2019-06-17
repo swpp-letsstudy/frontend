@@ -166,6 +166,11 @@ class GroupDetail extends Component {
           <Button onClick={this.deleteGroup}>
             탈퇴
           </Button>
+          <Link to={routes.CLOUD_STORAGE.replace(':groupId', group.id)}>파일</Link>
+          <Link to={{
+            pathname: routes.MY_POLICY_LIST,
+            state: { groupId: group.id },
+          }}>벌금</Link>
         </Wrapper>
         
       </>
