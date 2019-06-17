@@ -15,18 +15,6 @@ const LogoutButton = props => {
   return (isLoggedIn
     ?
     <div>
-
-      <Link to={routes.GROUP_FORM} style={{ color: '#FFF' }}>
-        <Button animated>
-          <Button.Content visible>
-            그룹 생성
-          </Button.Content>
-          <Button.Content hidden>
-            <Icon name='group' />
-          </Button.Content>
-        </Button >
-      </Link>
-
       <Link to={routes.USER_SETTING} style={{ color: '#FFF' }}>
         <Button animated>
           <Button.Content visible>

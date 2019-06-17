@@ -66,31 +66,41 @@ class GroupDetail extends Component {
             ?
               group.is_open 
               ?
-                <div style={{textAlign:"right",size:"1.2rem"}} >
-                  그룹초대: <Icon style={{textAlign:"right"}} onClick={this.openCloseGroup} name='check circle outline'/>
+                <div>
+                  <div style={{textAlign:"right",size:"1.2rem"}} >
+                    그룹초대: <Icon style={{textAlign:"right"}} onClick={this.openCloseGroup} name='check circle outline'/>
+                  </div>
+                  <Title style={{marginTop: "0rem"}}>
+                    {group.name}
+                  </Title>
                 </div>
               :
-                <div style={{textAlign:"right",size:"1.2rem"}} >
-                  그룹초대: <Icon style={{textAlign:"right"}} onClick={this.openCloseGroup} name='circle outline'/>
+                <div>
+                  <div style={{textAlign:"right",size:"1.2rem"}} >
+                    그룹초대: <Icon style={{textAlign:"right"}} onClick={this.openCloseGroup} name='circle outline'/>
+                  </div>
+                  <Title style={{marginTop: "0rem"}}>
+                    {group.name}
+                  </Title>
                 </div>
             :
-            <></>
+              <Title>
+                {group.name}
+              </Title>
           }
-          <Title>
-            {group.name}
-          </Title>
+          
 
           <Div>미팅목록</Div>
 
           {meetings.map((meeting, index) =>
-            <div style={{textAlign:"left",marginTop:"1rem",fontSize:"1.2rem"}}>
+            <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.5rem"}}>
               <Link to={`${routes.MEETING_DETAIL.replace(':meetingId', meeting.id)}`}>
                 {meeting.time}
               </Link>
             </div>
           )}
 
-          <div style={{textAlign:"left",marginTop:"1rem",fontSize:"1.2rem"}}>
+          <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.5rem"}}>
             <Link to={{
               pathname: routes.MEETING_FORM,
               state: { groupId: group.id },
@@ -99,7 +109,8 @@ class GroupDetail extends Component {
             </Link>
           </div>
 
-          
+          <br />
+
           <Link to={{
               pathname: routes.GROUP_NOTICE_LIST,
               state: { groupId: group.id },
@@ -110,7 +121,7 @@ class GroupDetail extends Component {
           </Link>
           {groupNotices.map((groupNotice, index) => (
             <Fragment key={groupNotice.id}>
-              <div style={{textAlign:"left",marginTop:"1rem",fontSize:"1.2rem"}}>
+              <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.5rem"}}>
               <Link to={{
                 pathname: routes.GROUP_NOTICE_DETAIL.replace(':groupNoticeId', groupNotice.id),
                 state: { groupId },
@@ -120,7 +131,7 @@ class GroupDetail extends Component {
               </div>    
             </Fragment>
           ))}
-          <div style={{textAlign:"left",marginTop:"1rem",fontSize:"1.2rem"}}>
+          <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.5rem"}}>
           <Link to={{
             pathname: routes.GROUP_NOTICE_FORM,
             state: { groupId }
@@ -129,11 +140,14 @@ class GroupDetail extends Component {
             </Link>
           </div>
 
+          <br />
           <Div>
             Invitation Code
           </Div>
           <div style={{ fontSize: "1.2rem" , textAlign: "left"}}>{`${HOST}join_group/?token=${group.id}`}</div>
           
+
+          <br />
           <br />
           <Button>
             <Link to={routes.CHATTING.replace(':groupId', group.id)} style={{ color: "white" }}>

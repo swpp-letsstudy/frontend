@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 const GroupButton = styled(Button)`
 	&&&{
-		width: 8.2rem;
+		width: 12.3rem;
 		height: 3rem;
 		font-size: 1rem;
 		color: white;

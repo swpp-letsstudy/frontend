@@ -14,6 +14,7 @@ import Form from './GroupListForm'
 import Button from './GroupEnrollButton'
 import Link from './GroupLink'
 import Input from './GroupInput'
+import Div from './GroupDiv'
 
 
 class GroupList extends Component {
@@ -55,14 +56,29 @@ class GroupList extends Component {
             }
           />
 
+          <br />
+          <Div>
+            그룹 목록
+          </Div>
           {groups.map((group, index) => (
             <Fragment key={group.id}>
-              <Link to={`${routes.GROUP_DETAIL.replace(':groupId', group.id)}`}>
-                {group.name}
-              </Link>
-              <br />
+              <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.5rem"}}>
+                <Link to={`${routes.GROUP_DETAIL.replace(':groupId', group.id)}`}>
+                  {group.name}
+                </Link>
+                
+              </div>
+              
             </Fragment>
           ))}
+          <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.5rem"}}>
+            <Link to={routes.GROUP_FORM}>
+              그룹만들기
+            </Link>
+          </div>
+
+          <br />
+          <br />
 
           <LogoutButton />
         </Wrapper>
