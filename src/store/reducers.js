@@ -78,7 +78,6 @@ export const initialGroupState = {
   groupNotices: [],
   meetingNotices: [],
   policies: [],
-  meetingFines: [],
 }
 
 const groupReducer = handleActions({
@@ -119,14 +118,6 @@ const groupReducer = handleActions({
     onSuccess: (state, action) => {
       return Object.assign({}, state, {
         policies: action.payload.data
-      })
-    },
-  }),
-  ...pender({
-    type: ACTION_TYPES.LOAD_MEETING_FINES,
-    onSuccess: (state, action) => {
-      return Object.assign({}, state, {
-        meetingFines: action.payload.data
       })
     },
   }),

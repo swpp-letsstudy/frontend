@@ -84,7 +84,7 @@ class MeetingDetail extends Component {
           공지
         </Link>
         <Link to={{
-          pathname: routes.MY_MEETING_POLICY_LIST.replace(':meetingId', meeting.id),
+          pathname: routes.MY_MEETING_FINE_LIST.replace(':meetingId', meeting.id),
           state: {
             meetingId: meeting.id,
             groupId: meeting.group.id,

@@ -28,6 +28,6 @@ export default {
   POLICY_LIST: '/policies',
   POLICY_DETAIL: '/policies/:policyId',
   POLICY_FORM: '/policies/edit',
-  MY_MEETING_POLICY_LIST: '/my_policies/:meetingId',
+  MY_MEETING_FINE_LIST: '/my_policies/:meetingId',
   POLICY_CHECK: '/policy_check',
 }
