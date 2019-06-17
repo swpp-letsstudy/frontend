@@ -32,6 +32,6 @@ export default createActions({
   [ACTION_TYPES.LOAD_MEETINGS]: apis.loadMeetings,
   [ACTION_TYPES.LOAD_GROUP_NOTICES]: apis.loadGroupNotices,
   [ACTION_TYPES.LOAD_MEETING_NOTICES]: apis.loadMeetingNotices,
-  [ACTION_TYPES.LOAD_POLICIES]: apis.loadPolices,
+  [ACTION_TYPES.LOAD_POLICIES]: apis.loadPolicies,
   [ACTION_TYPES.LOAD_MEETING_FINES]: apis.loadMeetingFines,
 })
