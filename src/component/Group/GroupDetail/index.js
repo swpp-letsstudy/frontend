@@ -108,28 +108,14 @@ class GroupDetail extends Component {
               채팅하기
             </Link>
           </Button>
-          <Button>
-            <Link to={{
-              pathname: routes.MEETING_FORM,
-              state: { groupId: group.id },
-            }}
-              style={{ color: "white" }}>
-              미팅생성
-            </Link>
-          </Button>
+          
           <Button onClick={this.deleteGroup}>탈퇴</Button>
+          
           <Button>
-            <Link to={{
-              pathname: routes.GROUP_NOTICE_LIST,
-              state: { groupId: group.id },
-            }}
-              style={{ color: "white" }}>그룹 공지
-            </Link>
-          </Button>
-          <div>
           <Link to={routes.CLOUD_STORAGE.replace(':groupId', group.id)}>파일</Link>
-          </div>
+          </Button>
         </Wrapper>
+        
       </>
   }
 }
