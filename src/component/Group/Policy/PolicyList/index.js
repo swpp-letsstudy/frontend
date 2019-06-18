@@ -8,9 +8,8 @@ import actionCreators from 'store/actions'
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
 import Icon from 'component/Styles/Chevron'
-
-import Link from './PolicyLink'
-import Div from './PolicyDiv'
+import Link from 'component/Styles/Link'
+import Div from 'component/Styles/Div'
 
 class PolicyList extends Component {
   constructor(props) {
@@ -63,7 +62,7 @@ class PolicyList extends Component {
           </div>
         ))}
         {owner===nickname ? 
-        <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
+        <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.5rem", fontWeight:"bold"}}>
         <Link to={{
           pathname: routes.POLICY_FORM,
           state: { groupId },
