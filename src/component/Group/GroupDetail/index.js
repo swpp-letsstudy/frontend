@@ -111,14 +111,10 @@ class GroupDetail extends Component {
 
           <br />
 
-          <Link to={{
-              pathname: routes.GROUP_NOTICE_LIST,
-              state: { groupId: group.id },
-            }}>
-            <Div>
-              공지
-            </Div>
-          </Link>
+
+          <Div>
+            공지
+          </Div>
           {groupNotices.map((groupNotice, index) => (
             <Fragment key={groupNotice.id}>
               <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.5rem"}}>

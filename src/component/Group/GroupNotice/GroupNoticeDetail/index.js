@@ -13,7 +13,6 @@ import Title from 'component/Styles/Title'
 
 import Div from './GroupNoticeDiv'
 import Writer from './GroupNoticeWriter'
-
 import Icon from 'component/Styles/Chevron'
 
 class GroupNoticeDetail extends Component {
@@ -40,7 +39,7 @@ class GroupNoticeDetail extends Component {
     apis.deleteGroupNotice({groupNoticeId, groupId})
     .then(loadGroupNotices({ groupId }))
     .then(history.push({
-      pathname: routes.GROUP_NOTICE_LIST,
+      pathname: routes.GROUP_DETAIL.replace(':groupId', groupId),
       state: { groupId },
     }))
   }
@@ -49,13 +48,10 @@ class GroupNoticeDetail extends Component {
     const { groupId } = this.props
     const { notice } = this.state
     return (
-      <>
         <Wrapper>
           <Icon name='chevron left'>
-            <Link to={{
-              pathname: routes.GROUP_NOTICE_LIST,
-              state: { groupId },
-            }}>GroupNoticeList
+            <Link to={routes.GROUP_DETAIL.replace(':groupId', groupId)}>
+              MeetingList
             </Link>
           </Icon>
 
@@ -70,7 +66,6 @@ class GroupNoticeDetail extends Component {
             삭제
           </Button>
         </Wrapper>
-      </>
     )
   }
 }
