@@ -1,9 +1,16 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { Formik, Form, Field } from 'formik/dist/index'
+import { Button } from 'semantic-ui-react'
 
 import routes from 'routes'
 import apis from 'apis'
+
+import Wrapper from 'component/Styles/Wrapper'
+import Title from 'component/Styles/Title'
+import Icon from 'component/Styles/Chevron'
+
+import Link from './GroupLink'
+import Div from './GroupDivDetail'
 
 class GroupSetting extends Component {
   constructor(props) {
@@ -33,17 +40,22 @@ class GroupSetting extends Component {
             .then(history.push(routes.GROUP_DETAIL.replace(':groupId', groupId)))
         }}
         render={() =>
-          <>
-            <Link to={routes.GROUP_DETAIL.replace(':groupId', groupId)}>
-              GROUP_DETAIL
-            </Link>
-            <h1>GroupSetting</h1>
-            <h2>결석 1회당 벌금: {this.state.amount}원</h2>
+          <Wrapper>
+            <Icon name='chevron left'>
+              <Link to={routes.GROUP_DETAIL.replace(':groupId', groupId)}>
+                GroupDetail
+              </Link>
+            </Icon>
+            
+            <Title>GroupSetting</Title>
+            <hr/>
+
+            <Div>결석 1회당 벌금: {this.state.amount}원</Div>
             <Form>
                 <Field name='amount' type='number' />
-                <button type='submit'>수정</button>
+                <Button basic color='black' compact type='submit'>수정</Button>
             </Form>
-          </>
+          </Wrapper>
         }
       />
     )
