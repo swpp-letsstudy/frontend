@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
@@ -19,7 +19,7 @@ class MeetingList extends Component {
     return (
       <Wrapper>
         {meetings.map((meeting, index) =>
-          <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
+          <div key={meeting.id} style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
             <Link to={{
               pathname: routes.MEETING_DETAIL.replace(':meetingId', meeting.id),
               state: {
