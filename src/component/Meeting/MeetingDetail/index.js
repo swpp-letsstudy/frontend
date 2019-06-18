@@ -34,14 +34,6 @@ class MeetingDetail extends Component {
     loadMeetingNotices({ meetingId })
   }
 
-  // toggleUserAttendanceHandler = user => {
-  //   const { meeting } = this.state
-  //   const meetingId = meeting.id
-  //   apis.toggleAttendance({ userId: user.id, meetingId })
-  //     .then(() => apis.readMeeting({ meetingId }))
-  //     .then(value => this.setState({ meeting: value.data }))
-  // }
-
   deleteMeeting = () => {
     const { meeting } = this.state
     const { loadMeetings, history } = this.props
@@ -51,7 +43,7 @@ class MeetingDetail extends Component {
   }
 
   render() {
-    const { meetingNotices, meetingId, backurl, groupId, userId } = this.props
+    const { meetingNotices, meetingId, backurl, groupId, userId, nickname } = this.props
     const { meeting, fines } = this.state
     const isAttendance = meeting && meeting.attendances.includes(userId)
     return (meeting &&
@@ -104,11 +96,18 @@ class MeetingDetail extends Component {
         <Div>
           Fines
         </Div>
+        
+        <div>
           {isAttendance ? <></> : <div>Attendance</div>}
           {fines.map((fine, index) => (
             <div key={fine.id}>{fine.policy.name}</div>
           ))}
-
+          <br />
+          {meeting && (meeting.group.owner===nickname) ? <Link to={{
+            pathname: routes.MEETING_POLICY_MANAGE,
+            state: { meetingId, groupId },
+          }}>벌금 관리</Link>: <></>}
+        </div>
       </Wrapper>
     )
   }
