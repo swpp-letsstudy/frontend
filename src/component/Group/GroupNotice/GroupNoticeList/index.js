@@ -13,7 +13,11 @@ import Link from './GroupLink'
 
 class GroupList extends Component {
   componentDidMount() {
-    const { loadGroupNotices, groupId } = this.props
+    const { loadGroupNotices, groupId, setInfo } = this.props
+    setInfo({
+      groupId,
+      backurl: routes.GROUP_NOTICE_LIST,
+    })
     loadGroupNotices({ groupId })
   }
 
@@ -36,10 +40,7 @@ class GroupList extends Component {
             <Fragment key={groupNotice.id}>
               <Link to={{
                 pathname: routes.GROUP_NOTICE_DETAIL.replace(':groupNoticeId', groupNotice.id),
-                state: {
-                  groupId,
-                  backurl: routes.GROUP_NOTICE_LIST,
-                },
+                state: { groupId },
               }}>
                 {groupNotice.title}
               </Link>
@@ -66,6 +67,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadGroupNotices: payload => dispatch(actionCreators.loadGroupNotices(payload)),
+  setInfo: payload => dispatch(actionCreators.setInfo(payload)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(GroupList)

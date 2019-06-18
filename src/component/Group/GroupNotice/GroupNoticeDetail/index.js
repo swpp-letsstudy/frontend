@@ -78,7 +78,7 @@ class GroupNoticeDetail extends Component {
 }
 
 const mapStateToProps = state => ({
-  
+  backurl: state.groupReducer.backurl,
 })
 
 const mapDispatchToProps = dispatch => ({

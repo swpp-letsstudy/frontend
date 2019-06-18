@@ -27,7 +27,11 @@ class GroupDetail extends Component {
   }
 
   componentDidMount() {
-    const { loadFewMeetings, groupId, loadFewGroupNotices } = this.props
+    const { loadFewMeetings, groupId, loadFewGroupNotices, setInfo } = this.props
+    setInfo({
+      groupId,
+      backurl: routes.GROUP_DETAIL.replace(':groupId', groupId),
+    })
     apis.readGroup({ groupId }).then(value => this.setState({
       group: value.data
     }))
@@ -76,7 +80,7 @@ class GroupDetail extends Component {
   }
 
   render() {
-    const { group, sum  } = this.state
+    const { group, sum } = this.state
     const { meetings, nickname, groupNotices, groupId } = this.props
     return group &&
       <Wrapper>
@@ -158,10 +162,10 @@ class GroupDetail extends Component {
           </Div>
         </Link>
         {meetings.map((meeting, index) =>
-          <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
+          <div key={meeting.id} style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
             <Link to={{
               pathname: routes.MEETING_DETAIL.replace(':meetingId', meeting.id),
-              state: { backurl: routes.GROUP_DETAIL.replace(':groupId', groupId) },
+              state: { groupId },
             }}>
               {meeting.time.substring(0,10)} {meeting.time.substring(11,13)}시 {meeting.time.substring(14,16)}분
             </Link>
@@ -184,11 +188,8 @@ class GroupDetail extends Component {
             <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
             <Link to={{
               pathname: routes.GROUP_NOTICE_DETAIL.replace(':groupNoticeId', groupNotice.id),
-              state: {
-                groupId,
-                backurl: routes.GROUP_DETAIL.replace(':groupId', groupId),
-              },
-            }}>
+              state: { groupId },
+            }} onClick={this.setBackUrl}>
               {groupNotice.title}
             </Link>
             </div>    
@@ -246,6 +247,7 @@ const mapDispatchToProps = dispatch => ({
   loadFewMeetings: payload => dispatch(actionCreators.loadFewMeetings(payload)),
   loadFewGroupNotices: payload => dispatch(actionCreators.loadFewGroupNotices(payload)),
   loadGroupNotices: payload => dispatch(actionCreators.loadGroupNotices(payload)),
+  setInfo: payload => dispatch(actionCreators.setInfo(payload)),
 })
 
 
