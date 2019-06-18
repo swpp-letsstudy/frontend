@@ -7,9 +7,9 @@ import routes from 'routes'
 import apis from 'apis'
 
 import { Button } from 'semantic-ui-react'
+
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
-
 import Icon from 'component/Styles/Chevron'
 
 class MeetingNoticeDetail extends Component {
@@ -50,9 +50,10 @@ class MeetingNoticeDetail extends Component {
         <Wrapper>
           <Icon name='chevron left'>
             <Link to={{
-              pathname: routes.MEETING_NOTICE_LIST,
+              pathname: routes.MEETING_DETAIL.replace(':meetingId', meetingId),
               state: { meetingId },
-            }}>MeetingNoticeList
+            }}>
+              MeetingList
             </Link>
           </Icon>
 

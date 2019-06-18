@@ -2,15 +2,19 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Form, Formik, Field } from 'formik/dist/index'
 import { Button } from 'semantic-ui-react'
-import Icon from 'component/Styles/Chevron'
 
 import { connect } from 'react-redux'
 import actionCreators from 'store/actions'
 import apis from 'apis'
 import routes from 'routes'
 
+import Wrapper from 'component/Styles/Wrapper'
+import Title from 'component/Styles/Title'
+import Icon from 'component/Styles/Chevron'
+
 const MeetingNoticeForm = props => {
   const { history, meetingId, loadMeetingNotices } = props
+  console.log(meetingId)
   return (
     <Formik
       initialValues={{
@@ -26,10 +30,10 @@ const MeetingNoticeForm = props => {
         })
       }}
       render={() =>
-        <>
+        <Wrapper>
           <Icon name='chevron left'>
             <Link to={{
-              pathname: routes.MEETING_NOTICE_LIST,
+              pathname: routes.MEETING_DETAIL.replace(':meetingId', meetingId),
               state: { meetingId },
             }}>
               MeetingDetail
@@ -41,7 +45,7 @@ const MeetingNoticeForm = props => {
             <Field name='contents'/>
             <Button type='submit'>그룹 공지 생성</Button>
           </Form>
-        </>
+        </Wrapper>
       }
     />
   )
