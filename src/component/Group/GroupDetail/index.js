@@ -82,6 +82,7 @@ class GroupDetail extends Component {
   render() {
     const { group, sum } = this.state
     const { meetings, nickname, groupNotices, groupId } = this.props
+    
     return group &&
       <Wrapper>
         <Icon name='chevron left'>
@@ -223,6 +224,21 @@ class GroupDetail extends Component {
         <br />
 
         <Div>
+          스터디기간
+        </Div>
+        <div>
+            {group.startday}~{group.endday}
+        </div>
+        <Div>
+          스터디 요일
+        </Div>
+        <div>
+            {days(group.monday,group.tuesday,group.wednesday,group.thursday,group.friday,group.saturday,group.sunday)}
+        </div>
+
+
+
+        <Div>
           Invitation Code
         </Div>
         <div style={{ fontSize: "1.2rem" , textAlign: "left"}}>{`${HOST}join_group/?token=${group.id}`}</div>
@@ -235,6 +251,19 @@ class GroupDetail extends Component {
         </div>
       </Wrapper>
   }
+}
+
+const days = (a,b,c,d,e,f,g) => {
+  let str = ''
+  if(a) str+='월'
+  if(b) str+=', 화'
+  if(c) str+=', 수'
+  if(d) str+=', 목'
+  if(e) str+=', 금'
+  if(f) str+=', 토'
+  if(g) str+=', 일'
+  if(str.startsWith(',')) str = str.substring(2,str.length)
+  return <div>{str}</div>
 }
 
 const mapStateToProps = state => ({
