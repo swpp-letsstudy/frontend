@@ -30,7 +30,7 @@ class PolicyList extends Component {
     return (
       <>
         <Link to={{
-          pathname: routes.MY_POLICY_LIST,
+          pathname: routes.GROUP_DETAIL.replace(':groupId', groupId),
           state: { groupId },
         }}>
           MyPolicyList

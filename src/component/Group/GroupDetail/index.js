@@ -19,6 +19,8 @@ class GroupDetail extends Component {
     super(props)
     this.state = {
       group: null,
+      sum: 0,
+      myFines: [],
     }
   }
 
@@ -26,6 +28,14 @@ class GroupDetail extends Component {
     const { loadMeetings, groupId, loadGroupNotices } = this.props
     apis.readGroup({ groupId }).then(value => this.setState({
       group: value.data
+    }))
+    apis.readMyFines({ groupId })
+    .then(value => this.setState({
+      myFines: value.data,
+    }))
+    apis.getFineSum({ groupId })
+    .then(value => this.setState({
+      sum: value.data,
     }))
     loadMeetings({ groupId }).then(value => this.setState({
       meetings: value.data,
@@ -52,7 +62,7 @@ class GroupDetail extends Component {
   }
 
   render() {
-    const { group } = this.state
+    const { group, myFines, sum  } = this.state
     const { meetings, nickname, groupNotices, groupId } = this.props
     return group &&
       <>
@@ -90,8 +100,9 @@ class GroupDetail extends Component {
           }
           
           <div>{group.attendance_amount}</div>
-          <Div>미팅목록</Div>
-
+          <Div>
+            미팅목록
+          </Div>
           {meetings.map((meeting, index) =>
             <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.5rem"}}>
               <Link to={`${routes.MEETING_DETAIL.replace(':meetingId', meeting.id)}`}>
@@ -99,7 +110,6 @@ class GroupDetail extends Component {
               </Link>
             </div>
           )}
-
           <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.5rem"}}>
             <Link to={{
               pathname: routes.MEETING_FORM,
@@ -110,7 +120,6 @@ class GroupDetail extends Component {
           </div>
 
           <br />
-
 
           <Div>
             공지
@@ -137,6 +146,7 @@ class GroupDetail extends Component {
           </div>
 
           <br />
+
           <Div>
             Invitation Code
           </Div>
@@ -144,6 +154,21 @@ class GroupDetail extends Component {
           
 
           <br />
+
+          <Link to={{
+            pathname: routes.POLICY_LIST,
+            state: { groupId },
+          }}>
+            <Div>
+              벌금
+            </Div>
+          </Link>
+  
+          <div style={{ fontSize: "1.2rem" , textAlign: "left"}}>
+            {sum}원
+          </div>
+          <br />
+
           <br />
           <Button>
             <Link to={routes.CHATTING.replace(':groupId', group.id)} style={{ color: "white" }}>
@@ -154,8 +179,8 @@ class GroupDetail extends Component {
           
           <Button>
             <Link to={{
-              pathname: routes.MY_POLICY_LIST,
-              state: { groupId: group.id },
+              pathname: routes.POLICY_LIST,
+              state: { groupId },
             }} style={{ color: "white" }}>
               벌금
             </Link>
