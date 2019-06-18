@@ -153,7 +153,9 @@ class GroupDetail extends Component {
           pathname: routes.MEETING_LIST,
           state: { groupId },
         }}>
+          <Div>
           미팅목록
+          </Div>
         </Link>
         {meetings.map((meeting, index) =>
           <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
@@ -165,7 +167,7 @@ class GroupDetail extends Component {
             </Link>
           </div>
         )}
-        <div onClick={this.appendMeeting}>더보기</div>
+        <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}} onClick={this.appendMeeting}>더보기</div>
 
         <br />
 
@@ -173,7 +175,9 @@ class GroupDetail extends Component {
           pathname: routes.GROUP_NOTICE_LIST,
           state: { groupId },
         }}>
+          <Div>
           공지
+          </Div>
         </Link>
         {groupNotices.map((groupNotice, index) => (
           <Fragment key={groupNotice.id}>
@@ -190,7 +194,7 @@ class GroupDetail extends Component {
             </div>    
           </Fragment>
         ))}
-        <div onClick={this.appendGroupNotice}>더보기</div>
+        <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}} onClick={this.appendGroupNotice}>더보기</div>
 
         <br />
 

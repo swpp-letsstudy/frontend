@@ -8,11 +8,11 @@ import apis from 'apis'
 
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
+import Icon from 'component/Styles/Chevron'
 
 import Link from './GroupLink'
 import Div from './GroupNoticeDiv'
 import Writer from './GroupNoticeWriter'
-import Icon from 'component/Styles/Chevron'
 
 class GroupNoticeDetail extends Component {
   constructor(props) {

@@ -3,8 +3,7 @@ import styled from 'styled-components'
 import "styles/utils.scss"
 
 const NoticeField = styled(Field)`
-border-radius: 8px;
-outline: none;
+border-color: black;
 padding: 1rem;
 font-size: 1.5rem;
 font-weight: 400;
