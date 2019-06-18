@@ -28,6 +28,7 @@ const App = () =>
 
       <PrivateRoute path={routes.GROUP_SETTING} component={pages.GroupSettingPage}/>
 
+      <PrivateRoute exact path={routes.GROUP_NOTICE_LIST} component={pages.GroupNoticeListPage}/>
       <PrivateRoute path={routes.GROUP_NOTICE_FORM} component={pages.GroupNoticeFormPage}/>
       <PrivateRoute path={routes.GROUP_NOTICE_DETAIL} component={pages.GroupNoticeDetailPage}/>
 
