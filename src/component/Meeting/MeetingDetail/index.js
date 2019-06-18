@@ -1,12 +1,11 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
 import Icon from 'component/Styles/Chevron'
-
-import Div from './MeetingDivDetail'
-import Link from './MeetingDetailLink'
+import Link from 'component/Styles/Link'
+import Div from 'component/Styles/Div'
 
 import actionCreators from 'store/actions'
 import apis from 'apis'
@@ -51,16 +50,15 @@ class MeetingDetail extends Component {
   }
 
   render() {
-    const { meetingNotices, meetingId, backurl } = this.props
+    const { meetingNotices, meetingId, backurl, groupId } = this.props
     const { meeting } = this.state
-    console.log(meetingId)
     return (meeting &&
       <Wrapper>
         <Icon name='chevron left'>
         {meeting &&
           <Link to={{
             pathname: backurl,
-            state: { groupId: meeting.group.id },
+            state: { groupId },
           }}>
             {backurl===routes.MEETING_LIST ?
             'MeetingList' :
@@ -80,15 +78,15 @@ class MeetingDetail extends Component {
         </Div>
 
         {meetingNotices.map((meetingNotice, index) => (
-          <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
-          <Fragment key={meetingNotice.id}>
+          <div key={meetingNotice.id} style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
             <Link to={{
               pathname: routes.MEETING_NOTICE_DETAIL.replace(':meetingNoticeId', meetingNotice.id),
-              state: { meetingId },
+              state: {
+                meetingId,
+              },
             }}>
               {meetingNotice.title}
             </Link>
-          </Fragment>
           </div>
         ))}
 
@@ -124,6 +122,8 @@ class MeetingDetail extends Component {
 const mapStateToProps = state => ({
   userId: state.userReducer.user.id,
   meetingNotices: state.groupReducer.meetingNotices,
+  backurl: state.groupReducer.backurl,
+  groupId: state.groupReducer.groupId,
 })
 
 const mapDispatchToProps = dispatch => ({

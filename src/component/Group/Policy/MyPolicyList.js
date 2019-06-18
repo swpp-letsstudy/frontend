@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
+import actionCreators from 'store/actions'
 import routes from 'routes'
 import apis from 'apis'
 
@@ -15,7 +17,11 @@ class MyPolicyForm extends Component {
   }
 
   componentDidMount() {
-    const { groupId } = this.props
+    const { groupId, setInfo } = this.props
+    setInfo({
+      groupId,
+      backurl: routes.MY_POLICY_LIST,
+    })
     apis.readMyGroupFines({ groupId })
     .then(value => this.setState({
       myFines: value.data,
@@ -29,6 +35,7 @@ class MyPolicyForm extends Component {
   render() {
     const { groupId } = this.props
     const { myFines, sum } = this.state
+    console.log(myFines)
     return (
       <>
         <Link to={routes.GROUP_DETAIL.replace(':groupId', groupId)}>
@@ -39,18 +46,28 @@ class MyPolicyForm extends Component {
         <br />
         <h1>총 벌금: {sum}</h1>
         <br />
-        {myFines.map((fine, index) => {
-          const info = fine.meeting_fine
-          return (
+        <br />
+        <br />
+        {myFines.map((fine, index) => (
           <Fragment key={fine.id}>
-            <Link to={routes.MEETING_DETAIL.replace(':meetingId', info.meeting.id)}>{info.meeting.info}</Link>
-            <div>{info.policy.name} {info.policy.amount}</div>
+            <Link to={routes.MEETING_DETAIL.replace(':meetingId', fine.meeting.id)}>{fine.meeting.info}</Link>
+            <h1>{fine.policy.name} {fine.policy.amount}</h1>
+            <br />
             <br />
           </Fragment>
-        )})}
+        ))}
       </>
     )
   }
 }
 
-export default MyPolicyForm
+const mapStateToProps = state => ({
+  
+})
+
+const mapDispatchToProps = dispatch => ({
+  setInfo: payload => dispatch(actionCreators.setInfo(payload)),
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyPolicyForm)

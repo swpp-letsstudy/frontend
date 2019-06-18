@@ -7,16 +7,15 @@ import actionCreators from 'store/actions'
 import apis from 'apis'
 import routes from 'routes'
 
-import Link from './MeetingLink'
 import Field from './NoticeField'
 
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
 import Icon from 'component/Styles/Chevron'
+import Link from 'component/Styles/Link'
 
 const MeetingNoticeForm = props => {
   const { history, meetingId, loadMeetingNotices } = props
-  console.log(meetingId)
   return (
     <Formik
       initialValues={{

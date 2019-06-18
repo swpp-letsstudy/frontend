@@ -9,9 +9,9 @@ import apis from 'apis'
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
 import Icon from 'component/Styles/Chevron'
+import Link from 'component/Styles/Link'
+import Div from 'component/Styles/Div'
 
-import Link from './GroupLink'
-import Div from './GroupNoticeDiv'
 import Writer from './GroupNoticeWriter'
 
 class GroupNoticeDetail extends Component {
@@ -78,7 +78,7 @@ class GroupNoticeDetail extends Component {
 }
 
 const mapStateToProps = state => ({
-  
+  backurl: state.groupReducer.backurl,
 })
 
 const mapDispatchToProps = dispatch => ({

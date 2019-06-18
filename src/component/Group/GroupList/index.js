@@ -9,12 +9,12 @@ import { Formik } from 'formik/dist/index'
 
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
+import Link from 'component/Styles/Link'
+import Div from 'component/Styles/Div'
 
 import Form from './GroupListForm'
 import Button from './GroupEnrollButton'
-import Link from './GroupLink'
 import Input from './GroupInput'
-import Div from './GroupDiv'
 
 
 class GroupList extends Component {
@@ -63,12 +63,10 @@ class GroupList extends Component {
           {groups.map((group, index) => (
             <Fragment key={group.id}>
               <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.5rem"}}>
-                <Link to={`${routes.GROUP_DETAIL.replace(':groupId', group.id)}`}>
+                <Link to={routes.GROUP_DETAIL.replace(':groupId', group.id)}>
                   {group.name}
                 </Link>
-                
               </div>
-              
             </Fragment>
           ))}
           <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.5rem"}}>

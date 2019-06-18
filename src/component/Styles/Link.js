@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 import styled from 'styled-components'
 
-const MeetingDetailLink = styled(Link)`
+const LinkIcon = styled(Link)`
 	&&&{
     color: black;
     margin: auto;
@@ -12,4 +12,4 @@ const MeetingDetailLink = styled(Link)`
 	}
 `
 
-export default MeetingDetailLink
+export default LinkIcon
