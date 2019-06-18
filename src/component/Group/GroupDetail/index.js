@@ -89,7 +89,7 @@ class GroupDetail extends Component {
               </Title>
           }
           
-
+          <div>{group.attendance_amount}</div>
           <Div>미팅목록</Div>
 
           {meetings.map((meeting, index) =>
@@ -174,7 +174,6 @@ class GroupDetail extends Component {
           <Button onClick={this.deleteGroup}>
             탈퇴
           </Button>
-
         </Wrapper>
         
       </>
