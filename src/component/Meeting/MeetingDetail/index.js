@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 
-import { Button } from 'semantic-ui-react'
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
 import Icon from 'component/Styles/Chevron'
@@ -22,11 +21,12 @@ class MeetingDetail extends Component {
   }
 
   componentDidMount() {
-    const { match } = this.props
+    const { match, loadMeetingNotices } = this.props
     const { meetingId } = match.params
     apis.readMeeting({ meetingId }).then(value => this.setState({
       meeting: value.data,
     }))
+    loadMeetingNotices({ meetingId })
   }
 
   toggleUserAttendanceHandler = user => {
@@ -51,7 +51,9 @@ class MeetingDetail extends Component {
   }
 
   render() {
+    const { meetingNotices, meetingId } = this.props
     const { meeting } = this.state
+    console.log(meetingId)
     return (meeting &&
       <Wrapper>
         <Icon name='chevron left'>
@@ -60,41 +62,55 @@ class MeetingDetail extends Component {
             MeetingList
           </Link>
         }
-          
         </Icon>
-        <Title>Attendance</Title>
-        <Div>
-          Meeting Time: {meeting.time}
-        </Div>
-          {meeting.group.members.map((user, index) =>
-            <Div key={user.id}>
-              {user.nickname}
-              {this.isAttendance(user) ?
-                <Icon onClick={() => this.toggleUserAttendanceHandler(user)} name='check circle outline' />
-                :
-                <Icon onClick={() => this.toggleUserAttendanceHandler(user)} name='times circle outline' />
-              }
+        <div style={{textAlignLast:'right'}} >
+        <Icon name='trash' onClick={this.deleteMeeting}/>
+        </div>
 
-            </Div>
-          )}
-        <Link to={{
-          pathname: routes.MEETING_NOTICE_LIST,
-          state: { meetingId: meeting.id }
-        }}>
+        <Title style={{marginTop: '0rem'}}>{meeting.time.substring(0, 10)} {meeting.time.substring(11,13)}시 {meeting.time.substring(14,16)}분</Title>
+
+        
+        <Div>
           공지
-        </Link>
-        <Link to={{
-          pathname: routes.MY_MEETING_FINE_LIST.replace(':meetingId', meeting.id),
-          state: {
-            meetingId: meeting.id,
-            groupId: meeting.group.id,
-          }
-        }}>
-          벌금
-        </Link>
-        <Button onClick={this.deleteMeeting}>
-          삭제
-        </Button>
+        </Div>
+
+        {meetingNotices.map((meetingNotice, index) => (
+          <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
+          <Fragment key={meetingNotice.id}>
+            <Link to={{
+              pathname: routes.MEETING_NOTICE_DETAIL.replace(':meetingNoticeId', meetingNotice.id),
+              state: { meetingId },
+            }}>
+              {meetingNotice.title}
+            </Link>
+          </Fragment>
+          </div>
+        ))}
+
+        <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
+          <Link to={{
+            pathname: routes.MEETING_NOTICE_FORM,
+            state: { meetingId }
+          }}>새로만들기</Link>
+        </div>
+
+        <br/>
+
+        <Div>
+          Fines
+        </Div>
+
+          {meeting.group.members.map((user, index) =>
+            <div style={{textAlign:"left",fontSize:"1.2rem", marginTop:"0.8rem"}} key={user.id}>
+              {this.isAttendance(user) ?
+                <Icon style={{ fontSize: "1.2rem"}} onClick={() => this.toggleUserAttendanceHandler(user)} name='check circle outline' />
+                :
+                <Icon style={{ fontSize: "1.2rem"}} onClick={() => this.toggleUserAttendanceHandler(user)} name='times circle outline' />
+              }
+              {user.nickname}
+            </div>
+          )}
+
       </Wrapper>
     )
   }
@@ -102,10 +118,12 @@ class MeetingDetail extends Component {
 
 const mapStateToProps = state => ({
   userId: state.userReducer.user.id,
+  meetingNotices: state.groupReducer.meetingNotices,
 })
 
 const mapDispatchToProps = dispatch => ({
   loadMeetings: payload => dispatch(actionCreators.loadMeetings(payload)),
+  loadMeetingNotices: payload => dispatch(actionCreators.loadMeetingNotices(payload)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MeetingDetail)

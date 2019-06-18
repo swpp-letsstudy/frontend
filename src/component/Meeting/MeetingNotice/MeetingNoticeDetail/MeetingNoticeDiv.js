@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const GroupDiv = styled.div`
+const MeetingDiv = styled.div`
 	&&&{
         font-size: 1.3rem;
         color: black;
@@ -11,4 +11,4 @@ const GroupDiv = styled.div`
 	}
 `
 
-export default GroupDiv
+export default MeetingDiv

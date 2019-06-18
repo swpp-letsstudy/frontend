@@ -9,8 +9,6 @@ const App = () =>
     <Switch>
       <Redirect exact from='/' to={routes.GROUP_LIST}/>
       <PrivateRoute exact path={routes.GROUP_LIST} component={pages.GroupListPage}/>
-      <PrivateRoute exact path={routes.GROUP_NOTICE_LIST} component={pages.GroupNoticeListPage}/>
-      <PrivateRoute exact path={routes.MEETING_NOTICE_LIST} component={pages.MeetingNoticeListPage}/>
 
       <Route path={routes.LOGIN} component={pages.LoginPage}/>
       <Route path={routes.REGISTER} component={pages.RegisterPage}/>

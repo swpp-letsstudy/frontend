@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 import styled from 'styled-components'
 
-const GroupLink = styled(Link)`
+const MeetingLink = styled(Link)`
 	&&&{
     color: black;
     margin: auto;
@@ -12,4 +12,4 @@ const GroupLink = styled(Link)`
 	}
 `
 
-export default GroupLink
+export default MeetingLink

@@ -32,12 +32,21 @@ class FileUploader extends Component {
             render={({setFieldValue}) => {
               const inputId = 'file'
               return (
-                  <Form>
-                    <Input id={inputId} type='file' name='file'
-                           style={{display: 'hidden'}}
+                  <Form 
+                    style={{width: '25rem'}}
+                  >
+                    <div>
+                      <Input id={inputId} type='file' name='file'
+                           style={{display: 'hidden', width:'70%'}}
                            onChange={event =>
                                setFieldValue('file', event.currentTarget.files[0])}/>
-                    <Button type='submit'>Submit</Button>
+                      <Button 
+                        style={{width: '25%'}}
+                        type='submit'>
+                      
+                        Submit
+                      </Button>
+                    </div>
                   </Form>
               )
             }}

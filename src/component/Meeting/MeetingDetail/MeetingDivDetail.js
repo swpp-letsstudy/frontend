@@ -2,13 +2,13 @@ import styled from 'styled-components'
 
 const MeetingDiv = styled.div`
 	&&&{
-    padding: 1rem;
-    font-size: 1.2rem;
-    color: black;
-    margin: auto;
-    display: flex;
-    height: 2.5rem;
-    width: 25rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+        display: flex;
+        margin-top: 1.5rem;
+        margin-bottom: 1rem;
+        text-decoration: underline;
+        text-underline-position: under;
 	}
 `
 

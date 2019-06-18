@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 const GroupDiv = styled.div`
 	&&&{
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-weight: bold;
         display: flex;
         margin-top: 1.5rem;

@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 import actionCreators from 'store/actions'
 import routes from 'routes'
 import apis from 'apis'
 
-import { Button } from 'semantic-ui-react'
+
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
-
 import Icon from 'component/Styles/Chevron'
+
+import Link from './MeetingLink'
+import Div from './MeetingNoticeDiv'
+import Writer from './MeetingNoticeWriter'
 
 class MeetingNoticeDetail extends Component {
   constructor(props) {
@@ -37,7 +39,7 @@ class MeetingNoticeDetail extends Component {
     apis.deleteMeetingNotice({meetingNoticeId, meetingId})
     .then(loadMeetingNotices({ meetingId }))
     .then(history.push({
-      pathname: routes.MEETING_NOTICE_LIST,
+      pathname: routes.MEETING_DETAIL.replace(':meetingId', meetingId),
       state: { meetingId },
     }))
   }
@@ -50,22 +52,24 @@ class MeetingNoticeDetail extends Component {
         <Wrapper>
           <Icon name='chevron left'>
             <Link to={{
-              pathname: routes.MEETING_NOTICE_LIST,
+              pathname: routes.MEETING_DETAIL.replace(':meetingId', meetingId),
               state: { meetingId },
-            }}>MeetingNoticeList
+            }}>
+              MeetingList
             </Link>
           </Icon>
 
-          <div>
+          <Title>{notice.title}</Title>
+          
+          <Writer>
           Writer: {notice.writer && notice.writer.nickname}
+          </Writer>
+
+          <hr />
+          <Div>{notice.contents}</Div>
+          <div style={{textAlign: 'right'}}>
+          <Icon name='trash alternate outline' onClick={this.deleteMeetingNotice} style={{fontSize: '1.5rem'}}/>
           </div>
-          <Title>Title</Title>
-          <div>{notice.title}</div>
-          <Title>Contents</Title>
-          <div>{notice.contents}</div>
-          <Button onClick={this.deleteMeetingNotice}>
-            삭제
-          </Button>
         </Wrapper>
       </>
     )
