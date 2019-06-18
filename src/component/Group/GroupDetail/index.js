@@ -79,153 +79,147 @@ class GroupDetail extends Component {
     const { group, sum  } = this.state
     const { meetings, nickname, groupNotices, groupId } = this.props
     return group &&
-      <>
-        <Wrapper>
-          <Icon name='chevron left'>
-            <Link to={routes.GROUP_LIST}>
-              GroupList
-            </Link>
-          </Icon>
+      <Wrapper>
+        <Icon name='chevron left'>
+          <Link to={routes.GROUP_LIST}>
+            GroupList
+          </Link>
+        </Icon>
 
-          {group.owner === nickname 
+        {group.owner === nickname 
+          ?
+            group.is_open 
             ?
-              group.is_open 
-              ?
-                <div>
-                  <div style={{textAlign:"right",size:"1.2rem"}} >
-                    가입허용: <Icon style={{textAlign:"right"}} onClick={this.openCloseGroup} name='check circle outline'/>
-                    
-                    <Link to={
-                      {
-                        pathname: routes.GROUP_SETTING,
-                        state: { groupId },
-                      }}
-                    >
-                      <Icon name='setting'/>
-                    </Link>
-                  </div>
-                  <Title style={{marginTop: "0rem"}}>
-                    {group.name}
-                  </Title>
+              <div>
+                <div style={{textAlign:"right",size:"1.2rem"}} >
+                  가입허용: <Icon style={{textAlign:"right"}} onClick={this.openCloseGroup} name='check circle outline'/>
+                  
+                  <Link to={
+                    {
+                      pathname: routes.GROUP_SETTING,
+                      state: { groupId },
+                    }}
+                  >
+                    <Icon name='setting'/>
+                  </Link>
                 </div>
-              :
-                <div>
-                  <div style={{textAlign:"right",size:"1.2rem"}} >
-                    가입허용: <Icon style={{textAlign:"right"}} onClick={this.openCloseGroup} name='circle outline'/>
-                  </div>
-                  <Title style={{marginTop: "0rem"}}>
-                    {group.name}
-                  </Title>
-                </div>
+                <Title style={{marginTop: "0rem"}}>
+                  {group.name}
+                </Title>
+              </div>
             :
-              <Title>
-                {group.name}
-              </Title>
-          }
+              <div>
+                <div style={{textAlign:"right",size:"1.2rem"}} >
+                  가입허용: <Icon style={{textAlign:"right"}} onClick={this.openCloseGroup} name='circle outline'/>
+                  <Link to={
+                    {
+                      pathname: routes.GROUP_SETTING,
+                      state: {
+                        groupId,
+                        attendance_amount: group.attendance_amount,
+                      },
+                    }}
+                  >
+                    <Icon name='setting'/>
+                  </Link>
+                </div>
+                <Title style={{marginTop: "0rem"}}>
+                  {group.name}
+                </Title>
+              </div>
+          :
+            <Title>
+              {group.name}
+            </Title>
+        }
 
 
-          <hr/>
-          <div style={{textAlignLast:'center'}}>
-          <Button basic color='black' compact>
-            <Link to={routes.CHATTING.replace(':groupId', group.id)}>
-              채팅
-            </Link>
-          </Button>
-          
-          <Button basic color='black' compact>
-            <Link to={routes.CLOUD_STORAGE.replace(':groupId', group.id)}>
-              파일
-            </Link>
-          </Button>
-          </div>
-
-          <div>{group.attendance_amount}</div>
-          <Div>
-            미팅목록
-          </Div>
-          {meetings.map((meeting, index) =>
-            <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
-              <Link to={`${routes.MEETING_DETAIL.replace(':meetingId', meeting.id)}`}>
-                {meeting.time.substring(0,10)} {meeting.time.substring(11,13)}시 {meeting.time.substring(14,16)}분
-              </Link>
-            </div>
-          )}
-          <div onClick={this.appendMeeting}>더보기</div>
-          <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
-            <Link to={{
-              pathname: routes.MEETING_FORM,
-              state: { groupId: group.id },
-            }}>
-              미팅만들기
-            </Link>
-          </div>
-
-          <br />
-
-          <Div>
-            공지
-          </Div>
-          {groupNotices.map((groupNotice, index) => (
-            <Fragment key={groupNotice.id}>
-              <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
-              <Link to={{
-                pathname: routes.GROUP_NOTICE_DETAIL.replace(':groupNoticeId', groupNotice.id),
-                state: { groupId },
-              }}>
-                {groupNotice.title}
-              </Link>
-              </div>    
-            </Fragment>
-          ))}
-          <div onClick={this.appendGroupNotice}>더보기</div>
-          <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
-          <Link to={{
-            pathname: routes.GROUP_NOTICE_FORM,
-            state: { groupId }
-          }}>
-            새로만들기
-            </Link>
-          </div>
-
-          <br />
-
-          
-
-          <Link to={{
-            pathname: routes.POLICY_LIST,
-            state: { groupId },
-          }}>
-            <Div>
-              벌금
-            </Div>
+        <hr/>
+        <div style={{textAlignLast:'center'}}>
+        <Button basic color='black' compact>
+          <Link to={routes.CHATTING.replace(':groupId', group.id)}>
+            채팅
           </Link>
-  
-          <Link to={{
-            pathname: routes.MY_POLICY_LIST,
-            state: { groupId },
-          }}>
-            <div style={{ fontSize: "1.2rem" , textAlign: "left"}}>
-              {sum}원
-            </div>
-          </Link>
-
-
-          <br />
-
-          <Div>
-            Invitation Code
-          </Div>
-          <div style={{ fontSize: "1.2rem" , textAlign: "left"}}>{`${HOST}join_group/?token=${group.id}`}</div>
-          
-          <br/>
-
-          <div style={{textAlign: 'center'}} onClick={this.deleteGroup}>
-          <Icon name='sign out'/>
-          그룹 탈퇴
-          </div>
-        </Wrapper>
+        </Button>
         
-      </>
+        <Button basic color='black' compact>
+          <Link to={routes.CLOUD_STORAGE.replace(':groupId', group.id)}>
+            파일
+          </Link>
+        </Button>
+        </div>
+
+        <Link to={{
+          pathname: routes.MEETING_LIST,
+          state: { groupId },
+        }}>
+          미팅목록
+        </Link>
+        {meetings.map((meeting, index) =>
+          <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
+            <Link to={`${routes.MEETING_DETAIL.replace(':meetingId', meeting.id)}`}>
+              {meeting.time.substring(0,10)} {meeting.time.substring(11,13)}시 {meeting.time.substring(14,16)}분
+            </Link>
+          </div>
+        )}
+        <div onClick={this.appendMeeting}>더보기</div>
+
+        <br />
+
+        <Div>
+          공지
+        </Div>
+        {groupNotices.map((groupNotice, index) => (
+          <Fragment key={groupNotice.id}>
+            <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
+            <Link to={{
+              pathname: routes.GROUP_NOTICE_DETAIL.replace(':groupNoticeId', groupNotice.id),
+              state: { groupId },
+            }}>
+              {groupNotice.title}
+            </Link>
+            </div>    
+          </Fragment>
+        ))}
+        <div onClick={this.appendGroupNotice}>더보기</div>
+
+        <br />
+
+        
+
+        <Link to={{
+          pathname: routes.POLICY_LIST,
+          state: { groupId },
+        }}>
+          <Div>
+            벌금
+          </Div>
+        </Link>
+
+        <Link to={{
+          pathname: routes.MY_POLICY_LIST,
+          state: { groupId },
+        }}>
+          <div style={{ fontSize: "1.2rem" , textAlign: "left"}}>
+            {sum}원
+          </div>
+        </Link>
+
+
+        <br />
+
+        <Div>
+          Invitation Code
+        </Div>
+        <div style={{ fontSize: "1.2rem" , textAlign: "left"}}>{`${HOST}join_group/?token=${group.id}`}</div>
+        
+        <br/>
+
+        <div style={{textAlign: 'center'}} onClick={this.deleteGroup}>
+        <Icon name='sign out'/>
+        그룹 탈퇴
+        </div>
+      </Wrapper>
   }
 }
 

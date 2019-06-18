@@ -5,6 +5,7 @@ export { default as GroupListPage } from 'pages/Group/GroupListPage'
 export { default as GroupDetailPage } from 'pages/Group/GroupDetailPage'
 export { default as GroupFormPage } from 'pages/Group/GroupFormPage'
 
+export { default as MeetingListPage } from 'pages/Meeting/MeetingListPage'
 export { default as MeetingDetailPage } from 'pages/Meeting/MeetingDetailPage'
 export { default as MeetingFormPage } from 'pages/Meeting/MeetingFormPage'
 
