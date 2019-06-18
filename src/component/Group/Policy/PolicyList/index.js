@@ -1,10 +1,16 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 import apis from 'apis'
 import routes from 'routes'
 import actionCreators from 'store/actions'
+
+import Wrapper from 'component/Styles/Wrapper'
+import Title from 'component/Styles/Title'
+import Icon from 'component/Styles/Chevron'
+
+import Link from './PolicyLink'
+import Div from './PolicyDiv'
 
 class PolicyList extends Component {
   constructor(props) {
@@ -28,33 +34,45 @@ class PolicyList extends Component {
     const { policies, groupId, nickname } = this.props
     const { owner } = this.state.group
     return (
-      <>
-        <Link to={{
-          pathname: routes.GROUP_DETAIL.replace(':groupId', groupId),
-          state: { groupId },
-        }}>
-          MyPolicyList
-        </Link>
-        <br />
+      <Wrapper>
+
+        <Icon name='chevron left'>
+          <Link to={{
+            pathname: routes.GROUP_DETAIL.replace(':groupId', groupId),
+            state: { groupId },
+          }}>
+          
+            GroupDetail
+          </Link>
+        </Icon>
+        <Title>Fine List</Title>
+        <hr />
         {policies.map((policy, index) => (
+          <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
           <Fragment key={policy.id}>
             <Link to={{
               pathname: routes.POLICY_DETAIL.replace(':policyId', policy.id),
               state: { groupId },
             }}>
+              <Div>
               {policy.name}
-              <br />
+              </Div>
               {policy.info}
             </Link>
           </Fragment>
+          </div>
         ))}
-        {owner===nickname ? <Link to={{
+        {owner===nickname ? 
+        <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
+        <Link to={{
           pathname: routes.POLICY_FORM,
           state: { groupId },
         }}>
+
           추가
-        </Link> : <></>}
-      </>
+        </Link>
+        </div> : <></>}
+      </Wrapper>
     )
   }
 }
