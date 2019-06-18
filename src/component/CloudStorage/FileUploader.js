@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Form, Formik } from 'formik'
 import axios from 'axios'
 import { Input, Button } from 'semantic-ui-react'
+import styled from 'styled-components'
 
 import apis from 'apis'
 
@@ -32,21 +33,19 @@ class FileUploader extends Component {
             render={({setFieldValue}) => {
               const inputId = 'file'
               return (
-                  <Form 
-                    style={{width: '25rem'}}
-                  >
-                    <div>
-                      <Input id={inputId} type='file' name='file'
-                           style={{display: 'hidden', width:'70%'}}
+                  <Form>
+                    <ContainerStyle>
+                      <FileInput id={inputId} type='file' name='file'
+                           style={{display: 'hidden'}}
                            onChange={event =>
                                setFieldValue('file', event.currentTarget.files[0])}/>
-                      <Button 
-                        style={{width: '25%'}}
+                      <Button
+                        basic
+                        style={{width: "5rem"}}
                         type='submit'>
-                      
-                        Submit
+                        저장
                       </Button>
-                    </div>
+                    </ContainerStyle>
                   </Form>
               )
             }}
@@ -54,5 +53,18 @@ class FileUploader extends Component {
     )
   }
 }
+
+const FileInput = styled(Input)`
+height: 3rem;
+width: 15rem;
+color: black;
+`
+
+const ContainerStyle = styled.div`
+background-color: white;
+border-bottom: 1px solid lightgray;
+color: black;
+* { display: inline-block; }
+`
 
 export default FileUploader

@@ -6,6 +6,7 @@ import LogoutButton from './LogoutButton'
 import actionCreators from 'store/actions'
 import routes from 'routes'
 import { Formik } from 'formik/dist/index'
+import { Icon } from 'semantic-ui-react'
 
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
@@ -47,10 +48,14 @@ class GroupList extends Component {
                     type="text"
                     placeholder="Group URL..."
                   />
-                  <Button type='submit'>
-                    가입
+                  <Button type='submit' basic color='black' animated style={{textAlign:"center"}}>
+                    <Button.Content visible>
+                      가입
+                    </Button.Content>
+                    <Button.Content hidden>
+                      <Icon name='sign in' />
+                    </Button.Content>
                   </Button >
-
                 </div>
               </Form>
             }

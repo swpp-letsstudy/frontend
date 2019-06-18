@@ -6,22 +6,18 @@ import Field from './MeetingField'
 import actionCreators from 'store/actions'
 import apis from 'apis'
 import routes from 'routes'
+import { Button } from 'semantic-ui-react'
 
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
 import Icon from 'component/Styles/Chevron'
-import Button from './MeetingFormButton'
+import Div from 'component/Styles/Div'
+
 import Link from 'component/Styles/Link'
 
 const MeetingForm = props => {
   const { groupId, history, loadMeetings } = props
   return (
-    <Wrapper>
-      <Icon name='chevron left'>
-        <Link to={`/groups/${groupId}`}>
-          MeetingList
-        </Link>
-      </Icon>
       <Formik
         initialValues={{
           time: '',
@@ -37,18 +33,38 @@ const MeetingForm = props => {
           )
         }}
         render={() =>
-          <Form>
+          <Wrapper>
+
+            <Icon name='chevron left'>
+              <Link to={`/groups/${groupId}`}>
+                MeetingList
+              </Link>
+            </Icon>
+
             <Title>Create Meeting</Title>
-            <div>
-              <Field type='datetime-local' name='time' />
-            </div>
-            <div>
-              <Field name='info' type='text' placeholder='informations...' style={{ height: "20rem" }} />
-            </div>
-            <Button type='submit'>미팅 생성</Button>
-          </Form>}
+            <Form>
+              <div>
+              <Div style={{textDecoration:"none", textAlignLast:"center"}}>
+                시간
+              </Div>
+              <Field component='input' type='datetime-local' name='time' />
+              <Div style={{textDecoration:"none", textAlignLast:"center"}}>
+                정보
+              </Div>
+              <Field style={{height:"20rem",borderColor:"black", borderWidth:"2px"}} component='textarea' name='info' type='text' placeholder='informations...' />
+              </div>
+              <br/>
+              <Button basic color='black' animated type='submit' style={{width: "100%", fontSize: "1.5rem", fontWeight: "20"}}>
+                <Button.Content visible>
+                  미팅 생성
+                </Button.Content>
+                <Button.Content hidden>
+                  <Icon style={{paddingTop: "0rem"}} name='add' />
+                </Button.Content>
+              </Button>
+            </Form>
+          </Wrapper>}
       />
-    </Wrapper>
   )
 }
 

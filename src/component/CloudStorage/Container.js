@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import FileUploader from './FileUploader'
 import DownloadButton from './DownloadButton'
 import DeleteButton from './DeleteButton'
+import Title from '../Styles/Title';
 
 
 const Container = props => {
@@ -18,10 +19,15 @@ const DirectoryContainer = props => {
   const { onClick } = props
   return (
       <ContainerStyle>
+        <div>
+        <FileUploader groupId={groupId} dirpath={dirpath}/>
+        </div>
+        <br/>
+        <div>
         <props.decorators.Toggle onClick={onClick} isToggled={isToggled}/>
         <props.decorators.Header node={props.node}/>
+        </div>
         <br/>
-        <FileUploader groupId={groupId} dirpath={dirpath}/>
       </ContainerStyle>
   )
 }

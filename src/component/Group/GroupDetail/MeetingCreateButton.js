@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const MeetingCreateButton = styled(Button)`
 	&&&{
-		width: 40%;
+		width: 43%;
 		font-Size: 1.2rem;
 	}
 `

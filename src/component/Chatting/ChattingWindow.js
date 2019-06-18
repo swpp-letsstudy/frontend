@@ -37,8 +37,7 @@ const ChattingWindow = props => {
 }
 
 const Window = styled.div`
-height: 500px;
-border: 1px solid black;
+height: 600px;
 font-size: 20px;
 display: flex;
 justify-content: space-between;

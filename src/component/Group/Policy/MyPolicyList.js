@@ -1,10 +1,15 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 import actionCreators from 'store/actions'
 import routes from 'routes'
 import apis from 'apis'
+
+import Wrapper from 'component/Styles/Wrapper'
+import Title from 'component/Styles/Title'
+import Icon from 'component/Styles/Chevron'
+import Link from 'component/Styles/Link'
+import Div from 'component/Styles/Div'
 
 class MyPolicyForm extends Component {
   constructor(props) {
@@ -37,26 +42,26 @@ class MyPolicyForm extends Component {
     const { myFines, sum } = this.state
     console.log(myFines)
     return (
-      <>
-        <Link to={routes.GROUP_DETAIL.replace(':groupId', groupId)}>
-          GroupDetail
-        </Link>
-        <br />
-        
-        <br />
-        <h1>총 벌금: {sum}</h1>
-        <br />
-        <br />
+      <Wrapper>
+
+        <Icon name='chevron left'>
+          <Link to={routes.GROUP_DETAIL.replace(':groupId', groupId)}>
+            GroupDetail
+          </Link>
+        </Icon>
+
+        <Title>총 벌금: {sum}</Title>
         <br />
         {myFines.map((fine, index) => (
           <Fragment key={fine.id}>
-            <div>{fine.meeting.info} {fine.policy.name}</div>
-            <h1>{fine.policy.amount}</h1>
-            <br />
+            <Div>
+              {fine.meeting.info}
+            </Div>
+            <div>{fine.policy.name}: {fine.policy.amount}</div>
             <br />
           </Fragment>
         ))}
-      </>
+      </Wrapper>
     )
   }
 }
