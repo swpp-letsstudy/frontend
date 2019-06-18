@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 
 import apis from 'apis'
 import routes from 'routes'
+
+import Wrapper from 'component/Styles/Wrapper'
+import Title from 'component/Styles/Title'
+import Icon from 'component/Styles/Chevron'
+import Link from 'component/Styles/Link'
+import Div from 'component/Styles/Div'
 
 class PolicyDetail extends Component {
   constructor(props) {
@@ -35,19 +40,23 @@ class PolicyDetail extends Component {
     const { groupId } = this.props
     console.log(policy)
     return (
-      <>
+      <Wrapper>
+        <Icon name='chevron left'>
         <Link to={{
           pathname: routes.POLICY_LIST,
           state: { groupId },
         }}>
-          POLICY_LIST
+          PolicyList
         </Link>
-        <h1>INFO</h1>
+        </Icon>
+        <div style={{textAlign:"right",size:"1.2rem"}}>
+          <Icon name='trash alternate outline' onClick={this.deletePolicy}></Icon>
+        </div>
+        <Title style={{marginTop:'0rem'}}>{policy.name}</Title>
+        <hr/>
         <h2>{policy.info}</h2>
-        <h1>NAME</h1>
-        <h2>{policy.name}</h2>
-        <button onClick={this.deletePolicy}>삭제</button>
-      </>
+        
+      </Wrapper>
     )
   }
 }

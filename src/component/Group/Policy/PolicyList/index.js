@@ -44,7 +44,23 @@ class PolicyList extends Component {
             GroupDetail
           </Link>
         </Icon>
-        <Title>Fine List</Title>
+
+        {owner===nickname ? 
+        <div>
+        <div style={{textAlign:'right', fontSize:"1.2rem"}}>
+        <Icon name='add'>
+        <Link to={{
+          pathname: routes.POLICY_FORM,
+          state: { groupId },
+        }}/>
+       
+        </Icon>
+        </div>
+        <Title style={{marginTop:"0rem"}}>Fine List</Title>
+        </div>
+        : <Title>Fine List</Title>}
+
+        
         <hr />
         {policies.map((policy, index) => (
           <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
@@ -61,16 +77,7 @@ class PolicyList extends Component {
           </Fragment>
           </div>
         ))}
-        {owner===nickname ? 
-        <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.5rem", fontWeight:"bold"}}>
-        <Link to={{
-          pathname: routes.POLICY_FORM,
-          state: { groupId },
-        }}>
-
-          추가
-        </Link>
-        </div> : <></>}
+        
       </Wrapper>
     )
   }
