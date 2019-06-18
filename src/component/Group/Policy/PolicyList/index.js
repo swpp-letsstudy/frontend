@@ -48,13 +48,14 @@ class PolicyList extends Component {
         {owner===nickname ? 
         <div>
         <div style={{textAlign:'right', fontSize:"1.2rem"}}>
-        <Icon name='add'>
+        
         <Link to={{
           pathname: routes.POLICY_FORM,
           state: { groupId },
-        }}/>
-       
-        </Icon>
+        }}>
+        <Icon name='add'/>
+        </Link>       
+
         </div>
         <Title style={{marginTop:"0rem"}}>Fine List</Title>
         </div>
