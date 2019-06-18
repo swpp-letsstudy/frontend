@@ -62,7 +62,7 @@ class GroupDetail extends Component {
   }
 
   render() {
-    const { group, myFines, sum  } = this.state
+    const { group, sum  } = this.state
     const { meetings, nickname, groupNotices, groupId } = this.props
     return group &&
       <>

@@ -18,7 +18,7 @@ export default createActions({
   }),
   [ACTION_TYPES.UPDATE_USER_SETTING]: payload => apis.updateUserSetting(payload).then(value => {
     let user = JSON.parse(localStorage.getItem('user'))
-    user.nickname = value.data.nickname
+    user.nickname = value.data
     localStorage.setItem('user', JSON.stringify(user))
     value.data = user
     return value
