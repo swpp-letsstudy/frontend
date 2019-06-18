@@ -11,7 +11,7 @@ import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
 import Icon from 'component/Styles/Chevron'
 import Button from './MeetingFormButton'
-import Link from './MeetingFormLink'
+import Link from 'component/Styles/Link'
 
 const MeetingForm = props => {
   const { groupId, history, loadMeetings } = props

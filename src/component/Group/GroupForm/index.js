@@ -9,10 +9,10 @@ import routes from 'routes'
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
 import Icon from 'component/Styles/Chevron'
+import Link from 'component/Styles/Link'
 
 import Field from './GroupFormField'
 import Button from './GroupFormButton'
-import Link from './GroupFormLink'
 
 const GroupForm = props => {
   const { history, loadGroups } = props

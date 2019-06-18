@@ -6,11 +6,11 @@ import Icon from 'component/Styles/Chevron'
 import { connect } from 'react-redux'
 import actionCreators from 'store/actions'
 
-import Link from './GroupLink'
 import Field from './NoticeField'
 
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
+import Link from 'component/Styles/Link'
 
 import apis from 'apis'
 import routes from 'routes'
