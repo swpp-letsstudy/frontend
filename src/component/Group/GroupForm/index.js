@@ -23,8 +23,8 @@ const GroupForm = props => {
         info: '',
       }}
       onSubmit={(values, formActions) => {
-        const { name, info } = values
-        apis.createGroup({ name, info }).then(loadGroups)
+        const { name, info, startday, endday } = values
+        apis.createGroup({ name, info, startday, endday }).then(loadGroups)
         history.push(routes.GROUP_LIST)
       }}
       render={() =>
@@ -43,6 +43,11 @@ const GroupForm = props => {
             <div>
               <Field name='info' type='text' placeholder='informations...' style={{ height: "20rem" }} />
             </div>
+            <div>
+              <Field name='startday' type='date' />
+              <Field name='endday' type='date' />
+            </div>
+
             <Button type='submit'>그룹 생성</Button>
           </Form>
         </Wrapper>
