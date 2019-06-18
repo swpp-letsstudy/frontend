@@ -50,7 +50,7 @@ class MeetingDetail extends Component {
   }
 
   render() {
-    const { meetingNotices, meetingId, backurl, groupId } = this.props
+    const { meetingNotices, meetingId, backurl, groupId, nickname } = this.props
     const { meeting } = this.state
     return (meeting &&
       <Wrapper>
@@ -113,6 +113,11 @@ class MeetingDetail extends Component {
               {user.nickname}
             </div>
           )}
+          
+          {meeting && (meeting.group.owner===nickname) ? <Link to={{
+            pathname: routes.MEETING_POLICY_MANAGE,
+            state: { meetingId, groupId },
+          }}>벌금 관리</Link>: <></>}
 
       </Wrapper>
     )
@@ -120,6 +125,7 @@ class MeetingDetail extends Component {
 }
 
 const mapStateToProps = state => ({
+  nickname: state.userReducer.user.nickname,
   userId: state.userReducer.user.id,
   meetingNotices: state.groupReducer.meetingNotices,
   backurl: state.groupReducer.backurl,
