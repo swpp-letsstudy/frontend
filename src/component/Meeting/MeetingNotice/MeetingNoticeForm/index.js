@@ -51,7 +51,20 @@ const MeetingNoticeForm = props => {
               내용
             </Div>
             <Field style={{borderColor:"black", borderWidth:"2px"}} component='textarea' name='contents'/>
-            <Button type='submit'>미팅 공지 생성</Button>
+            
+            <br/>
+            <br/>
+            <br/>
+
+            <Button basic color='black' animated type='submit' style={{width: "100%", fontSize: "1.5rem", fontWeight: "20"}}>
+              <Button.Content visible>
+                미팅 공지 생성
+              </Button.Content>
+              <Button.Content hidden>
+                <Icon style={{paddingTop: "0rem"}} name='add' />
+              </Button.Content>
+            </Button>
+            
           </Form>
         </Wrapper>
       }
