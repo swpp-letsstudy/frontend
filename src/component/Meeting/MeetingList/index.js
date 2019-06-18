@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import actionCreators from 'store/actions'
 import routes from 'routes'
 
-import Icon from 'component/Styles/Chevron'
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
 import Icon from 'component/Styles/Chevron'
