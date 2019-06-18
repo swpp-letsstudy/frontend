@@ -25,7 +25,7 @@ const MeetingNoticeForm = props => {
         const { title, contents } = values
         apis.createMeetingNotice({ meetingId, title, contents }).then(loadMeetingNotices({ meetingId }))
         history.push({
-          pathname: routes.MEETING_DETAIL,
+          pathname: routes.MEETING_DETAIL.replace(':meetingId', meetingId),
           state: { meetingId },
         })
       }}

@@ -37,7 +37,7 @@ class MeetingNoticeDetail extends Component {
     apis.deleteMeetingNotice({meetingNoticeId, meetingId})
     .then(loadMeetingNotices({ meetingId }))
     .then(history.push({
-      pathname: routes.MEETING_DETAIL,
+      pathname: routes.MEETING_DETAIL.replace(':meetingId', meetingId),
       state: { meetingId },
     }))
   }
