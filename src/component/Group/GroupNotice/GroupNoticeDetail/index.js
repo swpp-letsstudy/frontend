@@ -55,16 +55,19 @@ class GroupNoticeDetail extends Component {
             </Link>
           </Icon>
 
+          <Title>{notice.title}</Title>
+          
           <Writer>
           Writer: {notice.writer && notice.writer.nickname}
           </Writer>
-          <Title>Title</Title>
-          <Div>{notice.title}</Div>
-          <Title>Contents</Title>
+
+          
+
+          <hr />
           <Div>{notice.contents}</Div>
-          <Button onClick={this.deleteGroupNotice}>
-            삭제
-          </Button>
+          <div style={{textAlign: 'right'}}>
+          <Icon name='trash alternate outline' onClick={this.deleteGroupNotice} style={{fontSize: '1.5rem'}}/>
+          </div>
         </Wrapper>
     )
   }
