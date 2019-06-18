@@ -10,7 +10,6 @@ import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
 import Icon from 'component/Styles/Chevron'
 import Link from 'component/Styles/Link'
-import Div from 'component/Styles/Div'
 
 import Writer from './GroupNoticeWriter'
 
@@ -59,19 +58,21 @@ class GroupNoticeDetail extends Component {
             </Link>
           </Icon>
 
-          <Title>{notice.title}</Title>
+          <div style={{textAlign: 'right'}}>
+          <Icon name='trash alternate outline' onClick={this.deleteGroupNotice} style={{fontSize: '1.5rem'}}/>
+          </div>
+
+          <Title style={{marginTop: "0rem"}}>{notice.title}</Title>
           
           <Writer>
           Writer: {notice.writer && notice.writer.nickname}
           </Writer>
 
-          
-
           <hr />
-          <Div>{notice.contents}</Div>
-          <div style={{textAlign: 'right'}}>
-          <Icon name='trash alternate outline' onClick={this.deleteGroupNotice} style={{fontSize: '1.5rem'}}/>
-          </div>
+
+          <div
+            style={{fontSize: "1.2rem"}}
+          >{notice.contents}</div>
         </Wrapper>
     )
   }

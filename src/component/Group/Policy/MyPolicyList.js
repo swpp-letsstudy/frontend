@@ -1,10 +1,14 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 import actionCreators from 'store/actions'
 import routes from 'routes'
 import apis from 'apis'
+
+import Wrapper from 'component/Styles/Wrapper'
+import Title from 'component/Styles/Title'
+import Icon from 'component/Styles/Chevron'
+import Link from 'component/Styles/Link'
 
 class MyPolicyForm extends Component {
   constructor(props) {
@@ -35,28 +39,29 @@ class MyPolicyForm extends Component {
   render() {
     const { groupId } = this.props
     const { myFines, sum } = this.state
-    console.log(myFines)
     return (
-      <>
-        <Link to={routes.GROUP_DETAIL.replace(':groupId', groupId)}>
-          GroupDetail
-        </Link>
+      <Wrapper>
+
+        <Icon name='chevron left'>
+          <Link to={routes.GROUP_DETAIL.replace(':groupId', groupId)}>
+            GroupDetail
+          </Link>
+        </Icon>
+
+        <Title>총 벌금: {sum}</Title>
         <br />
-        
-        <br />
-        <h1>총 벌금: {sum}</h1>
-        <br />
-        <br />
-        <br />
-        {myFines.map((fine, index) => (
-          <Fragment key={fine.id}>
-            <Link to={routes.MEETING_DETAIL.replace(':meetingId', fine.meeting.id)}>{fine.meeting.info}</Link>
-            <h1>{fine.policy.name} {fine.policy.amount}</h1>
-            <br />
-            <br />
+        {myFines ? Object.keys(myFines).map((meeting, index) => (
+          <Fragment key={meeting}>
+            <h2>{meeting}</h2>
+            {myFines[meeting] ? myFines[meeting].map((fine, index) => (
+              <Fragment key={fine.id}>
+                <div>{fine.policy.name}: {fine.policy.amount}</div>
+                <br />
+              </Fragment>
+            )) : <></>}
           </Fragment>
-        ))}
-      </>
+        )) : <></>}
+      </Wrapper>
     )
   }
 }

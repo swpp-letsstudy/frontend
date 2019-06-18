@@ -6,9 +6,13 @@ const Toggle = props => {
   return (
         isToggled
         ?
-          <Icon onClick={onClick} name="angle right" />
-        :
-          <Icon onClick={onClick}name="angle down" />
+          <div style={{fontSize:"1.5rem"}}>
+            <Icon onClick={onClick} name="angle right" />
+          </div>
+          :
+          <div style={{fontSize:"1.5rem"}}>
+            <Icon onClick={onClick}name="angle down" />
+          </div>
   )
 }
 

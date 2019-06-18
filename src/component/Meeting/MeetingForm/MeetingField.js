@@ -3,14 +3,11 @@ import { Field } from 'formik/dist/index'
 import styled from 'styled-components'
 
 const MeetingField = styled(Field)`
-border-radius: 8px;
-outline: none;
+border-color: black;
+border-radius: 5px;
 padding: 0.5rem;
-font-size: 1.5rem;
-font-weight: 400;
+font-size: 1.3rem;
 width: 25rem;
-display: flex;
-margin-bottom: 2rem;
 `
 
 export default MeetingField

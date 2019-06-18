@@ -140,8 +140,8 @@ const groupReducer = handleActions({
     },
   }),
   [ACTION_TYPES.SET_INFO]: (state, action) => {
-    const groupId = (action.payload.groupId===0 ? state.groupId : action.payload.groupId)
-    const backurl = (action.payload.backurl==='' ? state.backurl : action.payload.backurl)
+    const groupId = (action.payload.hasOwnProperty('groupId') ? action.payload.groupId : state.groupId)
+    const backurl = (action.payload.hasOwnProperty('backurl') ? action.payload.backurl : state.backurl)
     return Object.assign({}, state, {
       backurl,
       groupId,
