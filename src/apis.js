@@ -56,9 +56,6 @@ export default {
   readMeetingNotice: payload => axios.get(`${HOST}meeting_notices/${payload.meetingNoticeId}/?meetingId=${payload.meetingId}`),
   deleteMeetingNotice: payload => axios.delete(`${HOST}meeting_notices/${payload.meetingNoticeId}/?meetingId=${payload.meetingId}`),
 
-  // Attendance
-  toggleAttendance: payload => axios.post(`${HOST}attendance/`, payload),
-
   // Policy
   loadPolicies: payload => axios.get(`${HOST}policies/?groupId=${payload.groupId}`),
   createPolicy: payload => axios.post(`${HOST}policies/?groupId=${payload.groupId}`, payload),
@@ -67,10 +64,14 @@ export default {
   updatePolicy: payload => axios.put(`${HOST}policies/${payload.policyId}/?groupId=${payload.groupId}`, payload),
   deletePolicy: payload => axios.delete(`${HOST}policies/${payload.policyId}/?groupId=${payload.groupId}`),
 
+  // Attendance
+  toggleAttendance: payload => axios.post(`${HOST}attendance/`, payload),
+
   // Fines
   readMyGroupFines: payload => axios.get(`${HOST}my_group_fines/?groupId=${payload.groupId}`),
   readMyMeetingFines: payload => axios.get(`${HOST}my_meeting_fines/?meetingId=${payload.meetingId}`),
   getFineSum: payload => axios.get(`${HOST}get_sum/?groupId=${payload.groupId}`),
+  readMeetingFines: payload => axios.get(`${HOST}meeting_fines/?meetingId=${payload.meetingId}`),
   manageFine: payload => axios.get(`${HOST}manage_fine/?userId=${payload.userId}&meetingId=${payload.meetingId}&policyId=${payload.policyId}`),
 
   // CloudStorage

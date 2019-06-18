@@ -42,7 +42,6 @@ class MeetingList extends Component {
             </Link>
           </div>
         )}
-        
         <br />
         <Link to={{
           pathname: routes.MEETING_FORM,

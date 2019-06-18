@@ -29,5 +29,5 @@ export default {
   POLICY_DETAIL: '/policies/:policyId',
   POLICY_FORM: '/policies/edit',
   MY_MEETING_FINE_LIST: '/my_policies/:meetingId',
-  POLICY_CHECK: '/policy_check',
+  MEETING_POLICY_MANAGE: '/policy_check',
 }

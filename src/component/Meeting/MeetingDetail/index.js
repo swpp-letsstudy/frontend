@@ -16,29 +16,22 @@ class MeetingDetail extends Component {
     super(props)
     this.state = {
       meeting: null,
+      fines: [],
     }
   }
 
   componentDidMount() {
     const { match, loadMeetingNotices } = this.props
     const { meetingId } = match.params
-    apis.readMeeting({ meetingId }).then(value => this.setState({
-      meeting: value.data,
-    }))
+    apis.readMeeting({ meetingId })
+      .then(value => this.setState({
+        meeting: value.data,
+      }))
+    apis.readMyMeetingFines({ meetingId })
+      .then(value => this.setState({
+        fines: value.data,
+      }))
     loadMeetingNotices({ meetingId })
-  }
-
-  toggleUserAttendanceHandler = user => {
-    const { meeting } = this.state
-    const meetingId = meeting.id
-    apis.toggleAttendance({ userId: user.id, meetingId })
-      .then(() => apis.readMeeting({ meetingId }))
-      .then(value => this.setState({ meeting: value.data }))
-  }
-
-  isAttendance = user => {
-    const { meeting } = this.state
-    return meeting && meeting.attendances.includes(user.id)
   }
 
   deleteMeeting = () => {
@@ -50,8 +43,9 @@ class MeetingDetail extends Component {
   }
 
   render() {
-    const { meetingNotices, meetingId, backurl, groupId } = this.props
-    const { meeting } = this.state
+    const { meetingNotices, meetingId, backurl, groupId, userId, nickname } = this.props
+    const { meeting, fines } = this.state
+    const isAttendance = meeting && meeting.attendances.includes(userId)
     return (meeting &&
       <Wrapper>
         <Icon name='chevron left'>
@@ -102,24 +96,25 @@ class MeetingDetail extends Component {
         <Div>
           Fines
         </Div>
-
-          {meeting.group.members.map((user, index) =>
-            <div style={{textAlign:"left",fontSize:"1.2rem", marginTop:"0.8rem"}} key={user.id}>
-              {this.isAttendance(user) ?
-                <Icon style={{ fontSize: "1.2rem"}} onClick={() => this.toggleUserAttendanceHandler(user)} name='check circle outline' />
-                :
-                <Icon style={{ fontSize: "1.2rem"}} onClick={() => this.toggleUserAttendanceHandler(user)} name='times circle outline' />
-              }
-              {user.nickname}
-            </div>
-          )}
-
+        
+        <div>
+          {isAttendance ? <></> : <div>Attendance</div>}
+          {fines.map((fine, index) => (
+            <div key={fine.id}>{fine.policy.name}</div>
+          ))}
+          <br />
+          {meeting && (meeting.group.owner===nickname) ? <Link to={{
+            pathname: routes.MEETING_POLICY_MANAGE,
+            state: { meetingId, groupId },
+          }}>벌금 관리</Link>: <></>}
+        </div>
       </Wrapper>
     )
   }
 }
 
 const mapStateToProps = state => ({
+  nickname: state.userReducer.user.nickname,
   userId: state.userReducer.user.id,
   meetingNotices: state.groupReducer.meetingNotices,
   backurl: state.groupReducer.backurl,

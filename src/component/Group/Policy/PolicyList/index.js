@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 import apis from 'apis'
@@ -64,8 +64,7 @@ class PolicyList extends Component {
         
         <hr />
         {policies.map((policy, index) => (
-          <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
-          <Fragment key={policy.id}>
+          <div key={policy.id} style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
             <Link to={{
               pathname: routes.POLICY_DETAIL.replace(':policyId', policy.id),
               state: { groupId },
@@ -75,7 +74,6 @@ class PolicyList extends Component {
               </Div>
               {policy.info}
             </Link>
-          </Fragment>
           </div>
         ))}
         
