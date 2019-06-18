@@ -50,8 +50,8 @@ class MyPolicyForm extends Component {
         <br />
         {myFines.map((fine, index) => (
           <Fragment key={fine.id}>
-            <Link to={routes.MEETING_DETAIL.replace(':meetingId', fine.meeting.id)}>{fine.meeting.info}</Link>
-            <h1>{fine.policy.name} {fine.policy.amount}</h1>
+            <div>{fine.meeting.info} {fine.policy.name}</div>
+            <h1>{fine.policy.amount}</h1>
             <br />
             <br />
           </Fragment>
