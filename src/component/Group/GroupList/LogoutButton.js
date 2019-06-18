@@ -16,7 +16,7 @@ const LogoutButton = props => {
     ?
     <div style={{textAlignLast:"center"}}>
       <Link to={routes.USER_SETTING} style={{ color: '#FFF' }}>
-      <Button basic color='black' compact animated>
+        <Button basic color='black' animated>
           <Button.Content visible>
             설정
           </Button.Content>
@@ -26,7 +26,7 @@ const LogoutButton = props => {
         </Button >
       </Link>
 
-      <Button basic color='black' compact animated onClick={logout}>
+      <Button basic color='black' animated onClick={logout}>
         <Button.Content visible>
           LOGOUT
         </Button.Content>
