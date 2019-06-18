@@ -4,8 +4,6 @@ import styled from 'styled-components'
 import FileUploader from './FileUploader'
 import DownloadButton from './DownloadButton'
 import DeleteButton from './DeleteButton'
-import Title from '../Styles/Title';
-
 
 const Container = props => {
   const isDirectory = !props.terminal

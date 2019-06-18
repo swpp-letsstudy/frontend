@@ -99,7 +99,6 @@ class MeetingPolicyManage extends Component {
             )) : <></>}
           </h2>
         ))}
-        <div>MeetingPolicyManage</div>
       </>
   )}
 }
