@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 import actionCreators from 'store/actions'
 import routes from 'routes'
 
 import Icon from 'component/Styles/Chevron'
 import Wrapper from 'component/Styles/Wrapper'
+import Title from 'component/Styles/Title'
+import Icon from 'component/Styles/Chevron'
+import Link from 'component/Styles/Link'
 
 class MeetingList extends Component {
   componentDidMount() {
@@ -27,7 +29,10 @@ class MeetingList extends Component {
             GroupDetail
           </Link>
         </Icon>
-        <br />
+        <Title>
+          미팅 목록
+        </Title>
+        <hr/>
         {meetings.map((meeting, index) =>
           <div key={meeting.id} style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
             <Link to={{

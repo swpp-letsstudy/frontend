@@ -40,7 +40,7 @@ const App = () =>
       <PrivateRoute path={routes.POLICY_FORM} component={pages.PolicyFormPage}/>
       <PrivateRoute path={routes.POLICY_DETAIL} component={pages.PolicyDetailPage}/>
       <PrivateRoute path={routes.MY_MEETING_FINE_LIST} component={pages.MyMeetingFineListPage}/>
-      <PrivateRoute path={routes.POLICY_CHECK} component={pages.PolicyCheckPage}/>
+      <PrivateRoute path={routes.MEETING_POLICY_MANAGE} component={pages.MeetingPolicyManagePage}/>
     </Switch>
 
 export default App

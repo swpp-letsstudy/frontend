@@ -1,11 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { Formik, Field, Form } from 'formik/dist/index'
 
 import apis from 'apis'
 import routes from 'routes'
 import actionCreators from 'store/actions'
+
+import Wrapper from 'component/Styles/Wrapper'
+import Title from 'component/Styles/Title'
+import Icon from 'component/Styles/Chevron'
+import Link from 'component/Styles/Link'
 
 const PolicyForm = props => {
   const { loadPolicies, groupId, history } = props
@@ -26,21 +30,23 @@ const PolicyForm = props => {
         })
       }}
       render={() =>
-        <>
+        <Wrapper>
+          <Icon name='chevron left'>
           <Link to={{
             pathname: routes.POLICY_LIST,
             state: { groupId },
           }}>
             PolicyList
           </Link>
-          <h1>Create Policy</h1>
+          </Icon>
+          <Title>Create Policy</Title>
           <Form>
             <Field name='name' type='text' />
             <Field name='info' type='text' />
             <Field name='amount' type='number' />
             <button type='submit'>벌금 생성</button>
           </Form>
-        </>
+        </Wrapper>
       }
     />
   )

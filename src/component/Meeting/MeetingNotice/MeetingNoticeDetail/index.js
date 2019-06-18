@@ -9,9 +9,9 @@ import apis from 'apis'
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
 import Icon from 'component/Styles/Chevron'
+import Link from 'component/Styles/Link'
+import Div from 'component/Styles/Div'
 
-import Link from './MeetingLink'
-import Div from './MeetingNoticeDiv'
 import Writer from './MeetingNoticeWriter'
 
 class MeetingNoticeDetail extends Component {

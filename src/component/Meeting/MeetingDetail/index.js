@@ -4,9 +4,8 @@ import { connect } from 'react-redux'
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
 import Icon from 'component/Styles/Chevron'
-
-import Div from './MeetingDivDetail'
-import Link from './MeetingDetailLink'
+import Link from 'component/Styles/Link'
+import Div from 'component/Styles/Div'
 
 import actionCreators from 'store/actions'
 import apis from 'apis'
@@ -116,6 +115,7 @@ class MeetingDetail extends Component {
 }
 
 const mapStateToProps = state => ({
+  nickname: state.userReducer.user.nickname,
   userId: state.userReducer.user.id,
   meetingNotices: state.groupReducer.meetingNotices,
   backurl: state.groupReducer.backurl,

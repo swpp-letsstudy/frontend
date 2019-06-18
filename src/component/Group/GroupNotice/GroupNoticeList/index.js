@@ -7,8 +7,7 @@ import routes from 'routes'
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
 import Icon from 'component/Styles/Chevron'
-
-import Link from './GroupLink'
+import Link from 'component/Styles/Link'
 
 
 class GroupList extends Component {

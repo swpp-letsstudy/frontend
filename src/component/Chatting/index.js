@@ -7,7 +7,7 @@ import ChattingWindow from './ChattingWindow'
 import Wrapper from 'component/Styles/Wrapper'
 
 import Icon from 'component/Styles/Chevron'
-import Link from './GroupLink'
+import Link from 'component/Styles/Link'
 
 class Chatting extends Component {
 

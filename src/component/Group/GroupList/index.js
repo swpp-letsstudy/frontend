@@ -9,12 +9,12 @@ import { Formik } from 'formik/dist/index'
 
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
+import Link from 'component/Styles/Link'
+import Div from 'component/Styles/Div'
 
 import Form from './GroupListForm'
 import Button from './GroupEnrollButton'
-import Link from './GroupLink'
 import Input from './GroupInput'
-import Div from './GroupDiv'
 
 
 class GroupList extends Component {

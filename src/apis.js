@@ -71,6 +71,7 @@ export default {
   readMyGroupFines: payload => axios.get(`${HOST}my_group_fines/?groupId=${payload.groupId}`),
   readMyMeetingFines: payload => axios.get(`${HOST}my_meeting_fines/?meetingId=${payload.meetingId}`),
   getFineSum: payload => axios.get(`${HOST}get_sum/?groupId=${payload.groupId}`),
+  readMeetingFines: payload => axios.get(`${HOST}meeting_fines/?meetingId=${payload.meetingId}`),
   manageFine: payload => axios.get(`${HOST}manage_fine/?userId=${payload.userId}&meetingId=${payload.meetingId}&policyId=${payload.policyId}`),
 
   // CloudStorage
