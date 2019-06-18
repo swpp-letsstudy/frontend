@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const HeaderStyle = styled.div`
-font-size: 1.5rem;
+font-size: 1.2rem;
 margin-left: 8px;
 margin-right: 8px;
 `
