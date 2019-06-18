@@ -78,6 +78,8 @@ export const initialGroupState = {
   groupNotices: [],
   meetingNotices: [],
   policies: [],
+  backurl: '',
+  groupId: 0,
 }
 
 const groupReducer = handleActions({
@@ -137,6 +139,14 @@ const groupReducer = handleActions({
       })
     },
   }),
+  [ACTION_TYPES.SET_INFO]: (state, action) => {
+    const groupId = (action.payload.groupId===0 ? state.groupId : action.payload.groupId)
+    const backurl = (action.payload.backurl==='' ? state.backurl : action.payload.backurl)
+    return Object.assign({}, state, {
+      backurl,
+      groupId,
+    })
+  },
 }, initialGroupState)
 
 export default combineReducers({

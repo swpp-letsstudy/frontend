@@ -9,23 +9,23 @@ import Wrapper from 'component/Styles/Wrapper'
 
 class MeetingList extends Component {
   componentDidMount() {
-    const { loadMeetings, groupId } = this.props
+    const { loadMeetings, groupId, setInfo } = this.props
+    setInfo({
+      groupId,
+      backurl: routes.MEETING_LIST,
+    })
     loadMeetings({ groupId })
   }
 
   render() {
     const { meetings, groupId } = this.props
-    console.log(meetings)
     return (
       <Wrapper>
         {meetings.map((meeting, index) =>
           <div key={meeting.id} style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
             <Link to={{
               pathname: routes.MEETING_DETAIL.replace(':meetingId', meeting.id),
-              state: {
-                groupId,
-                backurl: routes.MEETING_LIST,
-              },
+              state: { groupId },
             }}>
               {meeting.time.substring(0,10)} {meeting.time.substring(11,13)}시 {meeting.time.substring(14,16)}분
             </Link>
@@ -52,6 +52,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadMeetings: payload => dispatch(actionCreators.loadMeetings(payload)),
+  setInfo: payload => dispatch(actionCreators.setInfo(payload)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MeetingList)

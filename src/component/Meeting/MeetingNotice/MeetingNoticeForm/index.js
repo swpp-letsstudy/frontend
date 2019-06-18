@@ -16,7 +16,6 @@ import Icon from 'component/Styles/Chevron'
 
 const MeetingNoticeForm = props => {
   const { history, meetingId, loadMeetingNotices } = props
-  console.log(meetingId)
   return (
     <Formik
       initialValues={{
