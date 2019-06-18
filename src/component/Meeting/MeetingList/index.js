@@ -2,13 +2,10 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import apis from 'apis'
 import actionCreators from 'store/actions'
 import routes from 'routes'
 
 import Wrapper from 'component/Styles/Wrapper'
-import Title from 'component/Styles/Title'
-import Icon from 'component/Styles/Chevron'
 
 class MeetingList extends Component {
   componentDidMount() {
@@ -34,11 +31,16 @@ class MeetingList extends Component {
             </Link>
           </div>
         )}
-        <Icon name='chevron left'>
-          <Link to={routes.GROUP_DETAIL.replace(':groupId', groupId)}>
-            GroupDetail
-          </Link>
-        </Icon>
+        <Link to={routes.GROUP_DETAIL.replace(':groupId', groupId)}>
+          GroupDetail
+        </Link>
+        <br />
+        <Link to={{
+          pathname: routes.MEETING_FORM,
+          state: { groupId },
+        }}>
+          미팅 만들기
+        </Link>
       </Wrapper>
     )
   }
