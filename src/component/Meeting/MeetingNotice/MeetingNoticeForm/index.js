@@ -43,8 +43,8 @@ const MeetingNoticeForm = props => {
           </Icon>
           <Title>Create Meeting Notice</Title>
           <Form style={{width: '25rem'}}>
-            <Field name='title'/>
-            <Field name='contents'/>
+            <Field component='input' name='title'/>
+            <Field component='textarea' name='contents'/>
             <Button type='submit'>미팅 공지 생성</Button>
           </Form>
         </Wrapper>
