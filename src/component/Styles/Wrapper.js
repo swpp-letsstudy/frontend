@@ -5,7 +5,7 @@ const Wrapper1 = styled.section`
   font-size: 1.5rem;
   position: absolute;
   left: 50%;
-  transform: translate(-50%, 0%);
+  transform: translate(-50%, 1rem);
 `;
 
 export default Wrapper1
