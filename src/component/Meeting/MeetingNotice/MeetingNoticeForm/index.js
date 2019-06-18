@@ -1,12 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { Form, Formik, Field } from 'formik/dist/index'
+import { Form, Formik } from 'formik/dist/index'
 import { Button } from 'semantic-ui-react'
 
 import { connect } from 'react-redux'
 import actionCreators from 'store/actions'
 import apis from 'apis'
 import routes from 'routes'
+
+import Link from './MeetingLink'
+import Field from './NoticeField'
 
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
@@ -39,11 +41,11 @@ const MeetingNoticeForm = props => {
               MeetingDetail
             </Link>
           </Icon>
-          <h1>Create Meeting Notice</h1>
-          <Form>
+          <Title>Create Meeting Notice</Title>
+          <Form style={{width: '25rem'}}>
             <Field name='title'/>
             <Field name='contents'/>
-            <Button type='submit'>그룹 공지 생성</Button>
+            <Button type='submit'>미팅 공지 생성</Button>
           </Form>
         </Wrapper>
       }

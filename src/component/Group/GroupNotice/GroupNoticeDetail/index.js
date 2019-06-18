@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import Link from './GroupLink'
 import actionCreators from 'store/actions'
 
 import routes from 'routes'
@@ -10,6 +9,7 @@ import apis from 'apis'
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
 
+import Link from './GroupLink'
 import Div from './GroupNoticeDiv'
 import Writer from './GroupNoticeWriter'
 import Icon from 'component/Styles/Chevron'

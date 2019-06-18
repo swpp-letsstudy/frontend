@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Formik, Field } from 'formik/dist/index'
+import { Form, Formik } from 'formik/dist/index'
 import { Button } from 'semantic-ui-react'
 import Icon from 'component/Styles/Chevron'
 
@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import actionCreators from 'store/actions'
 
 import Link from './GroupLink'
+import Field from './NoticeField'
 
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
@@ -37,7 +38,7 @@ const GroupNoticeForm = props => {
               MeetingList
             </Link>
           </Icon>
-          <Title>Create GroupNotice</Title>
+          <Title>Create Group Notice</Title>
           <Form>
             <Field name='title'/>
             <Field name='contents'/>
