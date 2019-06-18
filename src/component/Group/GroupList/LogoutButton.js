@@ -14,9 +14,9 @@ const LogoutButton = props => {
   const { isLoggedIn, logout } = props
   return (isLoggedIn
     ?
-    <div>
+    <div style={{textAlignLast:"center"}}>
       <Link to={routes.USER_SETTING} style={{ color: '#FFF' }}>
-        <Button animated>
+      <Button basic color='black' compact animated>
           <Button.Content visible>
             설정
           </Button.Content>
@@ -26,7 +26,7 @@ const LogoutButton = props => {
         </Button >
       </Link>
 
-      <Button animated onClick={logout}>
+      <Button basic color='black' compact animated onClick={logout}>
         <Button.Content visible>
           LOGOUT
         </Button.Content>

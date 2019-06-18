@@ -13,6 +13,7 @@ import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
 import Icon from 'component/Styles/Chevron'
 import Link from 'component/Styles/Link'
+import Div from 'component/Styles/Div'
 
 const MeetingNoticeForm = props => {
   const { history, meetingId, loadMeetingNotices } = props
@@ -42,8 +43,14 @@ const MeetingNoticeForm = props => {
           </Icon>
           <Title>Create Meeting Notice</Title>
           <Form style={{width: '25rem'}}>
+            <Div style={{textDecoration:"none", textAlignLast:"center"}}>
+              제목
+            </Div>
             <Field component='input' name='title'/>
-            <Field component='textarea' name='contents'/>
+            <Div style={{textDecoration:"none", textAlignLast:"center"}}>
+              내용
+            </Div>
+            <Field style={{borderColor:"black", borderWidth:"2px"}} component='textarea' name='contents'/>
             <Button type='submit'>미팅 공지 생성</Button>
           </Form>
         </Wrapper>

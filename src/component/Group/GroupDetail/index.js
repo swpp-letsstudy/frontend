@@ -233,6 +233,7 @@ class GroupDetail extends Component {
         <Icon name='sign out'/>
         그룹 탈퇴
         </div>
+        <br/>
       </Wrapper>
   }
 }

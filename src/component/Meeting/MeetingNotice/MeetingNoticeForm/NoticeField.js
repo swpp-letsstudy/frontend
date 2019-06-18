@@ -4,13 +4,12 @@ import "styles/utils.scss"
 
 const NoticeField = styled(Field)`
 border-color: black;
-padding: 1rem;
-font-size: 1.5rem;
+border-radius: 5px;
+padding: 0.5rem;
+font-size: 1.3rem;
 font-weight: 400;
 width: 25rem;
 margin-bottom: 1rem;
-
-margin-top: 1rem;
 `
 
 export default NoticeField
