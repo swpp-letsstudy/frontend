@@ -98,7 +98,23 @@ const groupReducer = handleActions({
     },
   }),
   ...pender({
+    type: ACTION_TYPES.LOAD_FEW_MEETINGS,
+    onSuccess: (state, action) => {
+      return Object.assign({}, state, {
+        meetings: action.payload.data
+      })
+    },
+  }),
+  ...pender({
     type: ACTION_TYPES.LOAD_GROUP_NOTICES,
+    onSuccess: (state, action) => {
+      return Object.assign({}, state, {
+        groupNotices: action.payload.data
+      })
+    },
+  }),
+  ...pender({
+    type: ACTION_TYPES.LOAD_FEW_GROUP_NOTICES,
     onSuccess: (state, action) => {
       return Object.assign({}, state, {
         groupNotices: action.payload.data

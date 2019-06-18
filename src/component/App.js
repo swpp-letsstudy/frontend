@@ -10,8 +10,8 @@ const App = () =>
       <Redirect exact from='/' to={routes.GROUP_LIST}/>
       <PrivateRoute exact path={routes.GROUP_LIST} component={pages.GroupListPage}/>
 
-      <Route path={routes.LOGIN} component={pages.LoginPage}/>
-      <Route path={routes.REGISTER} component={pages.RegisterPage}/>
+      <Route path={routes.LOGIN} component={pages.LoginFormPage}/>
+      <Route path={routes.REGISTER} component={pages.RegisterFormPage}/>
 
       <PrivateRoute path={routes.GROUP_FORM} component={pages.GroupFormPage}/>
       <PrivateRoute path={routes.GROUP_DETAIL} component={pages.GroupDetailPage}/>

@@ -18,6 +18,8 @@ class GroupDetail extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      groupNoticeNum: 0,
+      meetingNum: 0,
       group: null,
       sum: 0,
       myFines: [],
@@ -25,11 +27,11 @@ class GroupDetail extends Component {
   }
 
   componentDidMount() {
-    const { loadMeetings, groupId, loadGroupNotices } = this.props
+    const { loadFewMeetings, groupId, loadFewGroupNotices } = this.props
     apis.readGroup({ groupId }).then(value => this.setState({
       group: value.data
     }))
-    apis.readMyFines({ groupId })
+    apis.readMyGroupFines({ groupId })
     .then(value => this.setState({
       myFines: value.data,
     }))
@@ -37,10 +39,22 @@ class GroupDetail extends Component {
     .then(value => this.setState({
       sum: value.data,
     }))
-    loadMeetings({ groupId }).then(value => this.setState({
-      meetings: value.data,
-    }))
-    loadGroupNotices({ groupId })
+    loadFewMeetings({ groupId, num: this.state.meetingNum })
+    .then(this.setState({ meetingNum: this.state.meetingNum + 1 }))
+    loadFewGroupNotices({ groupId, num: this.state.groupNoticeNum })
+    .then(this.setState({ groupNoticeNum: this.state.groupNoticeNum + 1 }))
+  }
+
+  appendMeeting = () => {
+    const { groupId, loadFewMeetings } = this.props
+    loadFewMeetings({ groupId, num: this.state.meetingNum })
+    .then(this.setState({ meetingNum: this.state.meetingNum + 1 }))
+  }
+
+  appendGroupNotice = () => {
+    const { groupId, loadFewGroupNotices } = this.props
+    loadFewGroupNotices({ groupId, num: this.state.groupNoticeNum })
+    .then(this.setState({ groupNoticeNum: this.state.groupNoticeNum + 1 }))
   }
 
   deleteGroup = () => {
@@ -62,7 +76,7 @@ class GroupDetail extends Component {
   }
 
   render() {
-    const { group, myFines, sum  } = this.state
+    const { group, sum  } = this.state
     const { meetings, nickname, groupNotices, groupId } = this.props
     return group &&
       <>
@@ -136,6 +150,7 @@ class GroupDetail extends Component {
               </Link>
             </div>
           )}
+          <div onClick={this.appendMeeting}>더보기</div>
           <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
             <Link to={{
               pathname: routes.MEETING_FORM,
@@ -162,6 +177,7 @@ class GroupDetail extends Component {
               </div>    
             </Fragment>
           ))}
+          <div onClick={this.appendGroupNotice}>더보기</div>
           <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
           <Link to={{
             pathname: routes.GROUP_NOTICE_FORM,
@@ -220,8 +236,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  loadGroups: () => dispatch(actionCreators.loadGroups()),
-  loadMeetings: payload => dispatch(actionCreators.loadMeetings(payload)),
+  loadFewMeetings: payload => dispatch(actionCreators.loadFewMeetings(payload)),
+  loadFewGroupNotices: payload => dispatch(actionCreators.loadFewGroupNotices(payload)),
   loadGroupNotices: payload => dispatch(actionCreators.loadGroupNotices(payload)),
 })
 
