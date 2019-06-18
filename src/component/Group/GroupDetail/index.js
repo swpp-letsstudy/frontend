@@ -68,7 +68,7 @@ class GroupDetail extends Component {
               ?
                 <div>
                   <div style={{textAlign:"right",size:"1.2rem"}} >
-                    그룹초대: <Icon style={{textAlign:"right"}} onClick={this.openCloseGroup} name='check circle outline'/>
+                    가입허용: <Icon style={{textAlign:"right"}} onClick={this.openCloseGroup} name='check circle outline'/>
                   </div>
                   <Title style={{marginTop: "0rem"}}>
                     {group.name}
@@ -77,7 +77,7 @@ class GroupDetail extends Component {
               :
                 <div>
                   <div style={{textAlign:"right",size:"1.2rem"}} >
-                    그룹초대: <Icon style={{textAlign:"right"}} onClick={this.openCloseGroup} name='circle outline'/>
+                    가입허용: <Icon style={{textAlign:"right"}} onClick={this.openCloseGroup} name='circle outline'/>
                   </div>
                   <Title style={{marginTop: "0rem"}}>
                     {group.name}
@@ -151,11 +151,19 @@ class GroupDetail extends Component {
           <br />
           <Button>
             <Link to={routes.CHATTING.replace(':groupId', group.id)} style={{ color: "white" }}>
-              채팅하기
+              채팅
             </Link>
           </Button>
           
           
+          <Button>
+            <Link to={{
+              pathname: routes.MY_POLICY_LIST,
+              state: { groupId: group.id },
+            }} style={{ color: "white" }}>
+              벌금
+            </Link>
+          </Button>
           
           <Button>
             <Link to={routes.CLOUD_STORAGE.replace(':groupId', group.id)} style={{ color: "white" }}>
@@ -166,11 +174,7 @@ class GroupDetail extends Component {
           <Button onClick={this.deleteGroup}>
             탈퇴
           </Button>
-          <Link to={routes.CLOUD_STORAGE.replace(':groupId', group.id)}>파일</Link>
-          <Link to={{
-            pathname: routes.MY_POLICY_LIST,
-            state: { groupId: group.id },
-          }}>벌금</Link>
+
         </Wrapper>
         
       </>
