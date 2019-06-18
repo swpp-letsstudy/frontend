@@ -6,6 +6,7 @@ export default {
   GROUP_DETAIL: '/groups/:groupId',
   GROUP_FORM: '/groups/edit',
 
+  MEETING_LIST: '/meetings',
   MEETING_DETAIL: '/meetings/:meetingId',
   MEETING_FORM: '/meetings/edit',
 
@@ -16,6 +17,7 @@ export default {
   USER_SETTING: '/user_setting',
   GROUP_SETTING: '/group_setting',
 
+  GROUP_NOTICE_LIST: '/group_notices',
   GROUP_NOTICE_DETAIL: '/group_notices/:groupNoticeId',
   GROUP_NOTICE_FORM: '/group_notice/edit',
   

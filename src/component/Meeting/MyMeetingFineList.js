@@ -26,8 +26,7 @@ class MyMeetingFineList extends Component {
 
   render() {
     const { meetingId } = this.props
-    const { fines, policies } = this.state
-    console.log(fines)
+    const { fines } = this.state
     return (
       <>
         <Link to={routes.MEETING_DETAIL.replace(':meetingId', meetingId)}>
@@ -35,7 +34,7 @@ class MyMeetingFineList extends Component {
         </Link>
         {fines ? fines.map((fine, index) => (
           <Fragment key={fine.id}>
-            <h1></h1>
+            <h1>{fine.meeting_fine.policy.name}</h1>
           </Fragment>
         )): <h1>No Fine</h1> }
       </>

@@ -34,23 +34,28 @@ class GroupNoticeDetail extends Component {
   }
 
   deleteGroupNotice = () => {
-    const { groupId, groupNoticeId, loadGroupNotices, history } = this.props
+    const { groupId, groupNoticeId, loadFewGroupNotices, history } = this.props
     apis.deleteGroupNotice({groupNoticeId, groupId})
-    .then(loadGroupNotices({ groupId }))
+    .then(loadFewGroupNotices({ groupId, num: 0 }))
     .then(history.push({
-      pathname: routes.GROUP_DETAIL.replace(':groupId', groupId),
+      pathname: routes.GROUP_NOTICE_LIST,
       state: { groupId },
     }))
   }
 
   render() {
-    const { groupId } = this.props
+    const { groupId, backurl } = this.props
     const { notice } = this.state
     return (
         <Wrapper>
           <Icon name='chevron left'>
-            <Link to={routes.GROUP_DETAIL.replace(':groupId', groupId)}>
-              MeetingList
+            <Link to={{
+              pathname: backurl,
+              state: { groupId },
+            }}>
+              {backurl===routes.GROUP_NOTICE_LIST ?
+              'GroupNoticeList' :
+              'GroupDetail'}
             </Link>
           </Icon>
 
@@ -77,7 +82,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  loadGroupNotices: payload => dispatch(actionCreators.loadGroupNotices(payload)),
+  loadFewGroupNotices: payload => dispatch(actionCreators.loadFewGroupNotices(payload)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(GroupNoticeDetail)

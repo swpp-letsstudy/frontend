@@ -16,7 +16,7 @@ class MyPolicyForm extends Component {
 
   componentDidMount() {
     const { groupId } = this.props
-    apis.readMyFines({ groupId })
+    apis.readMyGroupFines({ groupId })
     .then(value => this.setState({
       myFines: value.data,
     }))

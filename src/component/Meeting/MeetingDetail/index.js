@@ -51,15 +51,20 @@ class MeetingDetail extends Component {
   }
 
   render() {
-    const { meetingNotices, meetingId } = this.props
+    const { meetingNotices, meetingId, backurl } = this.props
     const { meeting } = this.state
     console.log(meetingId)
     return (meeting &&
       <Wrapper>
         <Icon name='chevron left'>
         {meeting &&
-          <Link to={routes.GROUP_DETAIL.replace(':groupId', meeting.group.id)}>
-            MeetingList
+          <Link to={{
+            pathname: backurl,
+            state: { groupId: meeting.group.id },
+          }}>
+            {backurl===routes.MEETING_LIST ?
+            'MeetingList' :
+            'GroupDetail'}
           </Link>
         }
         </Icon>

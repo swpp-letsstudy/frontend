@@ -10,12 +10,13 @@ const App = () =>
       <Redirect exact from='/' to={routes.GROUP_LIST}/>
       <PrivateRoute exact path={routes.GROUP_LIST} component={pages.GroupListPage}/>
 
-      <Route path={routes.LOGIN} component={pages.LoginPage}/>
-      <Route path={routes.REGISTER} component={pages.RegisterPage}/>
+      <Route path={routes.LOGIN} component={pages.LoginFormPage}/>
+      <Route path={routes.REGISTER} component={pages.RegisterFormPage}/>
 
       <PrivateRoute path={routes.GROUP_FORM} component={pages.GroupFormPage}/>
       <PrivateRoute path={routes.GROUP_DETAIL} component={pages.GroupDetailPage}/>
 
+      <PrivateRoute exact path={routes.MEETING_LIST} component={pages.MeetingListPage}/>
       <PrivateRoute path={routes.MEETING_FORM} component={pages.MeetingFormPage}/>
       <PrivateRoute path={routes.MEETING_DETAIL} component={pages.MeetingDetailPage}/>
 
@@ -27,6 +28,7 @@ const App = () =>
 
       <PrivateRoute path={routes.GROUP_SETTING} component={pages.GroupSettingPage}/>
 
+      <PrivateRoute exact path={routes.GROUP_NOTICE_LIST} component={pages.GroupNoticeListPage}/>
       <PrivateRoute path={routes.GROUP_NOTICE_FORM} component={pages.GroupNoticeFormPage}/>
       <PrivateRoute path={routes.GROUP_NOTICE_DETAIL} component={pages.GroupNoticeDetailPage}/>
 
