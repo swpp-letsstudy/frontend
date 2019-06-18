@@ -61,27 +61,40 @@ class MeetingDetail extends Component {
           </Link>
         }
         </Icon>
-        <Title>{meeting.time}</Title>
-        <Div>
-          Attendances
-        </Div>
-          {meeting.group.members.map((user, index) =>
-            <div style={{ fontSize: "1.2rem" , textAlign: "left"}} key={user.id}>
-              {user.nickname}
-              {this.isAttendance(user) ?
-                <Icon onClick={() => this.toggleUserAttendanceHandler(user)} name='check circle outline' />
-                :
-                <Icon onClick={() => this.toggleUserAttendanceHandler(user)} name='times circle outline' />
-              }
-            <br/>
-            </div>
-          )}
+        <div style={{textAlignLast:'right'}} >
+        <Icon name='trash' onClick={this.deleteMeeting}/>
+        </div>
+
+        <Title style={{marginTop: '0rem'}}>{meeting.time.substring(0, 10)} {meeting.time.substring(11,13)}시 {meeting.time.substring(14,16)}분</Title>
+
         <Link to={{
           pathname: routes.MEETING_NOTICE_LIST,
           state: { meetingId: meeting.id }
         }}>
+          <Div>
           공지
+          </Div>
         </Link>
+
+        <br/>
+
+        <Div>
+          Attendances
+        </Div>
+
+          {meeting.group.members.map((user, index) =>
+            <div style={{textAlign:"left",fontSize:"1.2rem", marginTop:"0.8rem"}} key={user.id}>
+              {this.isAttendance(user) ?
+                <Icon style={{ fontSize: "1.2rem"}} onClick={() => this.toggleUserAttendanceHandler(user)} name='check circle outline' />
+                :
+                <Icon style={{ fontSize: "1.2rem"}} onClick={() => this.toggleUserAttendanceHandler(user)} name='times circle outline' />
+              }
+              {user.nickname}
+            </div>
+          )}
+
+
+        <br/>
         <Link to={{
           pathname: routes.MY_MEETING_FINE_LIST.replace(':meetingId', meeting.id),
           state: {
@@ -89,11 +102,13 @@ class MeetingDetail extends Component {
             groupId: meeting.group.id,
           }
         }}>
+          <Div>
           벌금
+          </Div>
         </Link>
-        <Button onClick={this.deleteMeeting}>
-          삭제
-        </Button>
+       
+        
+
       </Wrapper>
     )
   }

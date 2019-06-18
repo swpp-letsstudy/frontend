@@ -132,7 +132,7 @@ class GroupDetail extends Component {
           {meetings.map((meeting, index) =>
             <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
               <Link to={`${routes.MEETING_DETAIL.replace(':meetingId', meeting.id)}`}>
-                {meeting.time}
+                {meeting.time.substring(0,10)} {meeting.time.substring(11,13)}시 {meeting.time.substring(14,16)}분
               </Link>
             </div>
           )}
