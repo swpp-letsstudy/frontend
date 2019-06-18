@@ -72,6 +72,7 @@ class GroupDetail extends Component {
               GroupList
             </Link>
           </Icon>
+
           {group.owner === nickname 
             ?
               group.is_open 
@@ -79,6 +80,15 @@ class GroupDetail extends Component {
                 <div>
                   <div style={{textAlign:"right",size:"1.2rem"}} >
                     가입허용: <Icon style={{textAlign:"right"}} onClick={this.openCloseGroup} name='check circle outline'/>
+                    
+                    <Link to={
+                      {
+                        pathname: routes.GROUP_SETTING,
+                        state: { groupId },
+                      }}
+                    >
+                      <Icon name='setting'/>
+                    </Link>
                   </div>
                   <Title style={{marginTop: "0rem"}}>
                     {group.name}
@@ -98,19 +108,35 @@ class GroupDetail extends Component {
                 {group.name}
               </Title>
           }
+
+
+          <hr/>
+          <div style={{textAlignLast:'center'}}>
+          <Button basic color='black' compact>
+            <Link to={routes.CHATTING.replace(':groupId', group.id)}>
+              채팅
+            </Link>
+          </Button>
           
+          <Button basic color='black' compact>
+            <Link to={routes.CLOUD_STORAGE.replace(':groupId', group.id)}>
+              파일
+            </Link>
+          </Button>
+          </div>
+
           <div>{group.attendance_amount}</div>
           <Div>
             미팅목록
           </Div>
           {meetings.map((meeting, index) =>
-            <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.5rem"}}>
+            <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
               <Link to={`${routes.MEETING_DETAIL.replace(':meetingId', meeting.id)}`}>
                 {meeting.time}
               </Link>
             </div>
           )}
-          <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.5rem"}}>
+          <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
             <Link to={{
               pathname: routes.MEETING_FORM,
               state: { groupId: group.id },
@@ -126,7 +152,7 @@ class GroupDetail extends Component {
           </Div>
           {groupNotices.map((groupNotice, index) => (
             <Fragment key={groupNotice.id}>
-              <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.5rem"}}>
+              <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
               <Link to={{
                 pathname: routes.GROUP_NOTICE_DETAIL.replace(':groupNoticeId', groupNotice.id),
                 state: { groupId },
@@ -136,7 +162,7 @@ class GroupDetail extends Component {
               </div>    
             </Fragment>
           ))}
-          <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.5rem"}}>
+          <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
           <Link to={{
             pathname: routes.GROUP_NOTICE_FORM,
             state: { groupId }
@@ -147,13 +173,7 @@ class GroupDetail extends Component {
 
           <br />
 
-          <Div>
-            Invitation Code
-          </Div>
-          <div style={{ fontSize: "1.2rem" , textAlign: "left"}}>{`${HOST}join_group/?token=${group.id}`}</div>
           
-
-          <br />
 
           <Link to={{
             pathname: routes.POLICY_LIST,
@@ -164,37 +184,29 @@ class GroupDetail extends Component {
             </Div>
           </Link>
   
-          <div style={{ fontSize: "1.2rem" , textAlign: "left"}}>
-            {sum}원
+          <Link to={{
+            pathname: routes.MY_POLICY_LIST,
+            state: { groupId },
+          }}>
+            <div style={{ fontSize: "1.2rem" , textAlign: "left"}}>
+              {sum}원
+            </div>
+          </Link>
+
+
+          <br />
+
+          <Div>
+            Invitation Code
+          </Div>
+          <div style={{ fontSize: "1.2rem" , textAlign: "left"}}>{`${HOST}join_group/?token=${group.id}`}</div>
+          
+          <br/>
+
+          <div style={{textAlign: 'center'}} onClick={this.deleteGroup}>
+          <Icon name='sign out'/>
+          그룹 탈퇴
           </div>
-          <br />
-
-          <br />
-          <Button>
-            <Link to={routes.CHATTING.replace(':groupId', group.id)} style={{ color: "white" }}>
-              채팅
-            </Link>
-          </Button>
-          
-          
-          <Button>
-            <Link to={{
-              pathname: routes.POLICY_LIST,
-              state: { groupId },
-            }} style={{ color: "white" }}>
-              벌금
-            </Link>
-          </Button>
-          
-          <Button>
-            <Link to={routes.CLOUD_STORAGE.replace(':groupId', group.id)} style={{ color: "white" }}>
-              파일
-            </Link>
-          </Button>
-
-          <Button onClick={this.deleteGroup}>
-            탈퇴
-          </Button>
         </Wrapper>
         
       </>

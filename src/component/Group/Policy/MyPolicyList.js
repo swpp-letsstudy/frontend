@@ -35,12 +35,7 @@ class MyPolicyForm extends Component {
           GroupDetail
         </Link>
         <br />
-        <Link to={{
-          pathname: routes.POLICY_LIST,
-          state: { groupId },
-        }}>
-          PolicyList
-        </Link>
+        
         <br />
         <h1>총 벌금: {sum}</h1>
         <br />

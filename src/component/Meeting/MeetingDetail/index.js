@@ -60,22 +60,21 @@ class MeetingDetail extends Component {
             MeetingList
           </Link>
         }
-          
         </Icon>
-        <Title>Attendance</Title>
+        <Title>{meeting.time}</Title>
         <Div>
-          Meeting Time: {meeting.time}
+          Attendances
         </Div>
           {meeting.group.members.map((user, index) =>
-            <Div key={user.id}>
+            <div style={{ fontSize: "1.2rem" , textAlign: "left"}} key={user.id}>
               {user.nickname}
               {this.isAttendance(user) ?
                 <Icon onClick={() => this.toggleUserAttendanceHandler(user)} name='check circle outline' />
                 :
                 <Icon onClick={() => this.toggleUserAttendanceHandler(user)} name='times circle outline' />
               }
-
-            </Div>
+            <br/>
+            </div>
           )}
         <Link to={{
           pathname: routes.MEETING_NOTICE_LIST,
