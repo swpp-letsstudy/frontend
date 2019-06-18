@@ -27,15 +27,18 @@ const GroupNoticeForm = props => {
         const { title, contents } = values
         apis.createGroupNotice({ groupId, title, contents }).then(loadGroupNotices({ groupId }))
         history.push({
-          pathname: routes.GROUP_DETAIL.replace(':groupId', groupId),
+          pathname: routes.GROUP_NOTICE_LIST,
           state: { groupId },
         })
       }}
       render={() =>
         <Wrapper>
           <Icon name='chevron left'>
-            <Link to={routes.GROUP_DETAIL.replace(':groupId', groupId)}>
-              MeetingList
+            <Link to={{
+              pathname: routes.GROUP_NOTICE_LIST,
+              state: { groupId },
+            }}>
+              GroupNoticeList
             </Link>
           </Icon>
           <Title>Create Group Notice</Title>

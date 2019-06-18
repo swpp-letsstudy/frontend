@@ -166,15 +166,21 @@ class GroupDetail extends Component {
 
         <br />
 
-        <Div>
+        <Link to={{
+          pathname: routes.GROUP_NOTICE_LIST,
+          state: { groupId },
+        }}>
           공지
-        </Div>
+        </Link>
         {groupNotices.map((groupNotice, index) => (
           <Fragment key={groupNotice.id}>
             <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
             <Link to={{
               pathname: routes.GROUP_NOTICE_DETAIL.replace(':groupNoticeId', groupNotice.id),
-              state: { groupId },
+              state: {
+                groupId,
+                backurl: routes.GROUP_DETAIL.replace(':groupId', groupId),
+              },
             }}>
               {groupNotice.title}
             </Link>

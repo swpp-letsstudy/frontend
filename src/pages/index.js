@@ -16,6 +16,7 @@ export { default as CloudStoragePage } from 'pages/CloudStoragePage'
 export { default as UserSettingPage } from 'pages/UserSettingPage'
 export { default as GroupSettingPage } from 'pages/Group/GroupSettingPage'
 
+export { default as GroupNoticeListPage } from 'pages/Group/GroupNoticeListPage'
 export { default as GroupNoticeDetailPage } from 'pages/Group/GroupNoticeDetailPage'
 export { default as GroupNoticeFormPage } from 'pages/Group/GroupNoticeFormPage'
 
