@@ -19,7 +19,6 @@ export default {
   GROUP_NOTICE_DETAIL: '/group_notices/:groupNoticeId',
   GROUP_NOTICE_FORM: '/group_notice/edit',
   
-  MEETING_NOTICE_LIST: '/meeting_notices',
   MEETING_NOTICE_DETAIL: '/meeting_notices/:meetingNoticeId',
   MEETING_NOTICE_FORM: '/meeting_notice/edit',
 

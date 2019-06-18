@@ -69,14 +69,11 @@ class MeetingDetail extends Component {
 
         <Title style={{marginTop: '0rem'}}>{meeting.time.substring(0, 10)} {meeting.time.substring(11,13)}시 {meeting.time.substring(14,16)}분</Title>
 
-        <Link to={{
-          pathname: routes.MEETING_NOTICE_LIST,
-          state: { meetingId: meeting.id }
-        }}>
-          <Div>
-            공지
-          </Div>
-        </Link>
+        
+        <Div>
+          공지
+        </Div>
+
         {meetingNotices.map((meetingNotice, index) => (
           <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
           <Fragment key={meetingNotice.id}>
