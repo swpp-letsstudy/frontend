@@ -35,4 +35,5 @@ export default createActions({
   [ACTION_TYPES.LOAD_FEW_GROUP_NOTICES]: apis.loadFewGroupNotices,
   [ACTION_TYPES.LOAD_MEETING_NOTICES]: apis.loadMeetingNotices,
   [ACTION_TYPES.LOAD_POLICIES]: apis.loadPolicies,
+  [ACTION_TYPES.SET_INFO]: payload => payload,
 })

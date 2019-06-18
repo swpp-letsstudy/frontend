@@ -25,7 +25,6 @@ class MeetingNoticeDetail extends Component {
 
   componentDidMount() {
     const { meetingNoticeId, meetingId } = this.props
-    console.log(meetingNoticeId)
     apis.readMeetingNotice({ meetingNoticeId, meetingId })
       .then(response => {
         this.setState({
@@ -45,7 +44,7 @@ class MeetingNoticeDetail extends Component {
   }
 
   render() {
-    const { meetingId } = this.props
+    const { meetingId, backurl } = this.props
     const { notice } = this.state
     return (
       <>
@@ -53,7 +52,7 @@ class MeetingNoticeDetail extends Component {
           <Icon name='chevron left'>
             <Link to={{
               pathname: routes.MEETING_DETAIL.replace(':meetingId', meetingId),
-              state: { meetingId },
+              state: { meetingId, backurl },
             }}>
               MeetingList
             </Link>
