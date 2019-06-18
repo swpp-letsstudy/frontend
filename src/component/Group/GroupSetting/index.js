@@ -47,7 +47,7 @@ class GroupSetting extends Component {
               </Link>
             </Icon>
             
-            <Title>GroupSetting</Title>
+            <Title>Group Setting</Title>
             <hr/>
 
             <Div>결석 1회당 벌금: {this.state.amount}원</Div>
