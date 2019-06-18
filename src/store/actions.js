@@ -23,14 +23,16 @@ export default createActions({
     value.data = user
     return value
   }),
-  [ACTION_TYPES.SIGNOUT]: () => apis.signout.then(value => {
+  [ACTION_TYPES.SIGNOUT]: () => apis.signout().then(value => {
     delete axios.defaults.headers.common.Authorization
     localStorage.removeItem('user')
     return value
   }),
   [ACTION_TYPES.LOAD_GROUPS]: apis.loadGroups,
   [ACTION_TYPES.LOAD_MEETINGS]: apis.loadMeetings,
+  [ACTION_TYPES.LOAD_FEW_MEETINGS]: apis.loadFewMeetings,
   [ACTION_TYPES.LOAD_GROUP_NOTICES]: apis.loadGroupNotices,
+  [ACTION_TYPES.LOAD_FEW_GROUP_NOTICES]: apis.loadFewGroupNotices,
   [ACTION_TYPES.LOAD_MEETING_NOTICES]: apis.loadMeetingNotices,
   [ACTION_TYPES.LOAD_POLICIES]: apis.loadPolicies,
 })
