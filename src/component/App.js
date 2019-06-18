@@ -16,6 +16,7 @@ const App = () =>
       <PrivateRoute path={routes.GROUP_FORM} component={pages.GroupFormPage}/>
       <PrivateRoute path={routes.GROUP_DETAIL} component={pages.GroupDetailPage}/>
 
+      <PrivateRoute exact path={routes.MEETING_LIST} component={pages.MeetingListPage}/>
       <PrivateRoute path={routes.MEETING_FORM} component={pages.MeetingFormPage}/>
       <PrivateRoute path={routes.MEETING_DETAIL} component={pages.MeetingDetailPage}/>
 

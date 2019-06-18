@@ -6,6 +6,7 @@ export default {
   GROUP_DETAIL: '/groups/:groupId',
   GROUP_FORM: '/groups/edit',
 
+  MEETING_LIST: '/meetings',
   MEETING_DETAIL: '/meetings/:meetingId',
   MEETING_FORM: '/meetings/edit',
 
