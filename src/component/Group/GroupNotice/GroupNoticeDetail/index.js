@@ -7,7 +7,6 @@ import actionCreators from 'store/actions'
 import routes from 'routes'
 import apis from 'apis'
 
-import { Button } from 'semantic-ui-react'
 import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
 
