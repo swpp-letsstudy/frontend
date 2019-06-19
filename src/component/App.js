@@ -39,7 +39,6 @@ const App = () =>
       <PrivateRoute exact path={routes.POLICY_LIST} component={pages.PolicyListPage}/>
       <PrivateRoute path={routes.POLICY_FORM} component={pages.PolicyFormPage}/>
       <PrivateRoute path={routes.POLICY_DETAIL} component={pages.PolicyDetailPage}/>
-      <PrivateRoute path={routes.MY_MEETING_FINE_LIST} component={pages.MyMeetingFineListPage}/>
       <PrivateRoute path={routes.MEETING_POLICY_MANAGE} component={pages.MeetingPolicyManagePage}/>
     </Switch>
 
