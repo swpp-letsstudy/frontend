@@ -85,6 +85,7 @@ class CloudStorage extends Component {
             <Link to={routes.GROUP_DETAIL.replace(':groupId', groupId)}>MeetingList</Link>
           </Icon>
           <Title>File Storage</Title>
+          <hr/>
           <FileUploader groupId={groupId} dirpath=''/>
           <Treebeard
               groupId={groupId}

@@ -30,7 +30,7 @@ class GroupList extends Component {
       <>
         <Wrapper>
           <Title>Group Page</Title>
-          <h1 style={{fontSize: "1.5rem", textAlign: "center"}}>{nickname}</h1>
+          <h1 style={{fontSize: "1.5rem", textAlign: "center", marginTop: "0rem"}}>{nickname}</h1>
           <Formik
             initialValues={{
               url: '',
@@ -61,7 +61,7 @@ class GroupList extends Component {
             }
           />
 
-          <br />
+          <hr/>
           <Div>
             그룹 목록
           </Div>

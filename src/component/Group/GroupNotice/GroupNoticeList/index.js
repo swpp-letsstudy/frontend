@@ -30,9 +30,22 @@ class GroupList extends Component {
               GroupDetail
             </Link>
           </Icon>
-          <Title>
-            그룹 공지 목록
-          </Title>
+
+          <div>
+            <div style={{textAlign:'right', fontSize:"1.2rem"}}>
+            
+              <Link to={{
+                pathname: routes.GROUP_NOTICE_FORM,
+                state: { groupId }
+              }}>
+                <Icon name='add'/>
+              </Link>       
+
+            </div>
+            <Title style={{marginTop:"0rem"}}>
+            그룹 공지 목록</Title>
+          </div>
+
           <hr/>
           {groupNotices.map((groupNotice, index) => (
             <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
@@ -46,14 +59,7 @@ class GroupList extends Component {
             </Fragment>
             </div>
           ))}
-          <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
-          <Link to={{
-            pathname: routes.GROUP_NOTICE_FORM,
-            state: { groupId }
-          }}>
-            그룹 공지 만들기
-          </Link>
-          </div>
+          
         </Wrapper>
       </>
     )

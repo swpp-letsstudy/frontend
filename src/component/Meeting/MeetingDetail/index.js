@@ -61,12 +61,13 @@ class MeetingDetail extends Component {
         }
         </Icon>
         <div style={{textAlignLast:'right'}} >
-        <Icon name='trash' onClick={this.deleteMeeting}/>
+        <Icon name='trash alternate outline' onClick={this.deleteMeeting}/>
         </div>
 
         <Title style={{marginTop: '0rem'}}>{meeting.time.substring(0, 10)} {meeting.time.substring(11,13)}시 {meeting.time.substring(14,16)}분</Title>
 
         
+        <hr/>
         <Div>
           공지
         </Div>
@@ -96,28 +97,26 @@ class MeetingDetail extends Component {
         <Div>
           Fines
         </Div>
-        
-        <div>
-          <div>
+          <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
             Attendance
             {isAttendance ?
-              <Icon style={{ fontSize: "1.2rem"}} name='check circle outline' /> :
-              <Icon style={{ fontSize: "1.2rem"}} name='times circle outline' />}
+              <Icon style={{ fontSize: "1.2rem", padding: "0rem", margin: "0rem"}} name='check circle outline' /> :
+              <Icon style={{ fontSize: "1.2rem", padding: "0rem", margin: "0rem"}} name='times circle outline' />}
           </div>
           {fines.map((fine, index) => (
-            <div key={fine.id}>
+            <div key={fine.id} style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
               {fine.policyname}
               {!fine.checked ?
-              <Icon style={{ fontSize: "1.2rem"}} name='check circle outline' /> :
-              <Icon style={{ fontSize: "1.2rem"}} name='times circle outline' />}
+              <Icon style={{ fontSize: "1.2rem", padding: "0rem", margin: "0rem"}} name='check circle outline' /> :
+              <Icon style={{ fontSize: "1.2rem", padding: "0rem", margin: "0rem"}} name='times circle outline' />}
             </div>
           ))}
-          <br />
+          <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
           {meeting && (meeting.group.owner===nickname) ? <Link to={{
             pathname: routes.MEETING_POLICY_MANAGE,
             state: { meetingId, groupId },
           }}>벌금 관리</Link>: <></>}
-        </div>
+          </div>
       </Wrapper>
     )
   }

@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import { Progress } from 'semantic-ui-react'
 
 import Button from './MeetingCreateButton'
 
@@ -113,7 +114,7 @@ class GroupDetail extends Component {
                   </Link>
                 </div>
                 <Title style={{marginTop: "0rem"}}>
-                  {group.name} 성취도: {successRate}%
+                  {group.name}
                 </Title>
               </div>
             :
@@ -133,30 +134,36 @@ class GroupDetail extends Component {
                   </Link>
                 </div>
                 <Title style={{marginTop: "0rem"}}>
-                  {group.name} 성취도: {successRate}%
+                  {group.name}
                 </Title>
               </div>
           :
             <Title>
-              {group.name} 성취도: {successRate}%
+              {group.name}
             </Title>
         }
 
+        <hr/>
+
+        <Progress percent={successRate} indicating label='성취도' progress/> 
+
+        <div style={{textAlignLast:'center'}}>
+          <Button basic color='black' compact>
+            <Link to={routes.CHATTING.replace(':groupId', group.id)}>
+              채팅
+            </Link>
+          </Button>
+          
+          <Button basic color='black' compact>
+            <Link to={routes.CLOUD_STORAGE.replace(':groupId', group.id)}>
+              파일
+            </Link>
+          </Button>
+        </div>
 
         <hr/>
-        <div style={{textAlignLast:'center'}}>
-        <Button basic color='black' compact>
-          <Link to={routes.CHATTING.replace(':groupId', group.id)}>
-            채팅
-          </Link>
-        </Button>
         
-        <Button basic color='black' compact>
-          <Link to={routes.CLOUD_STORAGE.replace(':groupId', group.id)}>
-            파일
-          </Link>
-        </Button>
-        </div>
+
 
         <Link to={{
           pathname: routes.MEETING_LIST,

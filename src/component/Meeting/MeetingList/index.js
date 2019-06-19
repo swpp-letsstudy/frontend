@@ -28,9 +28,24 @@ class MeetingList extends Component {
             GroupDetail
           </Link>
         </Icon>
-        <Title>
-          미팅 목록
-        </Title>
+
+
+        <div>
+            <div style={{textAlign:'right', fontSize:"1.2rem"}}>
+            
+              <Link to={{
+                pathname: routes.MEETING_FORM,
+                state: { groupId },
+              }}>
+                <Icon name='add'/>
+              </Link>       
+
+            </div>
+            <Title style={{marginTop:"0rem"}}>
+              미팅 목록
+            </Title>
+        </div>
+
         <hr/>
         {meetings.map((meeting, index) =>
           <div key={meeting.id} style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
@@ -43,12 +58,6 @@ class MeetingList extends Component {
           </div>
         )}
         <br />
-        <Link to={{
-          pathname: routes.MEETING_FORM,
-          state: { groupId },
-        }}>
-          미팅 만들기
-        </Link>
       </Wrapper>
     )
   }
