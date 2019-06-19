@@ -23,10 +23,11 @@ const App = () =>
       <PrivateRoute path={routes.CHATTING} component={pages.ChattingPage}/>
 
       <PrivateRoute path={routes.USER_SETTING} component={pages.UserSettingPage}/>
+      <PrivateRoute path={routes.GROUP_SETTING} component={pages.GroupSettingPage}/>
+
+      <PrivateRoute path={routes.GROUP_MEMBERS} component={pages.GroupMembersPage}/>
 
       <PrivateRoute path={routes.CLOUD_STORAGE} component={pages.CloudStoragePage}/>
-
-      <PrivateRoute path={routes.GROUP_SETTING} component={pages.GroupSettingPage}/>
 
       <PrivateRoute exact path={routes.GROUP_NOTICE_LIST} component={pages.GroupNoticeListPage}/>
       <PrivateRoute path={routes.GROUP_NOTICE_FORM} component={pages.GroupNoticeFormPage}/>
