@@ -14,6 +14,9 @@ import Link from 'component/Styles/Link'
 import Div from 'component/Styles/Div'
 
 import Field from './GroupFormField'
+import Checkbox from './GroupFormCheckbox'
+
+let monday, tuesday, wednesday, thursday, friday, saturday, sunday;
 
 const GroupForm = props => {
   const { history, loadGroups } = props
@@ -24,10 +27,13 @@ const GroupForm = props => {
         info: '',
       }}
       onSubmit={(values, formActions) => {
-        const { name, info } = values
-        apis.createGroup({ name, info }).then(loadGroups)
+        
+        const { name, info, startday, endday, time } = values
+        apis.createGroup({ name, info, startday, endday, monday, tuesday, wednesday, thursday, friday, saturday, sunday, time}).then(loadGroups)
+        init_days()
         history.push(routes.GROUP_LIST)
       }}
+
       render={() =>
         <Wrapper>
           <Icon name='chevron left'>
@@ -47,6 +53,26 @@ const GroupForm = props => {
             </Div>
             <Field style={{borderColor:"black", borderWidth:"2px", height:"20rem"}} component='textarea' name='info' placeholder='Informations...'/>
             
+            <Field style={{borderColor:"black", borderWidth:"2px"}} name='startday' type='date' />
+            <Field style={{borderColor:"black", borderWidth:"2px"}} name='endday' type='date' />
+            
+            <Div style={{textDecoration:"none", textAlignLast:"center"}}>
+              스터디 요일
+            </Div>
+            {init_days}
+            <Checkbox label = '월' onChange ={ togglemonday } name = 'monday'></Checkbox>
+            <Checkbox label = '화' onChange ={ toggletuesday } name = 'tuesday'></Checkbox>
+            <Checkbox label = '수' onChange ={ togglewednesday } name = 'wednesday'></Checkbox>
+            <Checkbox label = '목' onChange ={ togglethursday } name = 'thursday'></Checkbox>
+            <Checkbox label = '금' onChange ={ togglefriday } name = 'friday'></Checkbox>
+            <Checkbox label = '토' onChange ={ togglesaturday } name = 'saturday'></Checkbox>
+            <Checkbox label = '일' onChange ={ togglesunday } name = 'sunday'></Checkbox>
+              
+            <Div style={{textDecoration:"none", textAlignLast:"center"}}>
+              스터디 시간
+            </Div>
+            <Field style={{borderColor:"black", borderWidth:"2px"}} name ='time' type='time' />
+            
             <br/>
             <br/>
 
@@ -62,6 +88,30 @@ const GroupForm = props => {
       }
     />
   )
+}
+const init_days = () => {
+  monday=tuesday=wednesday=thursday=friday=saturday=sunday=false
+}
+const togglemonday = () => {
+    monday = !monday
+}
+const toggletuesday = () => {
+    tuesday = !tuesday
+}
+const togglewednesday = () => {
+    wednesday = !wednesday
+}
+const togglethursday = () => {
+    thursday = !thursday
+}
+const togglefriday = () => {
+    friday = !friday
+}
+const togglesaturday = () => {
+    saturday = !saturday
+}
+const togglesunday = () => {
+    sunday = !sunday
 }
 
 const mapStateToProps = state => ({

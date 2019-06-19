@@ -40,6 +40,7 @@ class MyPolicyForm extends Component {
   render() {
     const { groupId } = this.props
     const { myFines, sum } = this.state
+    console.log(myFines)
     return (
       <Wrapper>
 
@@ -51,19 +52,17 @@ class MyPolicyForm extends Component {
 
         <Title>총 벌금: {sum}</Title>
         <hr/>
-        {myFines ? Object.keys(myFines).map((meeting, index) => (
-          <Fragment key={meeting}>
-            <Div>{meeting}</Div>
-            {myFines[meeting] ? myFines[meeting].map((fine, index) => (
+        {myFines ? myFines.map((myFine, index) => (
+          <Fragment key={myFine.id}>
+            <Div>{myFine.meetingname.substring(0, 10)}</Div>
+            {myFine.fines.map((fine, index) => (
               <Fragment key={fine.id}>
-                <div
-                style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}
-                >
-                {fine.policy.name}: {fine.policy.amount}
+                <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
+                {fine.policyname}: {fine.amount}
                 </div>
                 
               </Fragment>
-            )) : <></>}
+            ))}
           </Fragment>
         )) : <></>}
       </Wrapper>

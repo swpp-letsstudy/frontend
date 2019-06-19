@@ -68,6 +68,10 @@ class MeetingDetail extends Component {
         </div>
 
         <Title style={{marginTop: '0rem'}}>{meeting.time.substring(0, 10)} {meeting.time.substring(11,13)}시 {meeting.time.substring(14,16)}분</Title>
+        
+        <div>
+          {meeting.info}
+        </div>
 
         
         <hr/>

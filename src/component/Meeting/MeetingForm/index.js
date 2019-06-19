@@ -28,9 +28,10 @@ const MeetingForm = props => {
           apis.createMeeting({ info, time, groupId }).then(
             loadMeetings({ groupId })
           )
-          history.push(
-            `${routes.GROUP_DETAIL.replace(':groupId', groupId)}`
-          )
+          history.push({
+            pathname: routes.MEETING_LIST,
+            state: { groupId },
+          })
         }}
         render={() =>
           <Wrapper>
