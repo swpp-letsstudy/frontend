@@ -42,15 +42,16 @@ const MeetingNoticeForm = props => {
             </Link>
           </Icon>
           <Title>Create Meeting Notice</Title>
+          <hr/>
           <Form style={{width: '25rem'}}>
             <Div style={{textDecoration:"none", textAlignLast:"center"}}>
               제목
             </Div>
-            <Field component='input' name='title'/>
+            <Field component='input' name='title' placeholder='Title'/>
             <Div style={{textDecoration:"none", textAlignLast:"center"}}>
               내용
             </Div>
-            <Field style={{borderColor:"black", borderWidth:"2px"}} component='textarea' name='contents'/>
+            <Field style={{borderColor:"black", borderWidth:"2px"}} component='textarea' name='contents' placeholder='Contents...'/>
             
             <br/>
             <br/>

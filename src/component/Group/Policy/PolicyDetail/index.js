@@ -53,7 +53,9 @@ class PolicyDetail extends Component {
         </div>
         <Title style={{marginTop:'0rem'}}>{policy.name}</Title>
         <hr/>
-        <h2>{policy.info}</h2>
+        <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
+          {policy.info}
+        </div>
         
       </Wrapper>
     )

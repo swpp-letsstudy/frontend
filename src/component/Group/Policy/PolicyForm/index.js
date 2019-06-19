@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Formik, Field, Form } from 'formik/dist/index'
+import { Formik, Form } from 'formik/dist/index'
+import { Button } from 'semantic-ui-react'
 
 import apis from 'apis'
 import routes from 'routes'
@@ -10,6 +11,10 @@ import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
 import Icon from 'component/Styles/Chevron'
 import Link from 'component/Styles/Link'
+import Div from 'component/Styles/Div'
+
+import Field from './PolicyFormField'
+
 
 const PolicyForm = props => {
   const { loadPolicies, groupId, history } = props
@@ -40,11 +45,27 @@ const PolicyForm = props => {
           </Link>
           </Icon>
           <Title>Create Policy</Title>
+          <hr/>
           <Form>
-            <Field name='name' type='text' />
-            <Field name='info' type='text' />
-            <Field name='amount' type='number' />
-            <button type='submit'>벌금 생성</button>
+            <Div style={{textDecoration:"none", textAlignLast:"center"}}>Policy Name</Div>
+            <Field name='name' type='input' style={{borderColor:"black", borderWidth:"2px"}} placeholder='Policy Name'/>
+            <Div style={{textDecoration:"none", textAlignLast:"center"}}>Policy Info</Div>
+            <Field name='info' type='input' component='textarea' style={{borderColor:"black", borderWidth:"2px", height:"15rem"}} placeholder='Information...'/>
+            <Div style={{textDecoration:"none", textAlignLast:"center"}}>Fine</Div>
+            <Field name='amount' type='number' placeholder='벌금'/>
+            
+            <br/>
+            <br/>
+            
+            <div>
+            <Button basic color='black' animated type='submit' style={{width: "100%", fontSize: "1.5rem", fontWeight: "20"}}><Button.Content visible>
+                Policy 생성
+              </Button.Content>
+              <Button.Content hidden>
+                <Icon style={{paddingTop: "0rem"}} name='add' />
+              </Button.Content>
+            </Button>
+            </div>
           </Form>
         </Wrapper>
       }

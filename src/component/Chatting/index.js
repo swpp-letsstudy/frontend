@@ -53,6 +53,8 @@ class Chatting extends Component {
         <Link to={`/groups/${groupId}`}>
             MeetingList
         </Link>
+        <br/>
+        <br/>
       </Icon>
         <ChattingWindow messages={messages} onSendMessage={this.onSendMessage}/>
       </Wrapper>

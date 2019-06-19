@@ -10,7 +10,6 @@ import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
 import Icon from 'component/Styles/Chevron'
 import Link from 'component/Styles/Link'
-import Div from 'component/Styles/Div'
 
 import Writer from './MeetingNoticeWriter'
 
@@ -65,7 +64,9 @@ class MeetingNoticeDetail extends Component {
           </Writer>
 
           <hr />
-          <Div>{notice.contents}</Div>
+          <div
+            style={{fontSize: "1.2rem"}}
+          >{notice.contents}</div>
           <div style={{textAlign: 'right'}}>
           <Icon name='trash alternate outline' onClick={this.deleteMeetingNotice} style={{fontSize: '1.5rem'}}/>
           </div>
