@@ -1,11 +1,10 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { Formik } from 'formik/dist/index'
 import { Icon } from 'semantic-ui-react'
 import styled from 'styled-components'
 
+import apis from 'apis'
 import routes from 'routes'
-import actionCreators from 'store/actions'
 
 import Field from './RegisterField'
 import Button from './RegisterButton'
@@ -21,7 +20,7 @@ const Title = styled.h1`
 `;
 
 const RegisterForm = (props) => {
-  const { history, register } = props
+  const { history } = props
   return (
     <Formik
     initialValues={{
@@ -31,7 +30,7 @@ const RegisterForm = (props) => {
     }}
     onSubmit={(values, formActions) => {
       const { username, password, nickname } = values
-      register({ username, password, nickname })
+      apis.register({ username, password, nickname })
       history.push(routes.LOGIN)
     }}
     render={() =>
@@ -63,12 +62,4 @@ const RegisterForm = (props) => {
   />)
 }
 
-const mapStateToProps = state => ({
-
-})
-
-const mapDispatchToProps = dispatch => ({
-  register: payload => dispatch(actionCreators.register(payload))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm)
+export default RegisterForm
