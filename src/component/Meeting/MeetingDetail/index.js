@@ -46,6 +46,7 @@ class MeetingDetail extends Component {
     const { meetingNotices, meetingId, backurl, groupId, userId, nickname } = this.props
     const { meeting, fines } = this.state
     const isAttendance = meeting && meeting.attendances.includes(userId)
+    console.log(fines)
     return (meeting &&
       <Wrapper>
         <Icon name='chevron left'>
@@ -98,9 +99,19 @@ class MeetingDetail extends Component {
         </Div>
         
         <div>
-          {isAttendance ? <></> : <div>Attendance</div>}
+          <div>
+            Attendance
+            {isAttendance ?
+              <Icon style={{ fontSize: "1.2rem"}} name='check circle outline' /> :
+              <Icon style={{ fontSize: "1.2rem"}} name='times circle outline' />}
+          </div>
           {fines.map((fine, index) => (
-            <div key={fine.id}>{fine.policy.name}</div>
+            <div key={fine.id}>
+              {fine.policyname}
+              {!fine.checked ?
+              <Icon style={{ fontSize: "1.2rem"}} name='check circle outline' /> :
+              <Icon style={{ fontSize: "1.2rem"}} name='times circle outline' />}
+            </div>
           ))}
           <br />
           {meeting && (meeting.group.owner===nickname) ? <Link to={{
