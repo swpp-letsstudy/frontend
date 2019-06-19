@@ -25,13 +25,10 @@ describe('store', () => {
 
           // Partial matching. test whether B is part of A. ( expect(A).toMatchingObject(B) )
           expect(store.getState().userReducer).toMatchObject({
-            isLoggedIn: true,
-            user: { username: USERNAME }
+            isLoggedIn: true
           })
 
-          expect(JSON.parse(localStorage.getItem('user'))).toMatchObject({
-            username: USERNAME,
-          })
+          
 
           // Opposite test
           expect(store.getState().userReducer.user.token).not.toEqual(undefined)
