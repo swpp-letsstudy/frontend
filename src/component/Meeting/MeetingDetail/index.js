@@ -39,7 +39,10 @@ class MeetingDetail extends Component {
     const { loadMeetings, history } = this.props
     apis.deleteMeeting({ meetingId: meeting.id })
     .then(loadMeetings({ groupId: meeting.group.id }))
-    history.push(routes.GROUP_DETAIL.replace(':groupId', meeting.group.id))
+    history.push({
+      pathname: routes.MEETING_LIST,
+      state: { groupId: meeting.group.id },
+    })
   }
 
   render() {
