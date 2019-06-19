@@ -98,9 +98,19 @@ class MeetingDetail extends Component {
         </Div>
         
         <div>
-          {isAttendance ? <></> : <div>Attendance</div>}
+          <div>
+            Attendance
+            {isAttendance ?
+              <Icon style={{ fontSize: "1.2rem"}} name='check circle outline' /> :
+              <Icon style={{ fontSize: "1.2rem"}} name='times circle outline' />}
+          </div>
           {fines.map((fine, index) => (
-            <div key={fine.id}>{fine.policy.name}</div>
+            <div key={fine.id}>
+              {fine.policyname}
+              {!fine.checked ?
+              <Icon style={{ fontSize: "1.2rem"}} name='check circle outline' /> :
+              <Icon style={{ fontSize: "1.2rem"}} name='times circle outline' />}
+            </div>
           ))}
           <br />
           {meeting && (meeting.group.owner===nickname) ? <Link to={{

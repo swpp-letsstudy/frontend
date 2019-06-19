@@ -23,6 +23,7 @@ class GroupDetail extends Component {
       group: null,
       sum: 0,
       myFines: [],
+      successRate: 0,
     }
   }
 
@@ -44,9 +45,13 @@ class GroupDetail extends Component {
       sum: value.data,
     }))
     loadFewMeetings({ groupId, num: this.state.meetingNum })
-    .then(this.setState({ meetingNum: this.state.meetingNum + 1 }))
+      .then(this.setState({ meetingNum: this.state.meetingNum + 1 }))
     loadFewGroupNotices({ groupId, num: this.state.groupNoticeNum })
-    .then(this.setState({ groupNoticeNum: this.state.groupNoticeNum + 1 }))
+      .then(this.setState({ groupNoticeNum: this.state.groupNoticeNum + 1 }))
+    apis.getSuccessRate({ groupId })
+      .then(value => this.setState({
+        successRate: value.data,
+      }))
   }
 
   appendMeeting = () => {
@@ -80,7 +85,7 @@ class GroupDetail extends Component {
   }
 
   render() {
-    const { group, sum } = this.state
+    const { group, sum, successRate } = this.state
     const { meetings, nickname, groupNotices, groupId } = this.props
     
     return group &&
@@ -109,7 +114,7 @@ class GroupDetail extends Component {
                   </Link>
                 </div>
                 <Title style={{marginTop: "0rem"}}>
-                  {group.name}
+                  {group.name} 성취도: {successRate}%
                 </Title>
               </div>
             :
@@ -129,12 +134,12 @@ class GroupDetail extends Component {
                   </Link>
                 </div>
                 <Title style={{marginTop: "0rem"}}>
-                  {group.name}
+                  {group.name} 성취도: {successRate}%
                 </Title>
               </div>
           :
             <Title>
-              {group.name}
+              {group.name} 성취도: {successRate}%
             </Title>
         }
 

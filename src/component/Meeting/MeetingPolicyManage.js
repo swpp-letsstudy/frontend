@@ -77,7 +77,7 @@ class MeetingPolicyManage extends Component {
         </Icon>
         <h2>Attendance</h2>
         {members ? members.map((member, index) =>
-            <div key={members.id} style={{textAlign:"left",fontSize:"1.2rem", marginTop:"0.8rem"}}>
+            <div key={member.id} style={{textAlign:"left",fontSize:"1.2rem", marginTop:"0.8rem"}}>
               {this.isAttendance(member) ?
                 <Icon style={{ fontSize: "1.2rem"}} onClick={() => this.toggleUserAttendanceHandler(member.id)} name='check circle outline' /> :
                 <Icon style={{ fontSize: "1.2rem"}} onClick={() => this.toggleUserAttendanceHandler(member.id)} name='times circle outline' />}
@@ -90,8 +90,8 @@ class MeetingPolicyManage extends Component {
             <br />
             {policy.name}
             {members ? members.map((member, index) => (
-              <div key={members.id} style={{textAlign:"left",fontSize:"1.2rem", marginTop:"0.8rem"}}>
-                {fines[policy.id] && fines[policy.id].includes(member.id) ?
+              <div key={member.id} style={{textAlign:"left",fontSize:"1.2rem", marginTop:"0.8rem"}}>
+                {!(fines[policy.id] && fines[policy.id].includes(member.id)) ?
                   <Icon style={{ fontSize: "1.2rem"}} onClick={() => this.manageFine(policy.id, member.id)} name='check circle outline'/> :
                   <Icon style={{ fontSize: "1.2rem"}} onClick={() => this.manageFine(policy.id, member.id)} name='times circle outline'/>}
                 {member.nickname}

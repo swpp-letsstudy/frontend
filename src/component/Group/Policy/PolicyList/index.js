@@ -70,7 +70,7 @@ class PolicyList extends Component {
               state: { groupId },
             }}>
               <Div>
-              {policy.name}
+              {policy.name} : {policy.amount}
               </Div>
               {policy.info}
             </Link>
