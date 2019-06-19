@@ -50,7 +50,7 @@ class GroupDetail extends Component {
       .then(this.setState({ groupNoticeNum: this.state.groupNoticeNum + 1 }))
     apis.getSuccessRate({ groupId })
       .then(value => this.setState({
-        successRate: Math.round(value.data * 100),
+        successRate: value.data,
       }))
   }
 
