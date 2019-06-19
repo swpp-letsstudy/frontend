@@ -46,7 +46,6 @@ class MeetingDetail extends Component {
     const { meetingNotices, meetingId, backurl, groupId, userId, nickname } = this.props
     const { meeting, fines } = this.state
     const isAttendance = meeting && meeting.attendances.includes(userId)
-    console.log(fines)
     return (meeting &&
       <Wrapper>
         <Icon name='chevron left'>
