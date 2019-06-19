@@ -42,6 +42,7 @@ const MeetingForm = props => {
             </Icon>
 
             <Title>Create Meeting</Title>
+            <hr/>
             <Form>
               <div>
               <Div style={{textDecoration:"none", textAlignLast:"center"}}>

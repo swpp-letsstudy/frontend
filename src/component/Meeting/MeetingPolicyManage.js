@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
+import Wrapper from 'component/Styles/Wrapper'
+import Title from 'component/Styles/Title'
 import Icon from 'component/Styles/Chevron'
 import Link from 'component/Styles/Link'
+import Div from 'component/Styles/Div'
 
 import actionCreators from 'store/actions'
 import apis from 'apis'
@@ -69,13 +72,15 @@ class MeetingPolicyManage extends Component {
     const { meeting, fines } = this.state
     const members = meeting ? meeting.group.members : null
     return (
-      <>
+      <Wrapper>
         <Icon name='chevron left'>
           <Link to={routes.MEETING_DETAIL.replace(':meetingId', meetingId)}>
             MeetingDetail
           </Link>
         </Icon>
-        <h2>Attendance</h2>
+        <Title>Fine Check</Title>
+        <hr/>
+        <Div>Attendance</Div>
         {members ? members.map((member, index) =>
             <div key={members.id} style={{textAlign:"left",fontSize:"1.2rem", marginTop:"0.8rem"}}>
               {this.isAttendance(member) ?
@@ -86,20 +91,21 @@ class MeetingPolicyManage extends Component {
           ) : <></>}
 
         {policies.map((policy, index) => (
-          <h2 key={policy.id}>
-            <br />
+          <div key={policy.id}>
+            <Div>
             {policy.name}
+            </Div>
             {members ? members.map((member, index) => (
               <div key={members.id} style={{textAlign:"left",fontSize:"1.2rem", marginTop:"0.8rem"}}>
                 {fines[policy.id] && fines[policy.id].includes(member.id) ?
-                  <Icon style={{ fontSize: "1.2rem"}} onClick={() => this.manageFine(policy.id, member.id)} name='check circle outline'/> :
-                  <Icon style={{ fontSize: "1.2rem"}} onClick={() => this.manageFine(policy.id, member.id)} name='times circle outline'/>}
+                  <Icon style={{ fontSize: "1.2rem", margin: "0rem"}} onClick={() => this.manageFine(policy.id, member.id)} name='check circle outline'/> :
+                  <Icon style={{ fontSize: "1.2rem", margin: "0rem"}} onClick={() => this.manageFine(policy.id, member.id)} name='times circle outline'/>}
                 {member.nickname}
               </div>
             )) : <></>}
-          </h2>
+          </div>
         ))}
-      </>
+      </Wrapper>
   )}
 }
 

@@ -68,6 +68,7 @@ class MeetingDetail extends Component {
         <Title style={{marginTop: '0rem'}}>{meeting.time.substring(0, 10)} {meeting.time.substring(11,13)}시 {meeting.time.substring(14,16)}분</Title>
 
         
+        <hr/>
         <Div>
           공지
         </Div>
@@ -97,7 +98,6 @@ class MeetingDetail extends Component {
         <Div>
           Fines
         </Div>
-        
           <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
             Attendance
             {isAttendance ?

@@ -36,8 +36,12 @@ const UserSetting = props => {
           </Link>
           </Icon>
 
-          <Title>User Setting</Title>
+          <div style={{textAlign:"right",size:"1.2rem"}}>
+            탈퇴 <Icon name='sign-out' onClick={signout}></Icon>
+          </div>
 
+          <Title style={{marginTop:'0rem'}}>User Setting</Title>
+          <hr/>
           <Form>
                 <div className="ui action input">
                   <Input
@@ -46,16 +50,17 @@ const UserSetting = props => {
                     type='nickname'
                     placeholder='New Nickname'
                   />
-                  <Button type='submit'>
-                    변경
+                  <Button type='submit' basic color='black' animated style={{textAlign:"center"}}>
+                    <Button.Content visible>
+                      변경
+                    </Button.Content>
+                    <Button.Content hidden>
+                      <Icon name='pencil alternate' />
+                    </Button.Content>
                   </Button >
 
                 </div>
-              </Form>
-          <Button onClick={signout}>
-            탈퇴
-          </Button>
-          
+              </Form>          
         </Wrapper>
       }
     />
