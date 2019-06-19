@@ -260,6 +260,16 @@ class GroupDetail extends Component {
         <div style={{ fontSize: "1.2rem" , textAlign: "left"}}>{`${HOST}join_group/?token=${group.id}`}</div>
         
         <br/>
+        <Link to={{
+          pathname: routes.GROUP_MEMBERS,
+          state: {
+            members: group.members,
+            groupId,
+          }
+        }}>
+          GroupMembers
+        </Link>
+
         <hr/>
         <div style={{textAlign: 'center'}} onClick={this.deleteGroup}>
         <Icon name='sign out'/>
