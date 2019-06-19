@@ -32,6 +32,7 @@ export default {
   openCloseGroup: payload => axios.get(`${HOST}openclose_group/?groupId=${payload.groupId}`),
   setAttendanceFine: payload => axios.get(`${HOST}set_attendance_fine/?groupId=${payload.groupId}&amount=${payload.amount}`),
   getAttendanceFine: payload => axios.get(`${HOST}get_attendance_fine/?groupId=${payload.groupId}`),
+  getSuccessRate: payload => axios.get(`${HOST}get_success_rate/?groupId=${payload.groupId}`),
 
   // Meeting
   loadMeetings: payload => axios.get(`${HOST}meetings/?groupId=${payload.groupId}`),
