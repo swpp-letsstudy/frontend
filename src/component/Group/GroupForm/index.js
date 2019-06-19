@@ -62,7 +62,7 @@ class GroupForm extends Component {
           for (let i = 0; i < 7; i++) {
             values[englishdays[i]] = toggle[i]
           }
-          if (name==='' || info==='' || time==='' || startday==='' || endday==='' || startday >= endday) {
+          if (name==='' || info==='' || time==='' || startday==='' || endday==='' || startday >= endday || name.length >20 || info.length >100) {
             alert('Wrong Input')
           } else {
             apis.createGroup(values).then(loadGroups)

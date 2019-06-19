@@ -37,7 +37,7 @@ class GroupList extends Component {
             }}
             onSubmit={(values, formActions) => {
               const { url } = values
-              apis.joinGroup({ url }).then(loadGroups)
+              apis.joinGroup({ url }).then(loadGroups).catch(function (err) {alert('invaild url')})
             }}
             render={({ handleChange }) =>
               <Form>

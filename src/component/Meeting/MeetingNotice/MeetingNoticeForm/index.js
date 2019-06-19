@@ -25,11 +25,15 @@ const MeetingNoticeForm = props => {
       }}
       onSubmit={(values, formActions) => {
         const { title, contents } = values
-        apis.createMeetingNotice({ meetingId, title, contents }).then(loadMeetingNotices({ meetingId }))
+        if(title==='' | contents==='' | title.length >20 | contents.length >100){
+          alert('Wrong Input')
+        }else{
+          apis.createMeetingNotice({ meetingId, title, contents }).then(loadMeetingNotices({ meetingId }))
         history.push({
           pathname: routes.MEETING_DETAIL.replace(':meetingId', meetingId),
           state: { meetingId },
         })
+        }
       }}
       render={() =>
         <Wrapper>

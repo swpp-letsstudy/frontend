@@ -26,11 +26,16 @@ const GroupNoticeForm = props => {
       }}
       onSubmit={(values, formActions) => {
         const { title, contents } = values
-        apis.createGroupNotice({ groupId, title, contents }).then(loadGroupNotices({ groupId }))
-        history.push({
-          pathname: routes.GROUP_NOTICE_LIST,
-          state: { groupId },
-        })
+
+        if(title==='' | contents==='' | title.length>20 | contents.length >100 ){
+          alert('Wrong Input')
+        }else{
+          apis.createGroupNotice({ groupId, title, contents }).then(loadGroupNotices({ groupId }))
+          history.push({
+            pathname: routes.GROUP_NOTICE_LIST,
+            state: { groupId },
+          })
+        }
       }}
       render={() =>
         <Wrapper>
