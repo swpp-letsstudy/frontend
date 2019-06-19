@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Form, Formik } from 'formik/dist/index'
 import { connect } from 'react-redux'
 import { Button } from 'semantic-ui-react'
@@ -16,102 +16,111 @@ import Div from 'component/Styles/Div'
 import Field from './GroupFormField'
 import Checkbox from './GroupFormCheckbox'
 
-let monday, tuesday, wednesday, thursday, friday, saturday, sunday;
+class GroupForm extends Component {
+  constructor(props) {
+    super(props)
 
-const GroupForm = props => {
-  const { history, loadGroups } = props
-  return (
-    <Formik
-      initialValues={{
-        name: '',
-        info: '',
-      }}
-      onSubmit={(values, formActions) => {
-        
-        const { name, info, startday, endday, time } = values
-        apis.createGroup({ name, info, startday, endday, monday, tuesday, wednesday, thursday, friday, saturday, sunday, time}).then(loadGroups)
-        init_days()
-        history.push(routes.GROUP_LIST)
-      }}
+    this.state = {
+      days: ['월', '화', '수', '목', '금', '토', '일'],
+      englishdays: ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'],
+      toggle: [false, false, false, false, false, false, false],
+    }
+  }
 
-      render={() =>
-        <Wrapper>
-          <Icon name='chevron left'>
-            <Link to={`/groups`}>
-              GroupList
-            </Link>
-          </Icon>
-          <Title>Create Group</Title>
-          <hr/>
-          <Form style={{width: '25rem'}}>
-            <Div style={{textDecoration:"none", textAlignLast:"center"}}>
-              그룹 이름
-            </Div>
-            <Field component='input' name='name' placeholder='Group Name' />
-            <Div style={{textDecoration:"none", textAlignLast:"center"}}>
-              그룹 정보
-            </Div>
-            <Field style={{borderColor:"black", borderWidth:"2px", height:"20rem"}} component='textarea' name='info' placeholder='Informations...'/>
-            
-            <Field style={{borderColor:"black", borderWidth:"2px"}} name='startday' type='date' />
-            <Field style={{borderColor:"black", borderWidth:"2px"}} name='endday' type='date' />
-            
-            <Div style={{textDecoration:"none", textAlignLast:"center"}}>
-              스터디 요일
-            </Div>
-            {init_days}
-            <Checkbox label = '월' onChange ={ togglemonday } name = 'monday'></Checkbox>
-            <Checkbox label = '화' onChange ={ toggletuesday } name = 'tuesday'></Checkbox>
-            <Checkbox label = '수' onChange ={ togglewednesday } name = 'wednesday'></Checkbox>
-            <Checkbox label = '목' onChange ={ togglethursday } name = 'thursday'></Checkbox>
-            <Checkbox label = '금' onChange ={ togglefriday } name = 'friday'></Checkbox>
-            <Checkbox label = '토' onChange ={ togglesaturday } name = 'saturday'></Checkbox>
-            <Checkbox label = '일' onChange ={ togglesunday } name = 'sunday'></Checkbox>
+  init_days = () => {
+    this.setState({
+      toggle: [false, false, false, false, false, false, false],
+    })
+  }
+  
+  toggleDay = idx => {
+    let preToggle = this.state.toggle
+    preToggle[idx] = !preToggle[idx]
+    this.setState({
+      toggle: preToggle,
+    })
+  }
+
+  render() {
+    const { history, loadGroups } = this.props
+    const { days, englishdays, toggle } = this.state
+    let initialValues = {
+      name: '',
+      info: '',
+      startday: '',
+      endday: '',
+      time: '',
+    }
+    for(let i = 0; i < 7; i++) {
+      initialValues[englishdays[i]] = toggle[i]
+    }
+    return (
+      <Formik
+        initialValues={initialValues}
+        onSubmit={(values, formActions) => {
+          const { name, info, startday, endday, time } = values
+          for (let i = 0; i < 7; i++) {
+            values[englishdays[i]] = toggle[i]
+          }
+          if (name==='' || info==='' || time==='' || startday==='' || endday==='' || startday >= endday) {
+            alert('Wrong Input')
+          } else {
+            apis.createGroup(values).then(loadGroups)
+            this.init_days()
+            history.push(routes.GROUP_LIST)
+          }
+        }}
+
+        render={() =>
+          <Wrapper>
+            <Icon name='chevron left'>
+              <Link to={`/groups`}>
+                GroupList
+              </Link>
+            </Icon>
+            <Title>Create Group</Title>
+            <hr/>
+            <Form style={{width: '25rem'}}>
+              <Div style={{textDecoration:"none", textAlignLast:"center"}}>
+                그룹 이름
+              </Div>
+              <Field component='input' name='name' placeholder='Group Name' />
+              <Div style={{textDecoration:"none", textAlignLast:"center"}}>
+                그룹 정보
+              </Div>
+              <Field style={{borderColor:"black", borderWidth:"2px", height:"20rem"}} component='textarea' name='info' placeholder='Informations...'/>
               
-            <Div style={{textDecoration:"none", textAlignLast:"center"}}>
-              스터디 시간
-            </Div>
-            <Field style={{borderColor:"black", borderWidth:"2px"}} name ='time' type='time' />
-            
-            <br/>
-            <br/>
+              <Field style={{borderColor:"black", borderWidth:"2px"}} name='startday' type='date' />
+              <Field style={{borderColor:"black", borderWidth:"2px"}} name='endday' type='date' />
+              
+              <Div style={{textDecoration:"none", textAlignLast:"center"}}>
+                스터디 요일
+              </Div>
+              
+              {days.map((day, index) => (
+                <Checkbox key={day} label={day} onChange ={()=>this.toggleDay(index)} name={englishdays[index]}/>
+              ))}
+                
+              <Div style={{textDecoration:"none", textAlignLast:"center"}}>
+                스터디 시간
+              </Div>
+              <Field style={{borderColor:"black", borderWidth:"2px"}} name ='time' type='time' />
+              
+              <br/>
+              <br/>
 
-            <Button basic color='black' animated type='submit' style={{width: "100%", fontSize: "1.5rem", fontWeight: "20"}}><Button.Content visible>
-                그룹 생성
-              </Button.Content>
-              <Button.Content hidden>
-                <Icon style={{paddingTop: "0rem"}} name='add' />
-              </Button.Content>
-            </Button>
-          </Form>
-        </Wrapper>
-      }
-    />
-  )
-}
-const init_days = () => {
-  monday=tuesday=wednesday=thursday=friday=saturday=sunday=false
-}
-const togglemonday = () => {
-    monday = !monday
-}
-const toggletuesday = () => {
-    tuesday = !tuesday
-}
-const togglewednesday = () => {
-    wednesday = !wednesday
-}
-const togglethursday = () => {
-    thursday = !thursday
-}
-const togglefriday = () => {
-    friday = !friday
-}
-const togglesaturday = () => {
-    saturday = !saturday
-}
-const togglesunday = () => {
-    sunday = !sunday
+              <Button basic color='black' animated type='submit' style={{width: "100%", fontSize: "1.5rem", fontWeight: "20"}}><Button.Content visible>
+                  그룹 생성
+                </Button.Content>
+                <Button.Content hidden>
+                  <Icon style={{paddingTop: "0rem"}} name='add' />
+                </Button.Content>
+              </Button>
+            </Form>
+          </Wrapper>
+        }
+      />
+  )}
 }
 
 const mapStateToProps = state => ({
