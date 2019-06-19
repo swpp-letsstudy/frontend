@@ -1,9 +1,9 @@
 import React from 'react'
-import { Formik, Field, Form } from "formik";
+import { Formik, Form } from "formik";
 import styled from 'styled-components'
 
 import Messages from './Messages'
-
+import Field from './ChattingField'
 import Button from './MessageSendButton'
 
 import Title from 'component/Styles/Title'
@@ -15,6 +15,7 @@ const ChattingWindow = props => {
     <div>
 
       <Title>Chatting</Title>
+      <hr/>
       <Window>
         <Messages messages={messages} />
         <Formik
@@ -27,7 +28,10 @@ const ChattingWindow = props => {
           render={() =>
             <Form>
               <Field name='message' />
-              <Button type='submit'>보내기</Button>
+
+              <Button type='submit' basic color='black' style={{textAlign:"center"}}>
+                send
+              </Button>
             </Form>
           }
         />
@@ -37,7 +41,7 @@ const ChattingWindow = props => {
 }
 
 const Window = styled.div`
-height: 600px;
+height: 30rem;
 font-size: 20px;
 display: flex;
 justify-content: space-between;

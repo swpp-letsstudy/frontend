@@ -9,6 +9,7 @@ import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
 import Icon from 'component/Styles/Chevron'
 import Link from 'component/Styles/Link'
+import Div from 'component/Styles/Div'
 
 class MyPolicyForm extends Component {
   constructor(props) {
@@ -39,6 +40,7 @@ class MyPolicyForm extends Component {
   render() {
     const { groupId } = this.props
     const { myFines, sum } = this.state
+    console.log(myFines)
     return (
       <Wrapper>
 
@@ -49,16 +51,18 @@ class MyPolicyForm extends Component {
         </Icon>
 
         <Title>총 벌금: {sum}</Title>
-        <br />
-        {myFines ? Object.keys(myFines).map((meeting, index) => (
-          <Fragment key={meeting}>
-            <h2>{meeting}</h2>
-            {myFines[meeting] ? myFines[meeting].map((fine, index) => (
+        <hr/>
+        {myFines ? myFines.map((myFine, index) => (
+          <Fragment key={myFine.id}>
+            <Div>{myFine.meetingname.substring(0, 10)}</Div>
+            {myFine.fines.map((fine, index) => (
               <Fragment key={fine.id}>
-                <div>{fine.policy.name}: {fine.policy.amount}</div>
-                <br />
+                <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
+                {fine.policyname}: {fine.amount}
+                </div>
+                
               </Fragment>
-            )) : <></>}
+            ))}
           </Fragment>
         )) : <></>}
       </Wrapper>

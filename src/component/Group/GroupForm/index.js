@@ -1,6 +1,7 @@
 import React from 'react'
 import { Form, Formik } from 'formik/dist/index'
 import { connect } from 'react-redux'
+import { Button } from 'semantic-ui-react'
 
 import actionCreators from 'store/actions'
 import apis from 'apis'
@@ -10,9 +11,9 @@ import Wrapper from 'component/Styles/Wrapper'
 import Title from 'component/Styles/Title'
 import Icon from 'component/Styles/Chevron'
 import Link from 'component/Styles/Link'
+import Div from 'component/Styles/Div'
 
 import Field from './GroupFormField'
-import Button from './GroupFormButton'
 import Checkbox from './GroupFormCheckbox'
 
 let monday, tuesday, wednesday, thursday, friday, saturday, sunday;
@@ -35,42 +36,53 @@ const GroupForm = props => {
 
       render={() =>
         <Wrapper>
-
           <Icon name='chevron left'>
             <Link to={`/groups`}>
               GroupList
             </Link>
           </Icon>
           <Title>Create Group</Title>
-          <Form>
-            <div>
-              <Field name='name' placeholder='group name' />
-            </div>
-            <div>
-              <Field name='info' type='text' placeholder='informations...' style={{ height: "20rem" }} />
-            </div>
-            <div>
-              <Field name='startday' type='date' />
-              <Field name='endday' type='date' />
-            </div>
-            <div>
-              <div>
-                <label>스터디 요일</label>
-              </div>
-              {init_days}
-              <Checkbox label = '월' onChange ={ togglemonday } name = 'monday'></Checkbox>
-              <Checkbox label = '화' onChange ={ toggletuesday } name = 'tuesday'></Checkbox>
-              <Checkbox label = '수' onChange ={ togglewednesday } name = 'wednesday'></Checkbox>
-              <Checkbox label = '목' onChange ={ togglethursday } name = 'thursday'></Checkbox>
-              <Checkbox label = '금' onChange ={ togglefriday } name = 'friday'></Checkbox>
-              <Checkbox label = '토' onChange ={ togglesaturday } name = 'saturday'></Checkbox>
-              <Checkbox label = '일' onChange ={ togglesunday } name = 'sunday'></Checkbox>
-            </div>
-            <div>
-              <label>스터디 시간</label>
-              <Field name ='time' type='time' />
-            </div>
-            <Button type='submit'>그룹 생성</Button>
+          <hr/>
+          <Form style={{width: '25rem'}}>
+            <Div style={{textDecoration:"none", textAlignLast:"center"}}>
+              그룹 이름
+            </Div>
+            <Field component='input' name='name' placeholder='Group Name' />
+            <Div style={{textDecoration:"none", textAlignLast:"center"}}>
+              그룹 정보
+            </Div>
+            <Field style={{borderColor:"black", borderWidth:"2px", height:"20rem"}} component='textarea' name='info' placeholder='Informations...'/>
+            
+            <Field style={{borderColor:"black", borderWidth:"2px"}} name='startday' type='date' />
+            <Field style={{borderColor:"black", borderWidth:"2px"}} name='endday' type='date' />
+            
+            <Div style={{textDecoration:"none", textAlignLast:"center"}}>
+              스터디 요일
+            </Div>
+            {init_days}
+            <Checkbox label = '월' onChange ={ togglemonday } name = 'monday'></Checkbox>
+            <Checkbox label = '화' onChange ={ toggletuesday } name = 'tuesday'></Checkbox>
+            <Checkbox label = '수' onChange ={ togglewednesday } name = 'wednesday'></Checkbox>
+            <Checkbox label = '목' onChange ={ togglethursday } name = 'thursday'></Checkbox>
+            <Checkbox label = '금' onChange ={ togglefriday } name = 'friday'></Checkbox>
+            <Checkbox label = '토' onChange ={ togglesaturday } name = 'saturday'></Checkbox>
+            <Checkbox label = '일' onChange ={ togglesunday } name = 'sunday'></Checkbox>
+              
+            <Div style={{textDecoration:"none", textAlignLast:"center"}}>
+              스터디 시간
+            </Div>
+            <Field style={{borderColor:"black", borderWidth:"2px"}} name ='time' type='time' />
+            
+            <br/>
+            <br/>
+
+            <Button basic color='black' animated type='submit' style={{width: "100%", fontSize: "1.5rem", fontWeight: "20"}}><Button.Content visible>
+                그룹 생성
+              </Button.Content>
+              <Button.Content hidden>
+                <Icon style={{paddingTop: "0rem"}} name='add' />
+              </Button.Content>
+            </Button>
           </Form>
         </Wrapper>
       }
