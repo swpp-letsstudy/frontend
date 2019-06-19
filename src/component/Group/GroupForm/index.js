@@ -27,8 +27,9 @@ const GroupForm = props => {
       }}
       onSubmit={(values, formActions) => {
         
-        const { name, info, startday, endday } = values
-        apis.createGroup({ name, info, startday, endday, monday, tuesday, wednesday, thursday, friday, saturday, sunday}).then(loadGroups)
+        const { name, info, startday, endday, time } = values
+        apis.createGroup({ name, info, startday, endday, monday, tuesday, wednesday, thursday, friday, saturday, sunday, time}).then(loadGroups)
+        init_days()
         history.push(routes.GROUP_LIST)
       }}
 
@@ -54,8 +55,9 @@ const GroupForm = props => {
             </div>
             <div>
               <div>
-                <label>미팅할 요일</label>
+                <label>스터디 요일</label>
               </div>
+              {init_days}
               <Checkbox label = '월' onChange ={ togglemonday } name = 'monday'></Checkbox>
               <Checkbox label = '화' onChange ={ toggletuesday } name = 'tuesday'></Checkbox>
               <Checkbox label = '수' onChange ={ togglewednesday } name = 'wednesday'></Checkbox>
@@ -64,12 +66,19 @@ const GroupForm = props => {
               <Checkbox label = '토' onChange ={ togglesaturday } name = 'saturday'></Checkbox>
               <Checkbox label = '일' onChange ={ togglesunday } name = 'sunday'></Checkbox>
             </div>
+            <div>
+              <label>스터디 시간</label>
+              <Field name ='time' type='time' />
+            </div>
             <Button type='submit'>그룹 생성</Button>
           </Form>
         </Wrapper>
       }
     />
   )
+}
+const init_days = () => {
+  monday=tuesday=wednesday=thursday=friday=saturday=sunday=false
 }
 const togglemonday = () => {
     monday = !monday

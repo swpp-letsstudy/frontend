@@ -224,7 +224,7 @@ class GroupDetail extends Component {
         <br />
 
         <Div>
-          스터디기간
+          스터디 기간
         </Div>
         <div>
             {group.startday}~{group.endday}
@@ -235,8 +235,12 @@ class GroupDetail extends Component {
         <div>
             {days(group.monday,group.tuesday,group.wednesday,group.thursday,group.friday,group.saturday,group.sunday)}
         </div>
-
-
+        <Div>
+          스터디 시간
+        </Div>
+        <div>
+            {group.time}
+        </div>
 
         <Div>
           Invitation Code
