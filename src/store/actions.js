@@ -10,7 +10,7 @@ export default createActions({
     setHeaderAuthorization(user.token)
     localStorage.setItem('user', JSON.stringify(user))
     return value
-  }),
+  }).catch(function (err) {alert('invalid ID or password')}),
   [ACTION_TYPES.LOGOUT]: () => apis.logout().then(value => {
     delete axios.defaults.headers.common.Authorization
     localStorage.removeItem('user')

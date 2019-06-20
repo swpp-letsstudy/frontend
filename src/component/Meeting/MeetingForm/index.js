@@ -25,13 +25,18 @@ const MeetingForm = props => {
         }}
         onSubmit={(values, formActions) => {
           const { time, info } = values
-          apis.createMeeting({ info, time, groupId }).then(
-            loadMeetings({ groupId })
-          )
-          history.push({
-            pathname: routes.MEETING_LIST,
-            state: { groupId },
-          })
+          if(info ==='' | info.length > 20){
+            alert('Wrong Input')
+          }else{
+            apis.createMeeting({ info, time, groupId }).then(
+              loadMeetings({ groupId })
+            )
+            history.push({
+              pathname: routes.MEETING_LIST,
+              state: { groupId },
+            })
+          }
+          
         }}
         render={() =>
           <Wrapper>

@@ -28,11 +28,16 @@ const PolicyForm = props => {
       }}
       onSubmit={(values, formActions) => {
         const { name, info, amount } = values
-        apis.createPolicy({ name, info, amount, groupId }).then(loadPolicies({ groupId }))
-        history.push({
-          pathname: routes.POLICY_LIST,
-          state: { groupId },
-        })
+        if(name==='' | info ==='' | name.length >20 | info.length >100){
+          alert('Wrong Input')
+        }else{
+          apis.createPolicy({ name, info, amount, groupId }).then(loadPolicies({ groupId }))
+          history.push({
+            pathname: routes.POLICY_LIST,
+            state: { groupId },
+          })
+        }
+        
       }}
       render={() =>
         <Wrapper>
