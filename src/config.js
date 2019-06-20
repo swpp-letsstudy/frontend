@@ -1,2 +1,2 @@
-export const HOST = 'http://15.164.163.171:8000/'
-export const WEB_SOCKET_HOST = 'ws://15.164.163.171:8000/ws/chat/'
+export const HOST = 'http://localhost:8000/'
+export const WEB_SOCKET_HOST = 'ws://localhost:8000/ws/chat/'
