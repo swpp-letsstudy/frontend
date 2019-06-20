@@ -114,6 +114,17 @@ class GroupDetail extends Component {
                     <Icon name='setting'/>
                   </Link>
                 </div>
+                <div style={{textAlign: "right"}}>
+                  <Link to={{
+                    pathname: routes.GROUP_MEMBERS,
+                    state: {
+                      members: group.members,
+                      groupId,
+                    }
+                  }}>
+                    <Icon name='group'/>
+                  </Link>
+                </div>
                 <Title style={{marginTop: "0rem"}}>
                   {group.name}
                 </Title>
@@ -134,14 +145,39 @@ class GroupDetail extends Component {
                     <Icon name='setting'/>
                   </Link>
                 </div>
+                <div style={{textAlign: "right"}}>
+                  <Link to={{
+                    pathname: routes.GROUP_MEMBERS,
+                    state: {
+                      members: group.members,
+                      groupId,
+                    }
+                  }}>
+                    <Icon name='group'/>
+                  </Link>
+                </div>
                 <Title style={{marginTop: "0rem"}}>
                   {group.name}
                 </Title>
               </div>
           :
+          <div>
+            <div style={{textAlign: "right"}}>
+              <Link to={{
+                pathname: routes.GROUP_MEMBERS,
+                state: {
+                  members: group.members,
+                  groupId,
+                }
+              }}>
+                <Icon name='group'/>
+              </Link>
+            </div>
             <Title>
               {group.name}
             </Title>
+          </div>
+            
         }
 
         <hr/>
@@ -238,19 +274,19 @@ class GroupDetail extends Component {
         <Div>
           스터디 기간
         </Div>
-        <div>
+        <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
             {group.startday}~{group.endday}
         </div>
         <Div>
           스터디 요일
         </Div>
-        <div>
+        <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
             {days(group.monday,group.tuesday,group.wednesday,group.thursday,group.friday,group.saturday,group.sunday)}
         </div>
         <Div>
           스터디 시간
         </Div>
-        <div>
+        <div style={{textAlign:"left",marginTop:"1.3rem",fontSize:"1.2rem"}}>
             {group.time}
         </div>
 
@@ -260,15 +296,8 @@ class GroupDetail extends Component {
         <div style={{ fontSize: "1.2rem" , textAlign: "left"}}>{`${HOST}join_group/?token=${group.id}`}</div>
         
         <br/>
-        <Link to={{
-          pathname: routes.GROUP_MEMBERS,
-          state: {
-            members: group.members,
-            groupId,
-          }
-        }}>
-          GroupMembers
-        </Link>
+        
+        
 
         <hr/>
         <div style={{textAlign: 'center'}} onClick={this.deleteGroup}>
